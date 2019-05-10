@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainItemCardComponent } from './main-item-card/main-item-card.component';
+import { ItemCardComponent } from './item-card/item-card.component';
+import { BasketCardComponent } from './basket-card/basket-card.component';
 
 @NgModule({
-  declarations: [AppComponent, MainItemCardComponent],
+  declarations: [AppComponent, ItemCardComponent, BasketCardComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
