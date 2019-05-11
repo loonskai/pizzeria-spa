@@ -8,6 +8,7 @@ import { BasketCardComponent } from './components/basket-card/basket-card.compon
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { AddButtonComponent } from './components/add-button/add-button.component';
 import { ItemCardModalComponent } from './components/item-card-modal/item-card-modal.component';
+import { RadioGroupButtonComponent } from './components/radio-group-button/radio-group-button.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ItemCardModalComponent } from './components/item-card-modal/item-card-m
     BasketCardComponent,
     ItemListComponent,
     AddButtonComponent,
-    ItemCardModalComponent
+    ItemCardModalComponent,
+    RadioGroupButtonComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

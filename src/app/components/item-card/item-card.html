@@ -1,13 +1,22 @@
 <div class="card item-card__container">
-  <div class="card-body">
+  <div class="card-body item-card__body">
     <button class="item-card__modal-button" (click)="openCardModal()">
       <span class="oi oi-grid-three-up"></span>
     </button>
-
-    <div>picture</div>
-    <h2>{{ itemName }}</h2>
-    <div>{{ itemDescription }}</div>
-    <p>{{ openModalStatus }}</p>
-    <add-button></add-button>
+    <div class="item-card__row">
+      <h2 class="item-card__title">{{ itemName }}</h2>
+    </div>
+    <div class="item-card__row">
+      <p class="item-card__description">{{ itemDescription }}</p>
+    </div>
+    <div class="item-card__row">
+      <radio-group-button></radio-group-button>
+    </div>
+    <div class="item-card__row">
+      <p>{{ openModalStatus }}</p>
+    </div>
+    <div class="item-card__row">
+      <add-button></add-button>
+    </div>
   </div>
 </div>

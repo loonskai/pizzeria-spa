@@ -1,0 +1,40 @@
+$radio-group-bg-color: #F2F2F2
+  
+.radio-group-button__container
+  position: relative
+  display: flex
+  border: 2px solid $radio-group-bg-color
+  border-radius: 2rem
+  overflow: hidden
+
+  & input
+    position: absolute
+    cursor: pointer
+    height: 100%
+    width: 100%
+    opacity: 0
+    z-index: 10
+    &.selected
+      opacity: 100
+
+.radio-group-button__item
+  position: relative
+  display: flex
+  justify-content: center
+  align-items: center
+  flex: 1
+  cursor: pointer
+  padding: 1.5rem 3rem
+
+  &.selected
+    background: $radio-group-bg-color
+
+  & span
+    position: absolute
+
+/* .radio-group-button__mask
+  position: absolute
+  
+  height: 100%
+  width: 50%
+  border-radius: inherit */

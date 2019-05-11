@@ -1,3 +1,5 @@
+$text-color: #5C3D45
+
 h2
   color: red
 
@@ -9,6 +11,19 @@ h2
 .item-card__body
   display: flex
   justify-content: center
+  flex-wrap: wrap
+
+.item-card__row
+  width: 100%
+
+.item-card__title
+  font-size: 1.5rem
+  font-weight: bold
+  color: $text-color
+
+.item-card__description
+  font-size: 1rem
+  color: $text-color
 
 .item-card__modal-button
   position: absolute
