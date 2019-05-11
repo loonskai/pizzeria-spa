@@ -1,4 +1,6 @@
 $radio-group-bg-color: #F2F2F2
+$radio-group-text-color: #A9A9A9
+$radio-group-text-color-selected: #5C3D45
   
 .radio-group-button__container
   position: relative
@@ -25,16 +27,12 @@ $radio-group-bg-color: #F2F2F2
   flex: 1
   cursor: pointer
   padding: 1.5rem 3rem
+  border-radius: inherit
+  color: $radio-group-text-color
 
   &.selected
     background: $radio-group-bg-color
+    color: $radio-group-text-color-selected
 
   & span
     position: absolute
-
-/* .radio-group-button__mask
-  position: absolute
-  
-  height: 100%
-  width: 50%
-  border-radius: inherit */
