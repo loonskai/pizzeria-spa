@@ -1,6 +1,9 @@
 <div class="card item-card__container">
   <div class="card-body">
-    <button (click)="openCardModal()">add ingredients</button>
+    <button class="item-card__modal-button" (click)="openCardModal()">
+      <span class="oi oi-grid-three-up"></span>
+    </button>
+
     <div>picture</div>
     <h2>{{ itemName }}</h2>
     <div>{{ itemDescription }}</div>
