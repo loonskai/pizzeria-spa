@@ -6,7 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-button.component.sass']
 })
 export class AddButtonComponent implements OnInit {
-  constructor() {}
+  isDisabled: boolean = true;
+
+  constructor() {
+    setTimeout(() => {
+      this.isDisabled = false;
+    }, 1000);
+  }
 
   ngOnInit() {}
 }
