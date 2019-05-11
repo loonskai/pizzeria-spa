@@ -1,8 +1,10 @@
 <div class="card item-card__container">
   <div class="card-body">
+    <button (click)="openCardModal()">add ingredients</button>
     <div>picture</div>
     <h2>{{ itemName }}</h2>
     <div>{{ itemDescription }}</div>
+    <p>{{ openModalStatus }}</p>
     <add-button></add-button>
   </div>
 </div>

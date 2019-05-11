@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 export class ItemCardComponent {
   itemName: string = 'Pizza';
   itemDescription: string = 'The tastiest pizza ever';
+  openModalStatus: string = '';
+
+  openCardModal() {
+    this.openModalStatus = 'this is modal window';
+  }
 }
