@@ -11,9 +11,11 @@ export class RadioGroupButtonComponent implements OnInit {
   constructor() {}
 
   selectItem(event: Event) {
-    const inputClicked = <HTMLInputElement>event.target;
-    this.itemSelected = inputClicked.value;
-    console.log(this.itemSelected);
+    const { type: inputType, value: inputValue } = <HTMLInputElement>(
+      event.target
+    );
+    if (inputType !== 'radio' || inputValue === this.itemSelected) return;
+    this.itemSelected = inputValue;
   }
 
   ngOnInit() {}
