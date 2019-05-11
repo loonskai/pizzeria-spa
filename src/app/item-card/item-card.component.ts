@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'item-card',
-  templateUrl: './item-card.html'
+  templateUrl: './item-card.html',
+  styleUrls: ['./item-card.component.sass']
 })
 export class ItemCardComponent {}
