@@ -8,14 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class RadioGroupButtonComponent implements OnInit {
   itemSelected: string = 'first';
 
-  constructor() {}
-
   selectItem(event: Event) {
     const { type: inputType, value: inputValue } = <HTMLInputElement>(
       event.target
     );
     if (inputType !== 'radio' || inputValue === this.itemSelected) return;
     this.itemSelected = inputValue;
+  }
+
+  checkItemSelected(value: string) {
+    return value === this.itemSelected;
   }
 
   ngOnInit() {}

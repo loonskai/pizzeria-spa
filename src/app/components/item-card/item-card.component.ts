@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { PizzaItem } from '../../interfaces';
 
 @Component({
   selector: 'item-card',
@@ -6,8 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./item-card.component.sass']
 })
 export class ItemCardComponent {
-  itemName: string = 'Pizza';
-  itemDescription: string = 'The tastiest pizza ever';
+  @Input('pizzaItem') pizza: PizzaItem;
   openModalStatus: string = '';
 
   openCardModal() {

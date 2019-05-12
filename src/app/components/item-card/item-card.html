@@ -3,11 +3,16 @@
     <button class="item-card__modal-button" (click)="openCardModal()">
       <span class="oi oi-grid-three-up"></span>
     </button>
+    <img
+      class="item-card__picture"
+      src="{{ pizza.pictureUrl }}"
+      alt="{{ pizza.title }}"
+    />
     <div class="item-card__row">
-      <h2 class="item-card__title">{{ itemName }}</h2>
+      <h2 class="item-card__title">{{ pizza.title }}</h2>
     </div>
     <div class="item-card__row">
-      <p class="item-card__description">{{ itemDescription }}</p>
+      <p class="item-card__description">{{ pizza.description }}</p>
     </div>
     <div class="item-card__row">
       <radio-group-button></radio-group-button>

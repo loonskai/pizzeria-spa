@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div *ngFor="let pizza of pizzasData" class="col">
-      <item-card></item-card>
+      <item-card [pizzaItem]="pizza"></item-card>
     </div>
   </div>
 </div>

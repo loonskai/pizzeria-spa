@@ -3,7 +3,7 @@
   <div
     [ngClass]="{
       'radio-group-button__item': true,
-      selected: itemSelected === 'first'
+      selected: checkItemSelected('first')
     }"
   >
     <input type="radio" value="first" name="group2" />
@@ -12,7 +12,7 @@
   <div
     [ngClass]="{
       'radio-group-button__item': true,
-      selected: itemSelected === 'second'
+      selected: checkItemSelected('second')
     }"
   >
     <input type="radio" value="second" name="group2" />

@@ -1,19 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { pizzasData } from '../../../mocks';
-
-export interface PizzaItem {
-  id: number;
-  title: string;
-  description: string;
-  pictureUrl: string;
-  energyValue: {
-    fats: number;
-    protein: number;
-    carbohydrates: number;
-    value: number;
-  };
-}
+import { PizzaItem } from '../../interfaces';
 
 @Component({
   selector: 'item-list',
