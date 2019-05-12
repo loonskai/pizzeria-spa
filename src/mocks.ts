@@ -1,4 +1,4 @@
-export const pizzasData = [
+export const pizzaData = [
   {
     id: 1,
     title: 'Техас',
@@ -11,6 +11,49 @@ export const pizzasData = [
       protein: 9.4,
       carbohydrates: 28.2,
       value: 208.7
+    },
+    price: 3.9,
+    size: {
+      thickness: [
+        {
+          type: 'Traditional',
+          priceRate: 1
+        },
+        {
+          type: 'Thin',
+          priceRate: 0.8
+        }
+      ],
+      diameter: [
+        {
+          value: 23,
+          persons: {
+            min: 1,
+            max: 2
+          }
+        },
+        {
+          value: 30,
+          persons: {
+            min: 3,
+            max: 5
+          }
+        },
+        {
+          value: 35,
+          persons: {
+            min: 5,
+            max: 7
+          }
+        },
+        {
+          value: 40,
+          persons: {
+            min: 7,
+            max: 9
+          }
+        }
+      ]
     }
   },
   {
@@ -24,6 +67,42 @@ export const pizzasData = [
       protein: 9.7,
       carbohydrates: 28.2,
       value: 247
+    },
+    price: 5.8,
+    size: {
+      thickness: [
+        {
+          type: 'Traditional',
+          priceRate: 1
+        },
+        {
+          type: 'Thin',
+          priceRate: 0.7
+        }
+      ],
+      diameter: [
+        {
+          value: 30,
+          persons: {
+            min: 2,
+            max: 3
+          }
+        },
+        {
+          value: 35,
+          persons: {
+            min: 3,
+            max: 5
+          }
+        },
+        {
+          value: 40,
+          persons: {
+            min: 5,
+            max: 7
+          }
+        }
+      ]
     }
   },
   {
@@ -38,6 +117,42 @@ export const pizzasData = [
       protein: 8.3,
       carbohydrates: 25.0,
       value: 187.0
+    },
+    price: 4.9,
+    size: {
+      thickness: [
+        {
+          type: 'Traditional',
+          priceRate: 1
+        },
+        {
+          type: 'Thin',
+          priceRate: 0.8
+        }
+      ],
+      diameter: [
+        {
+          value: 30,
+          persons: {
+            min: 2,
+            max: 3
+          }
+        },
+        {
+          value: 35,
+          persons: {
+            min: 3,
+            max: 5
+          }
+        },
+        {
+          value: 40,
+          persons: {
+            min: 5,
+            max: 7
+          }
+        }
+      ]
     }
   },
   {
@@ -51,6 +166,42 @@ export const pizzasData = [
       protein: 10.2,
       carbohydrates: 26.2,
       value: 204.8
+    },
+    price: 5.5,
+    size: {
+      thickness: [
+        {
+          type: 'Traditional',
+          priceRate: 1
+        },
+        {
+          type: 'Thin',
+          priceRate: 0.8
+        }
+      ],
+      diameter: [
+        {
+          value: 30,
+          persons: {
+            min: 2,
+            max: 3
+          }
+        },
+        {
+          value: 35,
+          persons: {
+            min: 3,
+            max: 5
+          }
+        },
+        {
+          value: 40,
+          persons: {
+            min: 5,
+            max: 7
+          }
+        }
+      ]
     }
   }
 ];

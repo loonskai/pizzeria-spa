@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { pizzasData } from '../../../mocks';
+import { pizzaData } from '../../../mocks';
 import { PizzaItem } from '../../interfaces';
 
 @Component({
@@ -9,7 +9,7 @@ import { PizzaItem } from '../../interfaces';
   styleUrls: ['./item-list.component.sass']
 })
 export class ItemListComponent implements OnInit {
-  pizzasData: PizzaItem[] = pizzasData;
+  pizzaData: PizzaItem[] = pizzaData;
 
   constructor() {}
 
