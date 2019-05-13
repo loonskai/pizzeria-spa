@@ -1,6 +1,6 @@
 <div class="card container">
   <div class="card-body body">
-    <button class="modal-button" (click)="openCardModal()">
+    <button class="modal-button" (click)="toggleCardModal()">
       <span class="oi oi-grid-three-up"></span>
     </button>
     <img class="picture" src="{{ pizza.pictureUrl }}" alt="{{ pizza.title }}" />
@@ -17,7 +17,7 @@
       <radio-group-button></radio-group-button>
     </div>
     <div *ngIf="isModalOpen" class="row">
-      <item-card-modal></item-card-modal>
+      <item-card-modal (toggle)="toggleCardModal()"></item-card-modal>
     </div>
     <div class="row">
       <add-button></add-button>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'item-card-modal',
@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item-card-modal.component.sass']
 })
 export class ItemCardModalComponent implements OnInit {
-  constructor() {}
+  @Output() toggle = new EventEmitter<string>();
+
+  closeModal() {
+    this.toggle.emit();
+  }
 
   ngOnInit() {}
 }

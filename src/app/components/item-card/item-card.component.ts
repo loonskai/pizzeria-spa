@@ -11,7 +11,7 @@ export class ItemCardComponent {
   @Input('pizzaItem') pizza: PizzaItem;
   isModalOpen: boolean = true; //false on default
 
-  openCardModal() {
-    this.isModalOpen = true;
+  toggleCardModal() {
+    this.isModalOpen = !this.isModalOpen;
   }
 }
