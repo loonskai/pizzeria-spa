@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 import { RadioGroupButtonOption } from '../../interfaces';
 
@@ -7,7 +7,7 @@ import { RadioGroupButtonOption } from '../../interfaces';
   templateUrl: './radio-group-button.component.html',
   styleUrls: ['./radio-group-button.component.sass']
 })
-export class RadioGroupButtonComponent implements OnInit {
+export class RadioGroupButtonComponent {
   @Input() options: RadioGroupButtonOption;
   @Input('value') itemSelected: string;
   @Output() changeEvent = new EventEmitter<string>();
@@ -22,9 +22,5 @@ export class RadioGroupButtonComponent implements OnInit {
 
   checkItemSelected(value: string) {
     return value === this.itemSelected;
-  }
-
-  ngOnInit() {
-    this.itemSelected = this.options[0].value;
   }
 }
