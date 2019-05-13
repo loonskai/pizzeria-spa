@@ -9,4 +9,23 @@ export interface PizzaItem {
     carbohydrates: number;
     value: number;
   };
+  price: number;
+  size: {
+    thickness: Array<{
+      type: string;
+      priceRate: number;
+    }>;
+    diameter: Array<{
+      value: number;
+      persons: {
+        min: number;
+        max: number;
+      };
+    }>;
+  };
+}
+
+export interface RadioGroupButtonOption {
+  title: string;
+  value: string | number;
 }

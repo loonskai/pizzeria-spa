@@ -1,15 +1,16 @@
 <div (click)="selectItem($event)" class="radio-group-button__container">
   <div class="radio-group-button__mask"></div>
   <div
+    *ngFor="let option of options"
     [ngClass]="{
       'radio-group-button__item': true,
       selected: checkItemSelected('first')
     }"
   >
-    <input type="radio" value="first" name="group2" />
-    <span>Traditional</span>
+    <input type="radio" value="{{ option.value }}" />
+    <span>{{ option.title }}</span>
   </div>
-  <div
+  <!--   <div
     [ngClass]="{
       'radio-group-button__item': true,
       selected: checkItemSelected('second')
@@ -17,5 +18,5 @@
   >
     <input type="radio" value="second" name="group2" />
     <span>Thin</span>
-  </div>
+  </div> -->
 </div>

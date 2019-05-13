@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { RadioGroupButtonOption } from '../../interfaces';
 
 @Component({
   selector: 'radio-group-button',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./radio-group-button.component.sass']
 })
 export class RadioGroupButtonComponent implements OnInit {
+  @Input() options: RadioGroupButtonOption;
   itemSelected: string = 'first';
 
   selectItem(event: Event) {
