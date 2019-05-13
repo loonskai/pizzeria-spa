@@ -9,9 +9,9 @@ import { PizzaItem } from '../../interfaces';
 })
 export class ItemCardComponent {
   @Input('pizzaItem') pizza: PizzaItem;
-  openModalStatus: string = '';
+  isModalOpen: boolean = true; //false on default
 
   openCardModal() {
-    this.openModalStatus = 'this is modal window';
+    this.isModalOpen = true;
   }
 }
