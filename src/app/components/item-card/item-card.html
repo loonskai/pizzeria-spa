@@ -13,14 +13,19 @@
     <div class="row">
       <radio-group-button
         [options]="thicknessOptions"
+        [value]="thicknessSelected"
         [ngStyle]="{ width: '100%' }"
+        (changeEvent)="changeThickness($event)"
       ></radio-group-button>
     </div>
     <div class="row">
       <radio-group-button
         [options]="diameterOptions"
         [ngStyle]="{ width: '100%' }"
+        [value]="diameterSelected.toString()"
+        (changeEvent)="changeDiameter($event)"
       ></radio-group-button>
+      <radio-button></radio-button>
     </div>
     <div *ngIf="isModalOpen" class="row">
       <item-card-modal (toggle)="toggleCardModal()"></item-card-modal>

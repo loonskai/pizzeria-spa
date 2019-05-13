@@ -10,8 +10,11 @@ import { PizzaItem, RadioGroupButtonOption } from '../../interfaces';
 export class ItemCardComponent implements OnInit {
   @Input('pizzaItem') pizza: PizzaItem;
   isModalOpen: boolean = false;
+  displayCheeseBoard: boolean = false;
   diameterOptions: RadioGroupButtonOption;
   thicknessOptions: RadioGroupButtonOption;
+  diameterSelected: number;
+  thicknessSelected: string;
 
   ngOnInit() {
     const { diameter, thickness } = this.pizza.size;
@@ -23,9 +26,22 @@ export class ItemCardComponent implements OnInit {
       title: thicknessItem.type,
       value: thicknessItem.type
     }));
+    this.thicknessSelected = this.thicknessOptions[0].value;
+    this.diameterSelected = this.diameterOptions[0].value;
   }
 
   toggleCardModal() {
+    console.log(this.thicknessSelected);
+    console.log(this.diameterSelected);
     this.isModalOpen = !this.isModalOpen;
+  }
+
+  changeDiameter(value: string) {
+    this.diameterSelected = +value;
+  }
+
+  changeThickness(value: string) {
+    console.log(value);
+    this.thicknessSelected = value;
   }
 }

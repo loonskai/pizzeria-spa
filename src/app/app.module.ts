@@ -9,6 +9,7 @@ import { ItemListComponent } from './components/item-list/item-list.component';
 import { AddButtonComponent } from './components/add-button/add-button.component';
 import { ItemCardModalComponent } from './components/item-card-modal/item-card-modal.component';
 import { RadioGroupButtonComponent } from './components/radio-group-button/radio-group-button.component';
+import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RadioGroupButtonComponent } from './components/radio-group-button/radio
     ItemListComponent,
     AddButtonComponent,
     ItemCardModalComponent,
-    RadioGroupButtonComponent
+    RadioGroupButtonComponent,
+    RadioButtonComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
