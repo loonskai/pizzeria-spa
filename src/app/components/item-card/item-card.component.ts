@@ -16,8 +16,8 @@ export class ItemCardComponent implements OnInit {
   ngOnInit() {
     const { diameter, thickness } = this.pizza.size;
     this.diameterOptions = diameter.map(diameterItem => ({
-      title: `${diameterItem.value}cm`,
-      value: diameterItem.value
+      title: diameterItem.value,
+      value: diameterItem.value.toString()
     }));
     this.thicknessOptions = thickness.map(thicknessItem => ({
       title: thicknessItem.type,

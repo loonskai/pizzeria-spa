@@ -9,7 +9,7 @@ import { RadioGroupButtonOption } from '../../interfaces';
 })
 export class RadioGroupButtonComponent implements OnInit {
   @Input() options: RadioGroupButtonOption;
-  itemSelected: string = 'first';
+  itemSelected: string | number;
 
   selectItem(event: Event) {
     const { type: inputType, value: inputValue } = <HTMLInputElement>(
@@ -23,5 +23,8 @@ export class RadioGroupButtonComponent implements OnInit {
     return value === this.itemSelected;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.options[0].value);
+    this.itemSelected = this.options[0].value;
+  }
 }

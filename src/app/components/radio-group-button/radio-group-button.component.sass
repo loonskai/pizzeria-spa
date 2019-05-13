@@ -1,10 +1,10 @@
 $radio-group-bg-color: #F2F2F2
 $radio-group-text-color: #A9A9A9
 $radio-group-text-color-selected: #5C3D45
-  
+
 .radio-group-button__container
   position: relative
-  display: flex
+  display: grid
   border: 2px solid $radio-group-bg-color
   border-radius: 2rem
   overflow: hidden
@@ -20,14 +20,23 @@ $radio-group-text-color-selected: #5C3D45
     &.selected
       opacity: 100
 
+  &.radio-group-button__options_two
+    grid-template-columns: 50% 50%
+
+  &.radio-group-button__options_three
+    grid-template-columns: 33% 33% 33%
+
+  &.radio-group-button__options_four
+    grid-template-columns: 25% 25% 25% 25%
+    width: 100%
+
 .radio-group-button__item
   position: relative
   display: flex
   justify-content: center
   align-items: center
-  flex: 1
   cursor: pointer
-  padding: 1.5rem 3rem
+  padding: 1.5rem
   border-radius: inherit
   color: $radio-group-text-color
 

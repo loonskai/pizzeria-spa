@@ -11,10 +11,16 @@
       <p class="description">{{ pizza.description }}</p>
     </div>
     <div class="row">
-      <radio-group-button [options]="diameterOptions"></radio-group-button>
+      <radio-group-button
+        [options]="thicknessOptions"
+        [ngStyle]="{ width: '100%' }"
+      ></radio-group-button>
     </div>
     <div class="row">
-      <radio-group-button [options]="thicknessOptions"></radio-group-button>
+      <radio-group-button
+        [options]="diameterOptions"
+        [ngStyle]="{ width: '100%' }"
+      ></radio-group-button>
     </div>
     <div *ngIf="isModalOpen" class="row">
       <item-card-modal (toggle)="toggleCardModal()"></item-card-modal>
