@@ -29,6 +29,16 @@
       </ng-template>
     </div>
   </div>
+  <div
+    class="content-row custom-ingredients__container"
+    *ngIf="customIngredients"
+  >
+    <span>Your ingredients:</span>
+    <div *ngFor="let customIngredient of customIngredients">
+      {{ customIngredient }}
+      <span class="oi oi-x"></span>
+    </div>
+  </div>
   <div class="content-row" (click)="toggleIngredientSelect()">
     <div
       class="ingredient-item__add-button"

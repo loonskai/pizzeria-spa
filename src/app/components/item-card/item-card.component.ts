@@ -41,7 +41,7 @@ export class ItemCardComponent implements OnInit {
     this.refreshPersonsAmount(this.diameterSelected.toString());
     this.recalculatePrice();
     this.defaultIngredients = [...this.pizza.ingredients];
-    this.customIngredients = [];
+    // this.customIngredients = [];
   }
 
   toggleCardModal() {
@@ -108,7 +108,9 @@ export class ItemCardComponent implements OnInit {
     const ingredient = ingredientsOptions.find(
       ingredientOption => ingredientOption.title === ingredientTitle
     );
-    this.customIngredients.push(ingredient.title);
+    this.customIngredients = this.customIngredients
+      ? [...this.customIngredients, ingredient.title]
+      : [ingredient.title];
     console.log(this.customIngredients);
   }
 }

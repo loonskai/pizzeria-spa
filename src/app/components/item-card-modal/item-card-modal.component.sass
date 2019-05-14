@@ -1,6 +1,7 @@
 $text-color: #5C3D45
 $green-color: #3B8686
 $grey-color: #A8A39D
+$custom-ingredient-color: #FF9F80;
 
 .container
   position: absolute
@@ -72,6 +73,14 @@ $grey-color: #A8A39D
     & span.oi
       background: $grey-color
 
+.custom-ingredients__container
+  font-size: 0.8rem
+  color: $custom-ingredient-color
+  & div
+    font-weight: bold
+  span.oi
+    cursor: pointer
+  
 .buttons-row
   display: flex
   justify-content: space-between
