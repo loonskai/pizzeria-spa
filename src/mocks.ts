@@ -224,14 +224,14 @@ export const pizzaData = [
 ];
 
 export const ingredientsOptions = [
-  'Лук',
-  'Кукуруза',
-  'Ветчина',
-  'Томаты',
-  'Пепперони',
-  'Сладкий перец',
-  'Оливки',
-  'Шампиньоны',
-  'Ананас',
-  'Курица'
+  { title: 'Лук', price: 0.2 },
+  { title: 'Кукуруза', price: 0.5 },
+  { title: 'Ветчина', price: 1.2 },
+  { title: 'Томаты', price: 0.7 },
+  { title: 'Пепперони', price: 1 },
+  { title: 'Сладкий перец', price: 0.7 },
+  { title: 'Оливки', price: 1.1 },
+  { title: 'Шампиньоны', price: 0.5 },
+  { title: 'Ананас', price: 0.8 },
+  { title: 'Курица', price: 1.2 }
 ];

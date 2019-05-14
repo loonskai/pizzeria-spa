@@ -2,25 +2,28 @@
   <div class="content-row">
     <h3 class="content__title">Remove ingredients</h3>
   </div>
-  <div (click)="changeIngredientStatus($event)">
-    <div *ngFor="let ingredient of defaultIngredients" class="content-row">
+  <div (click)="changeDefaultIngredientStatus($event)">
+    <div
+      *ngFor="let initialIngredient of initialDefaultIngredients"
+      class="content-row"
+    >
       <div
         class="ingredient-item"
-        *ngIf="isIngredientIncluded(ingredient); else ingredientDisabled"
+        *ngIf="isIngredientIncluded(initialIngredient); else ingredientDisabled"
       >
         <span class="ingredient-item__title">
-          {{ ingredient }}
+          {{ initialIngredient }}
         </span>
-        <span class="oi oi-x" attr.data-value="{{ ingredient }}"></span>
+        <span class="oi oi-x" attr.data-value="{{ initialIngredient }}"></span>
       </div>
       <ng-template #ingredientDisabled>
         <div class="ingredient-item ingredient-item__disabled">
           <span class="ingredient-item__title">
-            {{ ingredient }}
+            {{ initialIngredient }}
           </span>
           <span
             class="oi oi-action-undo"
-            attr.data-value="{{ ingredient }}"
+            attr.data-value="{{ initialIngredient }}"
           ></span>
         </div>
       </ng-template>
@@ -44,11 +47,14 @@
     </div>
   </div>
   <div class="content-row" *ngIf="showIngredientSelect">
-    <select class="custom-select" id="inputGroupSelect01">
+    <select class="custom-select" (change)="onIngredientSelect($event.target)">
       <option selected>Choose...</option>
-      <option *ngFor="let option of ingredientsOptions" value="{{ option }}">{{
-        option
-      }}</option>
+      <option
+        *ngFor="let option of ingredientsOptions"
+        attr.data-price="{{ option.price }}"
+        value="{{ option.title }}"
+        >{{ option.title + ' ($' + option.price + ')' }}</option
+      >
     </select>
   </div>
   <div class="content-row buttons-row">

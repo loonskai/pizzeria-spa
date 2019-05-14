@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { PizzaItem, RadioGroupButtonOption } from '../../interfaces';
+import { ingredientsOptions } from '../../../mocks';
 
 @Component({
   selector: 'item-card',
@@ -21,13 +22,11 @@ export class ItemCardComponent implements OnInit {
     max: number;
   };
   pizzaPrice: number;
-  pizzaIngredients: string[];
+  defaultIngredients: string[];
+  customIngredients: string[];
 
   ngOnInit() {
-    const {
-      size: { diameter, thickness },
-      ingredients
-    } = this.pizza;
+    const { diameter, thickness } = this.pizza.size;
     this.diameterOptions = diameter.map(diameterItem => ({
       title: diameterItem.value.toString(),
       value: diameterItem.value.toString()
@@ -41,7 +40,7 @@ export class ItemCardComponent implements OnInit {
     this.displayCheeseBoard = this.diameterSelected >= 30;
     this.refreshPersonsAmount(this.diameterSelected.toString());
     this.recalculatePrice();
-    this.pizzaIngredients = [...ingredients];
+    this.defaultIngredients = [...this.pizza.ingredients];
   }
 
   toggleCardModal() {
@@ -94,13 +93,21 @@ export class ItemCardComponent implements OnInit {
     this.pizzaPrice = parseFloat(recalculatedPrice.toFixed(1));
   }
 
-  toggleIngredient(ingredient: string) {
-    const updatedIngredients = this.pizzaIngredients.filter(
+  toggleDefaultIngredient(ingredient: string) {
+    const updatedIngredients = this.defaultIngredients.filter(
       existingIngredient => existingIngredient !== ingredient
     );
-    if (updatedIngredients.length === this.pizzaIngredients.length) {
+    if (updatedIngredients.length === this.defaultIngredients.length) {
       updatedIngredients.push(ingredient);
     }
-    this.pizzaIngredients = updatedIngredients;
+    this.defaultIngredients = updatedIngredients;
+  }
+
+  addCustomIngredient(ingredientTitle: string) {
+    const ingredient = ingredientsOptions.find(
+      ingredientOption => ingredientOption.title === ingredientTitle
+    );
+    this.customIngredients.push(ingredient.title);
+    console.log(ingredient);
   }
 }
