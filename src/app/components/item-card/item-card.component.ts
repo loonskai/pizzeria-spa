@@ -34,10 +34,7 @@ export class ItemCardComponent implements OnInit {
     this.thicknessSelected = this.thicknessOptions[0].value.toString();
     this.diameterSelected = this.diameterOptions[2].value;
     this.displayCheeseBoard = this.diameterSelected >= 30;
-    const { persons } = diameter.find(
-      size => this.diameterSelected === size.value.toString()
-    );
-    this.personsAmount = persons;
+    this.refreshPersonsAmount(this.diameterSelected.toString());
   }
 
   toggleCardModal() {
@@ -46,11 +43,9 @@ export class ItemCardComponent implements OnInit {
 
   changeDiameter(value: string) {
     if (this.diameterSelected === +value) return;
-    this.diameterSelected = +value;
+    this.diameterSelected = parseInt(value);
     this.displayCheeseBoard = this.diameterSelected >= 30;
-    const { diameter } = this.pizza.size;
-    const { persons } = diameter.find(size => value === size.value.toString());
-    this.personsAmount = persons;
+    this.refreshPersonsAmount(value);
     if (!this.displayCheeseBoard) {
       this.withCheeseBoard = false;
     }
@@ -63,5 +58,13 @@ export class ItemCardComponent implements OnInit {
 
   toggleCheeseBoard() {
     this.withCheeseBoard = !this.withCheeseBoard;
+  }
+
+  refreshPersonsAmount(newDiameter: string) {
+    const { diameter } = this.pizza.size;
+    const { persons } = diameter.find(
+      size => parseInt(newDiameter) === size.value
+    );
+    this.personsAmount = persons;
   }
 }
