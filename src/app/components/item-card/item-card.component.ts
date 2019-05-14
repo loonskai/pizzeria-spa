@@ -21,9 +21,13 @@ export class ItemCardComponent implements OnInit {
     max: number;
   };
   pizzaPrice: number;
+  pizzaIngredients: string[];
 
   ngOnInit() {
-    const { diameter, thickness } = this.pizza.size;
+    const {
+      size: { diameter, thickness },
+      ingredients
+    } = this.pizza;
     this.diameterOptions = diameter.map(diameterItem => ({
       title: diameterItem.value.toString(),
       value: diameterItem.value.toString()
@@ -37,6 +41,7 @@ export class ItemCardComponent implements OnInit {
     this.displayCheeseBoard = this.diameterSelected >= 30;
     this.refreshPersonsAmount(this.diameterSelected.toString());
     this.recalculatePrice();
+    this.pizzaIngredients = [...ingredients];
   }
 
   toggleCardModal() {
@@ -87,5 +92,15 @@ export class ItemCardComponent implements OnInit {
     );
     recalculatedPrice *= thicknessPriceRate * diameterPriceRate;
     this.pizzaPrice = parseFloat(recalculatedPrice.toFixed(1));
+  }
+
+  toggleIngredient(ingredient: string) {
+    const updatedIngredients = this.pizzaIngredients.filter(
+      existingIngredient => existingIngredient !== ingredient
+    );
+    if (updatedIngredients.length === this.pizzaIngredients.length) {
+      updatedIngredients.push(ingredient);
+    }
+    this.pizzaIngredients = updatedIngredients;
   }
 }
