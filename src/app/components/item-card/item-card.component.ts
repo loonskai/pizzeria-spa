@@ -123,7 +123,6 @@ export class ItemCardComponent implements OnInit {
     this.customIngredients = this.customIngredients.filter(
       customIngredientTitle => customIngredientTitle !== ingredientTitle
     );
-    console.log('from card', this.customIngredients);
     if (this.customIngredients.length === 0) {
       this.customIngredients = null;
     }

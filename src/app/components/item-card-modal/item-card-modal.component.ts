@@ -7,8 +7,6 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 })
 export class ItemCardModalComponent implements OnInit {
   showIngredientSelect: boolean = false;
-  /*   ingredientsOptions: any;
-  initialIngredientsOptions: any; */
   @Input() customIngredientsOptions;
   @Input() initialDefaultIngredients;
   @Input() defaultIngredients;
@@ -41,9 +39,6 @@ export class ItemCardModalComponent implements OnInit {
   onIngredientSelect(element: HTMLInputElement) {
     const { value } = element;
     this.addCustomIngredientEvent.emit(value);
-    /*     this.ingredientsOptions = this.ingredientsOptions.filter(
-      ingredientsOption => ingredientsOption.title !== value
-    ); */
   }
 
   removeCustomIngredient(event) {
@@ -52,17 +47,7 @@ export class ItemCardModalComponent implements OnInit {
     } = event.target;
     if (!value) return;
     this.removeCustomIngredientEvent.emit(value);
-    /*     this.ingredientsOptions = this.initialIngredientsOptions.filter(
-      initOption =>
-        !this.defaultIngredients.includes(initOption.title) &&
-        !this.customIngredients.includes(initOption.title)
-    ); */
   }
 
-  ngOnInit() {
-    /*     this.ingredientsOptions = ingredientsOptions.filter(
-      ingredient => !this.defaultIngredients.includes(ingredient.title)
-    );
-    this.initialIngredientsOptions = this.ingredientsOptions; */
-  }
+  ngOnInit() {}
 }

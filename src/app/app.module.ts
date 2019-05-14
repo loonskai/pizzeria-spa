@@ -11,6 +11,8 @@ import { ItemCardModalComponent } from './components/item-card-modal/item-card-m
 import { RadioGroupButtonComponent } from './components/radio-group-button/radio-group-button.component';
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 
+import { JoinPipe } from './pipes/join.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,8 @@ import { RadioButtonComponent } from './components/radio-button/radio-button.com
     AddButtonComponent,
     ItemCardModalComponent,
     RadioGroupButtonComponent,
-    RadioButtonComponent
+    RadioButtonComponent,
+    JoinPipe
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

@@ -17,7 +17,7 @@
       <p class="description">{{ pizza.description }}</p>
     </div>
     <div class="row" *ngIf="customIngredients">
-      <p class="description">{{ pizza.description }}</p>
+      <p class="description">{{ customIngredients | join }}</p>
     </div>
     <div class="row">
       <radio-group-button
