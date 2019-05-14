@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
+import { ingredientsOptions } from '../../../mocks';
+
 @Component({
   selector: 'item-card-modal',
   templateUrl: './item-card-modal.component.html',
@@ -7,6 +9,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 })
 export class ItemCardModalComponent implements OnInit {
   showIngredientSelect: boolean = false;
+  ingredientsOptions: string[];
   @Input('ingredients') defaultIngredients;
   @Input() customIngredients;
   @Output() toggle = new EventEmitter<string>();
@@ -32,5 +35,9 @@ export class ItemCardModalComponent implements OnInit {
     this.showIngredientSelect = !this.showIngredientSelect;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.ingredientsOptions = ingredientsOptions.filter(
+      ingredient => !this.defaultIngredients.includes(ingredient)
+    );
+  }
 }
