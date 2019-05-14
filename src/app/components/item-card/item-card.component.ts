@@ -23,6 +23,7 @@ export class ItemCardComponent implements OnInit {
   };
   pizzaPrice: number;
   defaultIngredients: string[];
+  customIngredientsOptions: any;
   customIngredients: string[];
 
   ngOnInit() {
@@ -41,7 +42,9 @@ export class ItemCardComponent implements OnInit {
     this.refreshPersonsAmount(this.diameterSelected.toString());
     this.recalculatePrice();
     this.defaultIngredients = [...this.pizza.ingredients];
-    // this.customIngredients = [];
+    this.customIngredientsOptions = ingredientsOptions.filter(
+      option => !this.defaultIngredients.includes(option.title)
+    );
   }
 
   toggleCardModal() {
@@ -111,14 +114,25 @@ export class ItemCardComponent implements OnInit {
     this.customIngredients = this.customIngredients
       ? [...this.customIngredients, ingredient.title]
       : [ingredient.title];
+    this.customIngredientsOptions = this.customIngredientsOptions.filter(
+      option => option.title !== ingredientTitle
+    );
   }
 
   removeCustomIngredient(ingredientTitle: string) {
     this.customIngredients = this.customIngredients.filter(
       customIngredientTitle => customIngredientTitle !== ingredientTitle
     );
+    console.log('from card', this.customIngredients);
     if (this.customIngredients.length === 0) {
       this.customIngredients = null;
     }
+    this.customIngredientsOptions = ingredientsOptions.filter(
+      option =>
+        !this.defaultIngredients.includes(option.title) &&
+        (this.customIngredients
+          ? !this.customIngredients.includes(option.title)
+          : true)
+    );
   }
 }

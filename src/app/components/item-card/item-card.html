@@ -16,6 +16,9 @@
     <div class="row">
       <p class="description">{{ pizza.description }}</p>
     </div>
+    <div class="row" *ngIf="customIngredients">
+      <p class="description">{{ pizza.description }}</p>
+    </div>
     <div class="row">
       <radio-group-button
         class="radio-group__thickness"
@@ -45,6 +48,7 @@
         (removeCustomIngredientEvent)="removeCustomIngredient($event)"
         [initialDefaultIngredients]="pizza.ingredients"
         [defaultIngredients]="defaultIngredients"
+        [customIngredientsOptions]="customIngredientsOptions"
         [customIngredients]="customIngredients"
       ></item-card-modal>
     </div>

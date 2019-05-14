@@ -61,7 +61,7 @@
     <select class="custom-select" (change)="onIngredientSelect($event.target)">
       <option selected>Choose...</option>
       <option
-        *ngFor="let option of ingredientsOptions"
+        *ngFor="let option of customIngredientsOptions"
         attr.data-price="{{ option.price }}"
         value="{{ option.title }}"
         >{{ option.title + ' ($' + option.price + ')' }}</option
