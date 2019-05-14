@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'radio-button',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./radio-button.component.sass']
 })
 export class RadioButtonComponent implements OnInit {
+  @Input() isSelected;
+
   constructor() {}
 
   ngOnInit() {}

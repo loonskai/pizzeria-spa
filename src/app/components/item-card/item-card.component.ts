@@ -40,6 +40,9 @@ export class ItemCardComponent implements OnInit {
     if (this.diameterSelected === +value) return;
     this.diameterSelected = +value;
     this.displayCheeseBoard = this.diameterSelected >= 30;
+    if (!this.displayCheeseBoard) {
+      this.withCheeseBoard = false;
+    }
   }
 
   changeThickness(value: string) {
@@ -47,7 +50,8 @@ export class ItemCardComponent implements OnInit {
     this.thicknessSelected = value;
   }
 
-  toggleCheeseBoardSelected() {
+  toggleCheeseBoard() {
     this.withCheeseBoard = !this.withCheeseBoard;
+    console.log(this.withCheeseBoard);
   }
 }
