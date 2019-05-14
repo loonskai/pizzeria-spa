@@ -94,6 +94,15 @@ export class ItemCardComponent implements OnInit {
       item => this.diameterSelected === item.value
     );
     recalculatedPrice *= thicknessPriceRate * diameterPriceRate;
+    recalculatedPrice = ingredientsOptions.reduce((totalPrice, option) => {
+      if (
+        this.customIngredients &&
+        this.customIngredients.includes(option.title)
+      ) {
+        totalPrice += option.price;
+      }
+      return totalPrice;
+    }, recalculatedPrice);
     this.pizzaPrice = parseFloat(recalculatedPrice.toFixed(1));
   }
 
@@ -117,6 +126,7 @@ export class ItemCardComponent implements OnInit {
     this.customIngredientsOptions = this.customIngredientsOptions.filter(
       option => option.title !== ingredientTitle
     );
+    this.recalculatePrice();
   }
 
   removeCustomIngredient(ingredientTitle: string) {
@@ -133,5 +143,6 @@ export class ItemCardComponent implements OnInit {
           ? !this.customIngredients.includes(option.title)
           : true)
     );
+    this.recalculatePrice();
   }
 }
