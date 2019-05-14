@@ -40,8 +40,12 @@
     <div *ngIf="isModalOpen" class="row">
       <item-card-modal (toggle)="toggleCardModal()"></item-card-modal>
     </div>
-    <div class="row">
+    <div class="row justify-content-between align-items-center">
       <add-button></add-button>
+      <div class="total-price">
+        <span>{{ pizzaPrice }}</span>
+        $
+      </div>
     </div>
   </div>
 </div>

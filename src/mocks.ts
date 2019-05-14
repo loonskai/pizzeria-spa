@@ -27,6 +27,7 @@ export const pizzaData = [
       diameter: [
         {
           value: 23,
+          priceRate: 0.8,
           persons: {
             min: 1,
             max: 2
@@ -34,6 +35,7 @@ export const pizzaData = [
         },
         {
           value: 30,
+          priceRate: 1,
           persons: {
             min: 3,
             max: 5
@@ -41,6 +43,7 @@ export const pizzaData = [
         },
         {
           value: 35,
+          priceRate: 1.2,
           persons: {
             min: 5,
             max: 7
@@ -48,6 +51,7 @@ export const pizzaData = [
         },
         {
           value: 40,
+          priceRate: 1.5,
           persons: {
             min: 7,
             max: 9
@@ -83,6 +87,7 @@ export const pizzaData = [
       diameter: [
         {
           value: 30,
+          priceRate: 1,
           persons: {
             min: 2,
             max: 3
@@ -90,6 +95,7 @@ export const pizzaData = [
         },
         {
           value: 35,
+          priceRate: 1.2,
           persons: {
             min: 3,
             max: 5
@@ -97,6 +103,7 @@ export const pizzaData = [
         },
         {
           value: 40,
+          priceRate: 1.5,
           persons: {
             min: 5,
             max: 7
@@ -133,6 +140,7 @@ export const pizzaData = [
       diameter: [
         {
           value: 30,
+          priceRate: 1,
           persons: {
             min: 2,
             max: 3
@@ -140,6 +148,7 @@ export const pizzaData = [
         },
         {
           value: 35,
+          priceRate: 1.2,
           persons: {
             min: 3,
             max: 5
@@ -147,6 +156,7 @@ export const pizzaData = [
         },
         {
           value: 40,
+          priceRate: 1.5,
           persons: {
             min: 5,
             max: 7
@@ -182,6 +192,7 @@ export const pizzaData = [
       diameter: [
         {
           value: 30,
+          priceRate: 1,
           persons: {
             min: 2,
             max: 3
@@ -189,6 +200,7 @@ export const pizzaData = [
         },
         {
           value: 35,
+          priceRate: 1.2,
           persons: {
             min: 3,
             max: 5
@@ -196,6 +208,7 @@ export const pizzaData = [
         },
         {
           value: 40,
+          priceRate: 1.5,
           persons: {
             min: 5,
             max: 7

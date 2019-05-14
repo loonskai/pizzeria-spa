@@ -17,6 +17,7 @@ export interface PizzaItem {
     }>;
     diameter: Array<{
       value: number;
+      priceRate: number;
       persons: {
         min: number;
         max: number;

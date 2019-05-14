@@ -14,12 +14,13 @@ export class ItemCardComponent implements OnInit {
   withCheeseBoard: boolean = false;
   diameterOptions: RadioGroupButtonOption[];
   thicknessOptions: RadioGroupButtonOption[];
-  diameterSelected: string | number;
+  diameterSelected: number;
   thicknessSelected: string;
   personsAmount: {
     min: number;
     max: number;
   };
+  pizzaPrice: number;
 
   ngOnInit() {
     const { diameter, thickness } = this.pizza.size;
@@ -32,9 +33,10 @@ export class ItemCardComponent implements OnInit {
       value: thicknessItem.type
     }));
     this.thicknessSelected = this.thicknessOptions[0].value.toString();
-    this.diameterSelected = this.diameterOptions[2].value;
+    this.diameterSelected = parseInt(this.diameterOptions[0].value.toString());
     this.displayCheeseBoard = this.diameterSelected >= 30;
     this.refreshPersonsAmount(this.diameterSelected.toString());
+    this.recalculatePrice();
   }
 
   toggleCardModal() {
@@ -49,15 +51,18 @@ export class ItemCardComponent implements OnInit {
     if (!this.displayCheeseBoard) {
       this.withCheeseBoard = false;
     }
+    this.recalculatePrice();
   }
 
   changeThickness(value: string) {
     if (this.thicknessSelected === value) return;
     this.thicknessSelected = value;
+    this.recalculatePrice();
   }
 
   toggleCheeseBoard() {
     this.withCheeseBoard = !this.withCheeseBoard;
+    this.recalculatePrice();
   }
 
   refreshPersonsAmount(newDiameter: string) {
@@ -66,5 +71,21 @@ export class ItemCardComponent implements OnInit {
       size => parseInt(newDiameter) === size.value
     );
     this.personsAmount = persons;
+  }
+
+  recalculatePrice() {
+    let recalculatedPrice = this.pizza.price;
+    if (this.withCheeseBoard) {
+      recalculatedPrice *= 1.15;
+    }
+    const { diameter, thickness } = this.pizza.size;
+    const { priceRate: thicknessPriceRate } = thickness.find(
+      item => this.thicknessSelected === item.type
+    );
+    const { priceRate: diameterPriceRate } = diameter.find(
+      item => this.diameterSelected === item.value
+    );
+    recalculatedPrice *= thicknessPriceRate * diameterPriceRate;
+    this.pizzaPrice = parseFloat(recalculatedPrice.toFixed(1));
   }
 }
