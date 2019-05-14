@@ -12,22 +12,22 @@ export class ItemCardComponent implements OnInit {
   isModalOpen: boolean = false;
   displayCheeseBoard: boolean = false;
   withCheeseBoard: boolean = false;
-  diameterOptions: RadioGroupButtonOption;
-  thicknessOptions: RadioGroupButtonOption;
-  diameterSelected: number;
+  diameterOptions: RadioGroupButtonOption[];
+  thicknessOptions: RadioGroupButtonOption[];
+  diameterSelected: string | number;
   thicknessSelected: string;
 
   ngOnInit() {
     const { diameter, thickness } = this.pizza.size;
     this.diameterOptions = diameter.map(diameterItem => ({
-      title: diameterItem.value,
+      title: diameterItem.value.toString(),
       value: diameterItem.value.toString()
     }));
     this.thicknessOptions = thickness.map(thicknessItem => ({
       title: thicknessItem.type,
       value: thicknessItem.type
     }));
-    this.thicknessSelected = this.thicknessOptions[0].value;
+    this.thicknessSelected = this.thicknessOptions[0].value.toString();
     this.diameterSelected = this.diameterOptions[2].value;
     this.displayCheeseBoard = this.diameterSelected >= 30;
   }
