@@ -16,6 +16,10 @@ export class ItemCardComponent implements OnInit {
   thicknessOptions: RadioGroupButtonOption[];
   diameterSelected: string | number;
   thicknessSelected: string;
+  personsAmount: {
+    min: number;
+    max: number;
+  };
 
   ngOnInit() {
     const { diameter, thickness } = this.pizza.size;
@@ -30,6 +34,10 @@ export class ItemCardComponent implements OnInit {
     this.thicknessSelected = this.thicknessOptions[0].value.toString();
     this.diameterSelected = this.diameterOptions[2].value;
     this.displayCheeseBoard = this.diameterSelected >= 30;
+    const { persons } = diameter.find(
+      size => this.diameterSelected === size.value.toString()
+    );
+    this.personsAmount = persons;
   }
 
   toggleCardModal() {
@@ -40,6 +48,9 @@ export class ItemCardComponent implements OnInit {
     if (this.diameterSelected === +value) return;
     this.diameterSelected = +value;
     this.displayCheeseBoard = this.diameterSelected >= 30;
+    const { diameter } = this.pizza.size;
+    const { persons } = diameter.find(size => value === size.value.toString());
+    this.personsAmount = persons;
     if (!this.displayCheeseBoard) {
       this.withCheeseBoard = false;
     }
@@ -52,6 +63,5 @@ export class ItemCardComponent implements OnInit {
 
   toggleCheeseBoard() {
     this.withCheeseBoard = !this.withCheeseBoard;
-    console.log(this.withCheeseBoard);
   }
 }

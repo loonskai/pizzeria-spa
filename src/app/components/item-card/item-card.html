@@ -5,6 +5,12 @@
     </button>
     <img class="picture" src="{{ pizza.pictureUrl }}" alt="{{ pizza.title }}" />
     <div class="row">
+      <div class="persons-icon">
+        <span class="oi oi-person"></span>
+        <span>{{ personsAmount.min }}-{{ personsAmount.max }}</span>
+      </div>
+    </div>
+    <div class="row">
       <h2 class="title">{{ pizza.title }}</h2>
     </div>
     <div class="row">
