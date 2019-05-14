@@ -16,7 +16,8 @@
     <div class="row">
       <p class="description">{{ pizza.description }}</p>
     </div>
-    <div class="row" *ngIf="customIngredients">
+    <div class="row custom-ingredients-list" *ngIf="customIngredients">
+      <span>Your ingredients:</span>
       <p class="description">{{ customIngredients | join }}</p>
     </div>
     <div class="row">
