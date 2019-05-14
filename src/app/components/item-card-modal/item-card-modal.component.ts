@@ -6,6 +6,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
   styleUrls: ['./item-card-modal.component.sass']
 })
 export class ItemCardModalComponent implements OnInit {
+  showIngredientSelect: boolean = false;
   @Input('ingredients') defaultIngredients;
   @Input() customIngredients;
   @Output() toggle = new EventEmitter<string>();
@@ -25,6 +26,10 @@ export class ItemCardModalComponent implements OnInit {
 
   isIngredientIncluded(ingredient: string) {
     return this.customIngredients.includes(ingredient);
+  }
+
+  toggleIngredientSelect() {
+    this.showIngredientSelect = !this.showIngredientSelect;
   }
 
   ngOnInit() {}

@@ -26,13 +26,24 @@
       </ng-template>
     </div>
   </div>
-  <div class="content-row">
-    <div class="ingredient-item__add-button">
-      <span class="oi oi-plus"></span>
+  <div class="content-row" (click)="toggleIngredientSelect()">
+    <div
+      class="ingredient-item__add-button"
+      [ngClass]="{
+        'add-button_clicked': showIngredientSelect
+      }"
+    >
+      <span
+        class="oi oi-plus"
+        [ngClass]="{
+          'oi-plus': !showIngredientSelect,
+          'oi-minus': showIngredientSelect
+        }"
+      ></span>
       Add ingredients
     </div>
   </div>
-  <div class="content-row">
+  <div class="content-row" *ngIf="showIngredientSelect">
     <select class="custom-select" id="inputGroupSelect01">
       <option selected>Choose...</option>
       <option value="1">One</option>
