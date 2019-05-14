@@ -15,7 +15,8 @@ export class ItemCardModalComponent implements OnInit {
   @Input() customIngredients;
   @Output() toggle = new EventEmitter<string>();
   @Output() toggleDefaultIngredient = new EventEmitter<string>();
-  @Output() addCustomIngredient = new EventEmitter<string>();
+  @Output() addCustomIngredientEvent = new EventEmitter<string>();
+  @Output() removeCustomIngredientEvent = new EventEmitter<string>();
 
   closeModal() {
     this.toggle.emit();
@@ -39,10 +40,18 @@ export class ItemCardModalComponent implements OnInit {
 
   onIngredientSelect(element: HTMLInputElement) {
     const { value } = element;
-    this.addCustomIngredient.emit(value);
+    this.addCustomIngredientEvent.emit(value);
     this.ingredientsOptions = this.ingredientsOptions.filter(
       ingredientsOption => ingredientsOption.title !== value
     );
+  }
+
+  removeCustomIngredient(event) {
+    const {
+      dataset: { value }
+    } = event.target;
+    if (!value) return;
+    this.removeCustomIngredientEvent.emit(value);
   }
 
   ngOnInit() {

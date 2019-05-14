@@ -41,7 +41,8 @@
       <item-card-modal
         (toggle)="toggleCardModal()"
         (toggleDefaultIngredient)="toggleDefaultIngredient($event)"
-        (addCustomIngredient)="addCustomIngredient($event)"
+        (addCustomIngredientEvent)="addCustomIngredient($event)"
+        (removeCustomIngredientEvent)="removeCustomIngredient($event)"
         [initialDefaultIngredients]="pizza.ingredients"
         [defaultIngredients]="defaultIngredients"
         [customIngredients]="customIngredients"

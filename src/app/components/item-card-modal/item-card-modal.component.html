@@ -32,11 +32,12 @@
   <div
     class="content-row custom-ingredients__container"
     *ngIf="customIngredients"
+    (click)="removeCustomIngredient($event)"
   >
     <span>Your ingredients:</span>
     <div *ngFor="let customIngredient of customIngredients">
       {{ customIngredient }}
-      <span class="oi oi-x"></span>
+      <span class="oi oi-x" attr.data-value="{{ customIngredient }}"></span>
     </div>
   </div>
   <div class="content-row" (click)="toggleIngredientSelect()">

@@ -111,6 +111,14 @@ export class ItemCardComponent implements OnInit {
     this.customIngredients = this.customIngredients
       ? [...this.customIngredients, ingredient.title]
       : [ingredient.title];
-    console.log(this.customIngredients);
+  }
+
+  removeCustomIngredient(ingredientTitle: string) {
+    this.customIngredients = this.customIngredients.filter(
+      customIngredientTitle => customIngredientTitle !== ingredientTitle
+    );
+    if (this.customIngredients.length === 0) {
+      this.customIngredients = null;
+    }
   }
 }
