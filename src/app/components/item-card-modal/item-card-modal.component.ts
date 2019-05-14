@@ -39,7 +39,10 @@ export class ItemCardModalComponent implements OnInit {
 
   onIngredientSelect(element: HTMLInputElement) {
     const { value } = element;
-    // this.toggleIngredient.emit(value);
+    this.addCustomIngredient.emit(value);
+    this.ingredientsOptions = this.ingredientsOptions.filter(
+      ingredientsOption => ingredientsOption.title !== value
+    );
   }
 
   ngOnInit() {
