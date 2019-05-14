@@ -2,23 +2,14 @@
   <div class="content-row">
     <h3 class="content__title">Remove ingredients</h3>
   </div>
-  <div class="content-row">
+  <div *ngFor="let ingredient of ingredients" class="content-row">
     <div class="ingredient-item">
       <span class="ingredient-item__title">
-        Mozzarella
+        {{ ingredient }}
       </span>
       <span class="oi oi-x"></span>
     </div>
   </div>
-  <div class="content-row">
-    <div class="ingredient-item ingredient-item__disabled">
-      <span class="ingredient-item__title">
-        Onions
-      </span>
-      <span class="oi oi-action-undo"></span>
-    </div>
-  </div>
-  <!-- END OF THE LIST -->
   <div class="content-row">
     <div class="ingredient-item__add-button">
       <span class="oi oi-plus"></span>

@@ -2,6 +2,7 @@ export interface PizzaItem {
   id: number;
   title: string;
   description: string;
+  ingredients: string[];
   pictureUrl: string;
   energyValue: {
     fats: number;

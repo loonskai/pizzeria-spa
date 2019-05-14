@@ -6,6 +6,7 @@ export const pizzaData = [
       "Лук, Томатный соус Domino's, Кукуруза, Ветчина, Сыр моцарелла, Шампиньоны",
     pictureUrl:
       'https://images.dominos.by/media/dominos/osg/api/2018/12/12/texas_small.png',
+    ingredients: ['Лук', 'Кукуруза', 'Ветчина', 'Шампиньоны'],
     energyValue: {
       fats: 6.5,
       protein: 9.4,
@@ -66,6 +67,7 @@ export const pizzaData = [
     description: 'Соус барбекю, Томаты, Сыр моцарелла, Пепперони',
     pictureUrl:
       'https://images.dominos.by/media/dominos/osg/api/2018/12/12/pepperoni_i_tomaty_small.png',
+    ingredients: ['Томаты', 'Пепперони'],
     energyValue: {
       fats: 9.4,
       protein: 9.7,
@@ -119,6 +121,7 @@ export const pizzaData = [
       "Сладкий перец, Сыр моцарелла, Лук, Оливки, Томаты, Шампиньоны, Томатный соус Domino's",
     pictureUrl:
       'https://images.dominos.by/media/dominos/osg/api/2018/09/12/ovoshchnaya.png',
+    ingredients: ['Сладкий перец', 'Лук', 'Оливки', 'Томаты', 'Шампиньоны'],
     energyValue: {
       fats: 5.9,
       protein: 8.3,
@@ -171,6 +174,7 @@ export const pizzaData = [
     description: "Ананас, Сыр моцарелла, Томатный соус Domino's, Курица",
     pictureUrl:
       'https://images.dominos.by/media/dominos/osg/api/2018/09/12/gavayskaya.png',
+    ingredients: ['Ананас', 'Курица'],
     energyValue: {
       fats: 6.6,
       protein: 10.2,
