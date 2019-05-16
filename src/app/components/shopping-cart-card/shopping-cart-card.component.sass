@@ -1,4 +1,4 @@
-$bg-color: #F1F1F1
+$bg-color: #FAFAFA
 $red-border-color: #FF3D3E
 $green-color: #3B8686
 $text-color: #5C3D45
@@ -7,6 +7,10 @@ $included-ingredient-color: #26ADE4;
 $excluded-ingredient-color: #CF4647;
 $cheese-board-color: #FFA446;
 $grey-color: #A8A39D
+$controller-button-enabled-color: #3B8686
+$controller-button-enabled-bg-color: #E9FFE1
+$controller-button-disabled-color: #ffffff
+$controller-button-disabled-bg-color: #F2F2F2
 
 .container
   position: relative
@@ -63,6 +67,7 @@ $grey-color: #A8A39D
   background: none
   border: none
   color: $green-color
+  font-size: 0.9rem
   font-weight: bold
   outline: none
 
@@ -126,3 +131,26 @@ $grey-color: #A8A39D
   right: 0
   color: $grey-color
   cursor: pointer
+
+.order-item-controller
+  margin-top: 0.5rem
+  display: flex
+  align-items: center
+  & span
+    margin: 0 0.4rem
+  & .controller-increase,
+  & .controller-decrease
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 20px
+    height: 20px
+    border: none
+    color: $controller-button-enabled-color
+    background-color: $controller-button-enabled-bg-color
+    border-radius: 50%
+    font-size: 0.7rem
+    outline: none
+    &:disabled
+      color: $controller-button-disabled-color
+      background-color: $controller-button-disabled-bg-color
