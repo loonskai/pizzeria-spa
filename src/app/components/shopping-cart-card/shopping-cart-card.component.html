@@ -9,14 +9,38 @@
       </div>
       <button class="clear-order-button">Clear</button>
     </div>
-    <div class="row">
-      Item 1
-    </div>
-    <div class="row">
-      Item 2
-    </div>
-    <div class="row">
-      Total
+    <div class="row items-container">
+      <div *ngFor="let orderItem of order" class="order-item">
+        <div class="order-item-section">
+          <img
+            class="order-item-picture"
+            src="{{ orderItem.pizzaDetails.pictureUrl }}"
+            alt="{{ orderItem.pizzaDetails.title }}"
+          />
+          <div class="order-item-description">
+            <span>{{ orderItem.pizzaDetails.title }}</span>
+            <span
+              >{{ orderItem.thickness }} crust,
+              {{ orderItem.diameter }} cm</span
+            >
+            <div
+              class="element__excluded"
+              *ngFor="let excluded of orderItem.excludedIngredients"
+            >
+              <span class="oi oi-minus"></span> {{ excluded }}
+            </div>
+            <div
+              class="element__included"
+              *ngFor="let included of orderItem.customIngredients"
+            >
+              <span class="oi oi-plus"></span> {{ included }}
+            </div>
+          </div>
+        </div>
+        <div class="order-item-section">
+          -1+ price
+        </div>
+      </div>
     </div>
     <div class="row justify-content-center">
       <main-button [text]="'ORDER NOW'"></main-button>

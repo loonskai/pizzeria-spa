@@ -1,6 +1,9 @@
 $red-border-color: #FF3D3E
 $green-color: #3B8686
 $text-color: #5C3D45
+$border-bottom-grey: #E0E0E0
+$included-ingredient-color: #26ADE4;
+$excluded-ingredient-color: #CF4647;
 
 .container
   position: relative
@@ -57,3 +60,44 @@ $text-color: #5C3D45
   color: $green-color
   font-weight: bold
   outline: none
+
+.items-container
+  margin-bottom: 1rem
+
+.order-item
+  width: 100%
+  display: flex
+  flex-wrap: wrap
+  padding: 0.5rem 0
+  border-bottom: 1px solid $border-bottom-grey
+
+.order-item-section
+  display: flex
+  width: 100%
+
+.order-item-picture
+  width: 50px
+  height: 50px
+  margin-right: 0.5rem
+
+.order-item-description
+  display: flex
+  flex-wrap: wrap
+  font-size: 0.8rem
+  color: $text-color
+  & span:first-child
+    font-size: 1rem
+    width: 100%
+    font-weight: bold
+  & .element__excluded
+    color: $excluded-ingredient-color
+  & .element__included
+    color: $included-ingredient-color
+  & .element__excluded,
+  & .element__included
+    width: 100%
+    display: flex
+  & .oi
+    width: 10% !important
+    line-height: 3
+    font-size: 0.1rem !important

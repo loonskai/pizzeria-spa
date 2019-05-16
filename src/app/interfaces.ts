@@ -36,3 +36,14 @@ export interface IngredientOption {
   title: string;
   price: number;
 }
+
+export interface OrderItem {
+  pizzaID: number;
+  amount: number;
+  excludedIngredients: string[];
+  customIngredients: string[];
+  thickness: string;
+  diameter: number;
+  price: number;
+  pizzaDetails?: PizzaItem;
+}
