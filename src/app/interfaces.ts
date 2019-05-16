@@ -31,3 +31,8 @@ export interface RadioGroupButtonOption {
   title: string;
   value: string | number;
 }
+
+export interface IngredientOption {
+  title: string;
+  price: number;
+}

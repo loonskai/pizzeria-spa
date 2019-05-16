@@ -43,13 +43,12 @@
     </div>
     <div *ngIf="isModalOpen" class="row">
       <item-card-modal
-        (toggle)="toggleCardModal()"
+        (toggleModalEvent)="toggleCardModal()"
         (toggleDefaultIngredient)="toggleDefaultIngredient($event)"
         (addCustomIngredientEvent)="addCustomIngredient($event)"
         (removeCustomIngredientEvent)="removeCustomIngredient($event)"
         [initialDefaultIngredients]="pizza.ingredients"
         [defaultIngredients]="defaultIngredients"
-        [customIngredientsOptions]="customIngredientsOptions"
         [customIngredients]="customIngredients"
       ></item-card-modal>
     </div>

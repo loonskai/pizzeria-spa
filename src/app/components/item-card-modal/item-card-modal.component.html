@@ -31,8 +31,8 @@
   </div>
   <div
     class="content-row custom-ingredients__container"
-    *ngIf="customIngredients"
-    (click)="removeCustomIngredient($event)"
+    *ngIf="customIngredients.length"
+    (click)="onCustomIngredientRemove($event)"
   >
     <span>Your ingredients:</span>
     <div *ngFor="let customIngredient of customIngredients">
@@ -40,28 +40,36 @@
       <span class="oi oi-x" attr.data-value="{{ customIngredient }}"></span>
     </div>
   </div>
-  <div class="content-row" (click)="toggleIngredientSelect()">
+  <div class="content-row" (click)="toggleCustomIngredientsList()">
     <div
       class="ingredient-item__add-button"
       [ngClass]="{
-        'add-button_clicked': showIngredientSelect
+        'add-button_clicked': showCustomIngredientsList
       }"
     >
       <span
         class="oi oi-plus"
         [ngClass]="{
-          'oi-plus': !showIngredientSelect,
-          'oi-minus': showIngredientSelect
+          'oi-plus': !showCustomIngredientsList,
+          'oi-minus': showCustomIngredientsList
         }"
       ></span>
       Add ingredients
     </div>
   </div>
-  <div class="content-row" *ngIf="showIngredientSelect">
-    <select class="custom-select" (change)="onIngredientSelect($event.target)">
+  <div class="content-row" *ngIf="showCustomIngredientsList">
+    <select
+      class="custom-select"
+      (change)="onCustomIngredientSelect($event.target)"
+    >
       <option selected>Choose...</option>
       <option
-        *ngFor="let option of customIngredientsOptions"
+        *ngFor="
+          let option of customIngredientsOptions
+            | filterIngredientOptions
+              : initialDefaultIngredients
+              : customIngredients
+        "
         attr.data-price="{{ option.price }}"
         value="{{ option.title }}"
         >{{ option.title + ' ($' + option.price + ')' }}</option

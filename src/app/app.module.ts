@@ -12,6 +12,7 @@ import { RadioGroupButtonComponent } from './components/radio-group-button/radio
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 
 import { JoinPipe } from './pipes/join.pipe';
+import { FilterIngredientOptionsPipe } from './pipes/filter-ingredient-options.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { JoinPipe } from './pipes/join.pipe';
     ItemCardModalComponent,
     RadioGroupButtonComponent,
     RadioButtonComponent,
-    JoinPipe
+    JoinPipe,
+    FilterIngredientOptionsPipe
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

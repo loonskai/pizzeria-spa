@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { PizzaItem, RadioGroupButtonOption } from '../../interfaces';
-import { ingredientsOptions } from '../../../mocks';
+import {
+  PizzaItem,
+  RadioGroupButtonOption,
+  IngredientOption
+} from '../../interfaces';
 
 @Component({
   selector: 'item-card',
@@ -23,8 +26,11 @@ export class ItemCardComponent implements OnInit {
   };
   pizzaPrice: number;
   defaultIngredients: string[];
-  customIngredientsOptions: any;
   customIngredients: string[];
+
+  constructor() {
+    this.customIngredients = [];
+  }
 
   ngOnInit() {
     const { diameter, thickness } = this.pizza.size;
@@ -42,9 +48,6 @@ export class ItemCardComponent implements OnInit {
     this.refreshPersonsAmount(this.diameterSelected.toString());
     this.recalculatePrice();
     this.defaultIngredients = [...this.pizza.ingredients];
-    this.customIngredientsOptions = ingredientsOptions.filter(
-      option => !this.defaultIngredients.includes(option.title)
-    );
   }
 
   toggleCardModal() {
@@ -94,15 +97,6 @@ export class ItemCardComponent implements OnInit {
       item => this.diameterSelected === item.value
     );
     recalculatedPrice *= thicknessPriceRate * diameterPriceRate;
-    recalculatedPrice = ingredientsOptions.reduce((totalPrice, option) => {
-      if (
-        this.customIngredients &&
-        this.customIngredients.includes(option.title)
-      ) {
-        totalPrice += option.price;
-      }
-      return totalPrice;
-    }, recalculatedPrice);
     this.pizzaPrice = parseFloat(recalculatedPrice.toFixed(1));
   }
 
@@ -116,33 +110,17 @@ export class ItemCardComponent implements OnInit {
     this.defaultIngredients = updatedIngredients;
   }
 
-  addCustomIngredient(ingredientTitle: string) {
-    const ingredient = ingredientsOptions.find(
-      ingredientOption => ingredientOption.title === ingredientTitle
-    );
-    this.customIngredients = this.customIngredients
-      ? [...this.customIngredients, ingredient.title]
-      : [ingredient.title];
-    this.customIngredientsOptions = this.customIngredientsOptions.filter(
-      option => option.title !== ingredientTitle
-    );
-    this.recalculatePrice();
+  addCustomIngredient(ingredientOption: IngredientOption) {
+    const { title, price } = ingredientOption;
+    this.customIngredients.push(title);
+    this.pizzaPrice += price;
   }
 
-  removeCustomIngredient(ingredientTitle: string) {
+  removeCustomIngredient(ingredientOption: IngredientOption) {
+    const { title, price } = ingredientOption;
     this.customIngredients = this.customIngredients.filter(
-      customIngredientTitle => customIngredientTitle !== ingredientTitle
+      customIngredientTitle => customIngredientTitle !== title
     );
-    if (this.customIngredients.length === 0) {
-      this.customIngredients = null;
-    }
-    this.customIngredientsOptions = ingredientsOptions.filter(
-      option =>
-        !this.defaultIngredients.includes(option.title) &&
-        (this.customIngredients
-          ? !this.customIngredients.includes(option.title)
-          : true)
-    );
-    this.recalculatePrice();
+    this.pizzaPrice -= price;
   }
 }
