@@ -1,0 +1,37 @@
+$red-border-color: #FF3D3E
+  
+.container
+  position: relative
+  margin-top: 60px
+  padding: 2rem 1rem 1rem 1rem
+  border-top: 3px solid $red-border-color
+  
+  &:before
+    display: block
+    content: ""
+    width: 80px
+    height: 45px
+    background: #fff
+    position: absolute
+    border-radius: 50%
+    top: -43px
+    right: 0
+    left: 0
+    margin: auto
+    border: 3px solid transparent
+    border-top-left-radius: 160px
+    border-top-right-radius: 160px
+    border-left-color: $red-border-color
+    border-right-color: $red-border-color
+    border-top-color: $red-border-color
+
+.cart-icon
+  position: absolute
+  top: -22px
+  right: 0
+  left: 0
+  width: 35px
+  height: 40px
+  margin: auto
+  color: $red-border-color
+  font-size: 2rem

@@ -42,9 +42,9 @@
   </div>
   <div class="content-row" (click)="toggleCustomIngredientsList()">
     <div
-      class="ingredient-item__add-button"
+      class="ingredient-item__main-button"
       [ngClass]="{
-        'add-button_clicked': showCustomIngredientsList
+        'main-button_clicked': showCustomIngredientsList
       }"
     >
       <span
@@ -80,7 +80,7 @@
     <button class="cancel-button" (click)="closeModal()">
       Cancel
     </button>
-    <add-button></add-button>
+    <main-button [text]="'ADD TO CART'"></main-button>
   </div>
 </div>
 <div class="container"></div>
