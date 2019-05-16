@@ -13,6 +13,9 @@ import { RadioButtonComponent } from './components/radio-button/radio-button.com
 import { JoinPipe } from './pipes/join.pipe';
 import { FilterIngredientOptionsPipe } from './pipes/filter-ingredient-options.pipe';
 import { ShoppingCartCardComponent } from './components/shopping-cart-card/shopping-cart-card.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
+import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
+import { PizzaPageComponent } from './pages/pizza-page/pizza-page.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { ShoppingCartCardComponent } from './components/shopping-cart-card/shopp
     RadioButtonComponent,
     JoinPipe,
     FilterIngredientOptionsPipe,
-    ShoppingCartCardComponent
+    ShoppingCartCardComponent,
+    MainPageComponent,
+    CheckoutPageComponent,
+    PizzaPageComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
