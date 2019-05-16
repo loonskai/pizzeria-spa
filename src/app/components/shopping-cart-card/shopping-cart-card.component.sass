@@ -1,9 +1,12 @@
 $red-border-color: #FF3D3E
-  
+$green-color: #3B8686
+$text-color: #5C3D45
+
 .container
   position: relative
+  max-width: 300px
   margin-top: 60px
-  padding: 2rem 1rem 1rem 1rem
+  padding: 1rem
   border-top: 3px solid $red-border-color
   
   &:before
@@ -35,3 +38,22 @@ $red-border-color: #FF3D3E
   margin: auto
   color: $red-border-color
   font-size: 2rem
+
+.cart-heading
+  color: $text-color
+  margin-bottom: 0.8rem
+  & div:first-child
+    cursor: pointer
+    & span:first-child
+      font-weight: bold
+      font-size: 1.1rem
+  & span.oi
+    margin-left: 0.3rem
+    font-size: 0.8rem
+
+.clear-order-button
+  background: none
+  border: none
+  color: $green-color
+  font-weight: bold
+  outline: none

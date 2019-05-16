@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shopping-cart-card.component.sass']
 })
 export class ShoppingCartCardComponent implements OnInit {
+  itemsAmount: number = 2;
+
   constructor() {}
 
   ngOnInit() {}

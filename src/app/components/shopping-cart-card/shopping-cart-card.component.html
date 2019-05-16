@@ -1,8 +1,13 @@
 <div class="card container">
   <span class="oi oi-cart cart-icon"></span>
   <div class="card-body">
-    <div class="row">
-      cart
+    <div class="row justify-content-between cart-heading">
+      <div>
+        <span>Cart </span><span>({{ itemsAmount }})</span>
+        <span class="oi oi-caret-bottom"></span>
+        <!-- <span class="oi oi-caret-top"></span> -->
+      </div>
+      <button class="clear-order-button">Clear</button>
     </div>
     <div class="row">
       Item 1
