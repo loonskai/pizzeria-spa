@@ -41,7 +41,9 @@
             </div>
           </div>
         </div>
-        <div class="order-item-section">
+        <div
+          class="justify-content-between align-items-center order-item-section"
+        >
           <div class="order-item-controller">
             <button disabled class="controller-decrease">
               <span class="oi oi-minus"></span>
@@ -51,6 +53,9 @@
               <span class="oi oi-plus"></span>
             </button>
           </div>
+          <span class="order-item-price">{{
+            orderItem.price | currency: 'USD':true
+          }}</span>
         </div>
       </div>
     </div>

@@ -90,6 +90,8 @@ $controller-button-disabled-bg-color: #F2F2F2
 .order-item-section
   display: flex
   width: 100%
+  &:last-child
+    margin-top: 0.5rem
 
 .order-item-picture
   width: 50px
@@ -133,7 +135,6 @@ $controller-button-disabled-bg-color: #F2F2F2
   cursor: pointer
 
 .order-item-controller
-  margin-top: 0.5rem
   display: flex
   align-items: center
   & span
@@ -154,3 +155,8 @@ $controller-button-disabled-bg-color: #F2F2F2
     &:disabled
       color: $controller-button-disabled-color
       background-color: $controller-button-disabled-bg-color
+
+.order-item-price
+  font-size: 1rem
+  font-weight: bold
+  color: $text-color
