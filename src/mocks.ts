@@ -242,6 +242,7 @@ export const order = [
     amount: 1,
     excludedIngredients: [],
     customIngredients: [],
+    cheeseBoard: false,
     thickness: 'Traditional',
     diameter: 30,
     price: 20.5
@@ -251,6 +252,7 @@ export const order = [
     amount: 2,
     excludedIngredients: ['Лук', 'Оливки'],
     customIngredients: ['Ананас'],
+    cheeseBoard: true,
     thickness: 'Traditional',
     diameter: 35,
     price: 25.3

@@ -42,6 +42,7 @@ export interface OrderItem {
   amount: number;
   excludedIngredients: string[];
   customIngredients: string[];
+  cheeseBoard: boolean;
   thickness: string;
   diameter: number;
   price: number;

@@ -1,16 +1,20 @@
+$bg-color: #F1F1F1
 $red-border-color: #FF3D3E
 $green-color: #3B8686
 $text-color: #5C3D45
 $border-bottom-grey: #E0E0E0
 $included-ingredient-color: #26ADE4;
 $excluded-ingredient-color: #CF4647;
+$cheese-board-color: #FFA446;
+$grey-color: #A8A39D
 
 .container
   position: relative
-  max-width: 300px
+  max-width: 360px
   margin-top: 60px
   padding: 1rem
   border-top: 3px solid $red-border-color
+  background-color: $bg-color
   
   &:before
     display: block
@@ -30,6 +34,7 @@ $excluded-ingredient-color: #CF4647;
     border-left-color: $red-border-color
     border-right-color: $red-border-color
     border-top-color: $red-border-color
+    background-color: $bg-color
 
 .cart-icon
   position: absolute
@@ -62,14 +67,20 @@ $excluded-ingredient-color: #CF4647;
   outline: none
 
 .items-container
+  max-height: 300px
+  overflow-y: scroll
   margin-bottom: 1rem
+  padding: 0.5rem 1rem
+  background-color: #fff
 
 .order-item
+  position: relative
   width: 100%
   display: flex
   flex-wrap: wrap
   padding: 0.5rem 0
-  border-bottom: 1px solid $border-bottom-grey
+  &:not(:last-child)
+    border-bottom: 1px solid $border-bottom-grey
 
 .order-item-section
   display: flex
@@ -93,11 +104,25 @@ $excluded-ingredient-color: #CF4647;
     color: $excluded-ingredient-color
   & .element__included
     color: $included-ingredient-color
+  & .cheese-board-icon
+    width: 60%
+    background: $cheese-board-color
+    color: #fff
+    font-weight: bold
+    border-radius: 1rem
+    text-align: center
   & .element__excluded,
-  & .element__included
+  & .element__included,
     width: 100%
-    display: flex
+    display: flex 
   & .oi
     width: 10% !important
     line-height: 3
     font-size: 0.1rem !important
+
+.order-item-remove-icon
+  position: absolute
+  top: 0.5rem
+  right: 0
+  color: $grey-color
+  cursor: pointer
