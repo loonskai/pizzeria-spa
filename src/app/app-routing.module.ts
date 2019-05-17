@@ -15,7 +15,7 @@ const routes: Routes = [
     component: CheckoutPageComponent
   },
   {
-    path: 'pizza',
+    path: 'pizza/:id',
     component: PizzaPageComponent
   }
 ];

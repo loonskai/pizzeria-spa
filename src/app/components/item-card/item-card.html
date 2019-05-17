@@ -3,7 +3,7 @@
     <button class="modal-button" (click)="toggleCardModal()">
       <span class="oi oi-grid-three-up"></span>
     </button>
-    <a routerLink="/pizza">
+    <a [routerLink]="['/pizza', pizza.id]">
       <img
         class="picture"
         src="{{ pizza.pictureUrl }}"

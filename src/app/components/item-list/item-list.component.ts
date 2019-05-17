@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { pizzaData } from '../../../mocks';
 import { PizzaItem } from '../../interfaces';
+import { PizzaService } from 'src/app/services/pizza.service';
 
 @Component({
   selector: 'item-list',
@@ -9,9 +9,11 @@ import { PizzaItem } from '../../interfaces';
   styleUrls: ['./item-list.component.sass']
 })
 export class ItemListComponent implements OnInit {
-  pizzaData: PizzaItem[] = pizzaData;
+  pizzaList: PizzaItem[];
 
-  constructor() {}
+  constructor(private pizzaService: PizzaService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.pizzaList = this.pizzaService.getAll();
+  }
 }
