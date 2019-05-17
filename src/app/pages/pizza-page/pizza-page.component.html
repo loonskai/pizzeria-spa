@@ -23,6 +23,27 @@
               {{ pizzaItem.energyValue[energyItemKey] }}</span
             >
           </div>
+          <div>
+            <radio-group-button
+              class="radio-group__thickness"
+              [options]="thicknessOptions"
+              [value]="thicknessSelected"
+              (changeEvent)="changeThickness($event)"
+            ></radio-group-button>
+          </div>
+          <div class="radio-group__container">
+            <radio-group-button
+              class="radio-group__diameter"
+              [options]="diameterOptions"
+              [value]="diameterSelected.toString()"
+              (changeEvent)="changeDiameter($event)"
+            ></radio-group-button>
+            <radio-button
+              *ngIf="displayCheeseBoard"
+              (click)="toggleCheeseBoard()"
+              [isSelected]="withCheeseBoard"
+            ></radio-button>
+          </div>
         </div>
       </div>
     </div>

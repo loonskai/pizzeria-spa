@@ -24,7 +24,6 @@ $grey-color: #A9A9A9
     font-weight: bold
     color: $text-color
 
-
 .pizza-description__ingredients
   color: $text-color
   font-size: 0.9rem
@@ -36,9 +35,17 @@ $grey-color: #A9A9A9
 .nutrition-list
   display: flex
   flex-wrap: wrap
+  margin-bottom: 1rem
   font-size: 0.9rem
 
 .nutrition-item
   width: 100%
   color: $grey-color
   text-transform: capitalize
+
+.radio-group__container
+  margin: 1rem 0
+  display: flex
+  justify-content: flex-start
+  & :first-child
+    margin-right: 10px
