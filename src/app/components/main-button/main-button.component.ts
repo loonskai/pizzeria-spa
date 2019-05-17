@@ -6,14 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./main-button.component.sass']
 })
 export class MainButtonComponent implements OnInit {
-  isDisabled: boolean = true;
+  isDisabled: boolean = false;
   @Input() text: string;
-
-  constructor() {
-    setTimeout(() => {
-      this.isDisabled = false;
-    }, 1000);
-  }
 
   ngOnInit() {}
 }

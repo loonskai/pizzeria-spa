@@ -3,7 +3,13 @@
     <button class="modal-button" (click)="toggleCardModal()">
       <span class="oi oi-grid-three-up"></span>
     </button>
-    <img class="picture" src="{{ pizza.pictureUrl }}" alt="{{ pizza.title }}" />
+    <a routerLink="/pizza">
+      <img
+        class="picture"
+        src="{{ pizza.pictureUrl }}"
+        alt="{{ pizza.title }}"
+      />
+    </a>
     <div class="row">
       <div class="persons-icon">
         <span class="oi oi-person"></span>
