@@ -1,1 +1,31 @@
-<div>Pizza {{ pizzaID }}</div>
+<main class="main-container">
+  <div class="card-container">
+    <div class="card">
+      <div class="card-body pizza-card">
+        <div>
+          <img
+            class="pizza-picture"
+            src="{{ pizzaItem.pictureUrl }}"
+            alt="{{ pizzaItem.title }}"
+          />
+        </div>
+        <div class="pizza-description__container">
+          <h1>{{ pizzaItem.title }}</h1>
+          <div class="pizza-description__ingredients">
+            {{ pizzaItem.description }}
+          </div>
+          <div class="nutrition-heading">Nutrition information per 100g</div>
+          <div class="nutrition-list">
+            <span
+              class="nutrition-item"
+              *ngFor="let energyItemKey of pizzaItem.energyValue | keys"
+              >{{ energyItemKey }} -
+              {{ pizzaItem.energyValue[energyItemKey] }}</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <shopping-cart-card></shopping-cart-card>
+</main>
