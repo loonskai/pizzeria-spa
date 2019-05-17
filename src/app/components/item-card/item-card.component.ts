@@ -20,17 +20,10 @@ export class ItemCardComponent implements OnInit {
   thicknessOptions: RadioGroupButtonOption[];
   diameterSelected: number;
   thicknessSelected: string;
-  personsAmount: {
-    min: number;
-    max: number;
-  };
-  pizzaPrice: number;
   defaultIngredients: string[];
-  customIngredients: string[];
+  customIngredients: string[] = [];
 
-  constructor() {
-    this.customIngredients = [];
-  }
+  private _customIngredientsPrice: number = 0;
 
   ngOnInit() {
     const { diameter, thickness } = this.pizza.size;
@@ -45,8 +38,6 @@ export class ItemCardComponent implements OnInit {
     this.thicknessSelected = this.thicknessOptions[0].value.toString();
     this.diameterSelected = parseInt(this.diameterOptions[0].value.toString());
     this.displayCheeseBoard = this.diameterSelected >= 30;
-    this.refreshPersonsAmount(this.diameterSelected.toString());
-    this.recalculatePrice();
     this.defaultIngredients = [...this.pizza.ingredients];
   }
 
@@ -58,46 +49,18 @@ export class ItemCardComponent implements OnInit {
     if (this.diameterSelected === +value) return;
     this.diameterSelected = parseInt(value);
     this.displayCheeseBoard = this.diameterSelected >= 30;
-    this.refreshPersonsAmount(value);
     if (!this.displayCheeseBoard) {
       this.withCheeseBoard = false;
     }
-    this.recalculatePrice();
   }
 
   changeThickness(value: string) {
     if (this.thicknessSelected === value) return;
     this.thicknessSelected = value;
-    this.recalculatePrice();
   }
 
   toggleCheeseBoard() {
     this.withCheeseBoard = !this.withCheeseBoard;
-    this.recalculatePrice();
-  }
-
-  refreshPersonsAmount(newDiameter: string) {
-    const { diameter } = this.pizza.size;
-    const { persons } = diameter.find(
-      size => parseInt(newDiameter) === size.value
-    );
-    this.personsAmount = persons;
-  }
-
-  recalculatePrice() {
-    let recalculatedPrice = this.pizza.price;
-    if (this.withCheeseBoard) {
-      recalculatedPrice *= 1.15;
-    }
-    const { diameter, thickness } = this.pizza.size;
-    const { priceRate: thicknessPriceRate } = thickness.find(
-      item => this.thicknessSelected === item.type
-    );
-    const { priceRate: diameterPriceRate } = diameter.find(
-      item => this.diameterSelected === item.value
-    );
-    recalculatedPrice *= thicknessPriceRate * diameterPriceRate;
-    this.pizzaPrice = parseFloat(recalculatedPrice.toFixed(1));
   }
 
   toggleDefaultIngredient(ingredient: string) {
@@ -113,7 +76,7 @@ export class ItemCardComponent implements OnInit {
   addCustomIngredient(ingredientOption: IngredientOption) {
     const { title, price } = ingredientOption;
     this.customIngredients.push(title);
-    this.pizzaPrice += price;
+    this._customIngredientsPrice += price;
   }
 
   removeCustomIngredient(ingredientOption: IngredientOption) {
@@ -121,6 +84,31 @@ export class ItemCardComponent implements OnInit {
     this.customIngredients = this.customIngredients.filter(
       customIngredientTitle => customIngredientTitle !== title
     );
-    this.pizzaPrice -= price;
+    this._customIngredientsPrice -= price;
+  }
+
+  get pizzaPrice() {
+    let recalculatedPrice = this.pizza.price;
+    if (this.withCheeseBoard) {
+      recalculatedPrice *= 1.15;
+    }
+    const { diameter, thickness } = this.pizza.size;
+    const { priceRate: thicknessPriceRate } = thickness.find(
+      item => this.thicknessSelected === item.type
+    );
+    const { priceRate: diameterPriceRate } = diameter.find(
+      item => this.diameterSelected === item.value
+    );
+    recalculatedPrice *= thicknessPriceRate * diameterPriceRate;
+    recalculatedPrice += this._customIngredientsPrice;
+    return recalculatedPrice.toFixed(1);
+  }
+
+  get personsAmount() {
+    const { diameter } = this.pizza.size;
+    const { persons } = diameter.find(
+      size => this.diameterSelected === size.value
+    );
+    return persons;
   }
 }
