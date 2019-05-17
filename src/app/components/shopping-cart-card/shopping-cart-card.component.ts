@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PizzaItem, OrderItem } from '../../interfaces';
-import { pizzaData, order } from '../../../mocks';
+import { OrderItem } from '../../interfaces';
+import { order } from '../../../mocks';
+import { PizzaService } from 'src/app/services/pizza.service';
 
 @Component({
   selector: 'shopping-cart-card',
@@ -10,16 +11,14 @@ import { pizzaData, order } from '../../../mocks';
 })
 export class ShoppingCartCardComponent implements OnInit {
   itemsAmount: number = 2;
-  pizzaData: PizzaItem[] = pizzaData;
-  order: OrderItem[] = order;
+  orderedPizzaItems: OrderItem[] = order;
 
-  constructor() {}
+  constructor(private pizzaService: PizzaService) {}
 
   ngOnInit() {
-    this.order = this.order.map(orderItem => ({
+    this.orderedPizzaItems = this.orderedPizzaItems.map(orderItem => ({
       ...orderItem,
-      pizzaDetails: pizzaData.find(pizza => pizza.id === orderItem.pizzaID)
+      pizzaDetails: this.pizzaService.getOneById(orderItem.pizzaID)
     }));
-    console.log(this.order);
   }
 }

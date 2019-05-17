@@ -1,3 +1,57 @@
-<p>
-  checkout-page works!
-</p>
+<main class="main-container">
+  <div class="container">
+    <div class="card">
+      <h2 class="card-title">
+        Cart
+      </h2>
+      <div *ngFor="let orderItem of orderedPizzaItems" class="order-item">
+        <img
+          class="order-item__picture"
+          src="{{ orderItem.pizzaDetails.pictureUrl }}"
+          alt="{{ orderItem.pizzaDetails.title }}"
+        />
+        <div class="order-item__description">
+          <span class="description__title">{{
+            orderItem.pizzaDetails.title
+          }}</span>
+          <span class="description__ingredients"
+            >{{ orderItem.thickness }} crust, {{ orderItem.diameter }} cm</span
+          >
+          <div class="description__custom-ingredients">
+            <div
+              class="element__excluded"
+              *ngFor="let excluded of orderItem.excludedIngredients"
+            >
+              <span class="oi oi-minus"></span> {{ excluded }}
+            </div>
+            <div
+              class="element__included"
+              *ngFor="let included of orderItem.customIngredients"
+            >
+              <span class="oi oi-plus"></span> {{ included }}
+            </div>
+            <div *ngIf="orderItem.cheeseBoard" class="cheese-board-icon">
+              Cheese board
+            </div>
+          </div>
+        </div>
+        <div class="order-item__controller">
+          <button disabled class="controller__decrease">
+            <span class="oi oi-minus"></span>
+          </button>
+          <span>{{ orderItem.amount }}</span>
+          <button class="controller__increase">
+            <span class="oi oi-plus"></span>
+          </button>
+        </div>
+        <span class="order-item__price">{{
+          orderItem.price | currency: 'USD':true
+        }}</span>
+        <span class="oi oi-x order-item__remove-icon"></span>
+      </div>
+    </div>
+    <div class="card">Contact information</div>
+    <div class="card">Delivery</div>
+    <div class="card">Payment</div>
+  </div>
+</main>
