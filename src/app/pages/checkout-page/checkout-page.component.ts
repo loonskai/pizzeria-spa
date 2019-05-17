@@ -21,4 +21,8 @@ export class CheckoutPageComponent implements OnInit {
       pizzaDetails: this.pizzaService.getOneById(orderItem.pizzaID)
     })); // TODO: Pass order population to OrderService
   }
+
+  get totalPrice() {
+    return this.orderedPizzaItems.reduce((acc, item) => acc + item.price, 0);
+  }
 }
