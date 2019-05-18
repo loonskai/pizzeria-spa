@@ -4,18 +4,37 @@
       <div>Contact information</div>
       <div class="form-row">
         <div class="col">
-          <label for="name">Name *</label>
-          <input class="form-control" type="text" id="name" />
+          <!-- <label class="form-control__label" for="name">Name *</label>
+          <input class="form-control" type="text" id="name" /> -->
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Name"
+              [formControl]="nameFormControl"
+              [errorStateMatcher]="matcher"
+            />
+            <!--             <mat-error
+              *ngIf="
+                nameFormControl.hasError('email') &&
+                !nameFormControl.hasError('required')
+              "
+            >
+              Name is too short
+            </mat-error> -->
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
         </div>
         <div class="col">
-          <label for="name">Telephone *</label>
-          <input class="form-control" type="text" id="telephone" />
+          <!-- <label class="form-control__label" for="name">Telephone *</label>
+          <input class="form-control" type="text" id="telephone" /> -->
         </div>
       </div>
       <div class="form-row">
         <div class="col">
-          <label for="email">E-mail *</label>
-          <input class="form-control" type="text" id="email" />
+          <!-- <label class="form-control__label" for="email">E-mail *</label>
+          <input class="form-control" type="text" id="email" /> -->
         </div>
         <div class="col"></div>
       </div>
@@ -26,18 +45,18 @@
       <div>Delivery</div>
       <div class="form-row">
         <div class="col">
-          <label for="address">Address *</label>
-          <input class="form-control" type="text" id="address" />
+          <!-- <label class="form-control__label" for="address">Address *</label>
+          <input class="form-control" type="text" id="address" /> -->
         </div>
       </div>
       <div class="form-row">
         <div class="col">
-          <label for="flat">Flat / Office *</label>
-          <input class="form-control" type="text" id="flat" />
+          <!-- <label class="form-control__label" for="flat">Flat / Office *</label>
+          <input class="form-control" type="text" id="flat" /> -->
         </div>
         <div class="col">
-          <label for="floor">Floor</label>
-          <input type="text" class="form-control" id="floor" />
+          <!-- <label class="form-control__label" for="floor">Floor</label>
+          <input type="text" class="form-control" id="floor" /> -->
         </div>
       </div>
     </div>
@@ -46,39 +65,29 @@
     <div class="card-body">
       <div>Payment</div>
       <div class="form-group">
-        <div class="form-check form-check-inline">
-          <input type="radio" class="form-check-input" value="cash" />
-          <label for="cash" class="form-check-label">Cash</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input type="radio" class="form-check-input" value="card" />
-          <label for="card" class="form-check-label">Card</label>
-        </div>
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button class="radio-item" value="cash"
+            >Cash</mat-radio-button
+          >
+          <mat-radio-button class="radio-item" value="card"
+            >Card</mat-radio-button
+          >
+        </mat-radio-group>
       </div>
       <div class="form-group">
-        <label for="comment">Add order comments</label>
+        <label class="form-control__label" for="comment"
+          >Add order comments</label
+        >
         <textarea id="comment" rows="5" class="form-control"></textarea>
       </div>
       <div class="form-group w-100 d-inline-flex justify-content-between">
         <div>
-          <span>I agree to receive </span>
-          <div class="form-check form-check-inline">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              value="subscription-sms"
-            />
-            <label for="subscription-sms" class="form-check-label">SMS</label>
+          <span class="form-control__label">I agree to receive </span>
+          <div class="form-check-inline">
+            <mat-checkbox value="subscription-sms">SMS</mat-checkbox>
           </div>
           <div class="form-check form-check-inline">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              value="subscription-emails"
-            />
-            <label for="subscription-emails" class="form-check-label"
-              >Email</label
-            >
+            <mat-checkbox value="subscription-emails">Email</mat-checkbox>
           </div>
         </div>
         <main-button [text]="'ORDER'"></main-button>
