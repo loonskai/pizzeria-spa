@@ -1,0 +1,88 @@
+<form>
+  <div class="card">
+    <div class="card-body">
+      <div>Contact information</div>
+      <div class="form-row">
+        <div class="col">
+          <label for="name">Name *</label>
+          <input class="form-control" type="text" id="name" />
+        </div>
+        <div class="col">
+          <label for="name">Telephone *</label>
+          <input class="form-control" type="text" id="telephone" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label for="email">E-mail *</label>
+          <input class="form-control" type="text" id="email" />
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div>Delivery</div>
+      <div class="form-row">
+        <div class="col">
+          <label for="address">Address *</label>
+          <input class="form-control" type="text" id="address" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label for="flat">Flat / Office *</label>
+          <input class="form-control" type="text" id="flat" />
+        </div>
+        <div class="col">
+          <label for="floor">Floor</label>
+          <input type="text" class="form-control" id="floor" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div>Payment</div>
+      <div class="form-group">
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" value="cash" />
+          <label for="cash" class="form-check-label">Cash</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" value="card" />
+          <label for="card" class="form-check-label">Card</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="comment">Add order comments</label>
+        <textarea id="comment" rows="5" class="form-control"></textarea>
+      </div>
+      <div class="form-group w-100 d-inline-flex justify-content-between">
+        <div>
+          <span>I agree to receive </span>
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              value="subscription-sms"
+            />
+            <label for="subscription-sms" class="form-check-label">SMS</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              value="subscription-emails"
+            />
+            <label for="subscription-emails" class="form-check-label"
+              >Email</label
+            >
+          </div>
+        </div>
+        <main-button [text]="'ORDER'"></main-button>
+      </div>
+    </div>
+  </div>
+</form>

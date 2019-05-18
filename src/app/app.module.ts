@@ -17,6 +17,7 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { PizzaPageComponent } from './pages/pizza-page/pizza-page.component';
 import { KeysPipe } from './pipes/keys.pipe';
+import { CheckoutFormComponent } from './components/checkout-form/checkout-form.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { KeysPipe } from './pipes/keys.pipe';
     MainPageComponent,
     CheckoutPageComponent,
     PizzaPageComponent,
-    KeysPipe
+    KeysPipe,
+    CheckoutFormComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
