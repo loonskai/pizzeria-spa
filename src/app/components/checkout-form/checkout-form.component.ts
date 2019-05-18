@@ -35,4 +35,8 @@ export class CheckoutFormComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   ngOnInit() {}
+
+  submitOrder() {
+    console.log('submit order!');
+  }
 }

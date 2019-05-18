@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,6 +10,8 @@ export class MainButtonComponent implements OnInit {
   isDisabled: boolean = false;
   @Input() text: string;
   @Input() link?: string;
+  @Input() isForm?: boolean;
+  @Output() formSubmitEvent = new EventEmitter<string>();
 
   constructor(private router: Router) {}
 
@@ -17,6 +19,9 @@ export class MainButtonComponent implements OnInit {
     if (this.link) {
       console.log(this.link);
       this.router.navigate([this.link]);
+    }
+    if (this.isForm) {
+      this.formSubmitEvent.emit();
     }
   }
 

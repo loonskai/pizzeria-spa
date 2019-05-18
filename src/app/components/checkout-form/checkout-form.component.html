@@ -1,4 +1,4 @@
-<form>
+<form #testForm>
   <div class="card">
     <div class="card-body">
       <div>Contact information</div>
@@ -90,7 +90,11 @@
             <mat-checkbox value="subscription-emails">Email</mat-checkbox>
           </div>
         </div>
-        <main-button [text]="'ORDER'"></main-button>
+        <main-button
+          [text]="'ORDER'"
+          [isForm]="true"
+          (formSubmitEvent)="submitOrder()"
+        ></main-button>
       </div>
     </div>
   </div>
