@@ -1,40 +1,48 @@
-<form #testForm>
+<form #checkoutForm="ngForm">
   <div class="card">
     <div class="card-body">
-      <div>Contact information</div>
+      <h2 class="card-title">Contact information</h2>
       <div class="form-row">
         <div class="col">
-          <!-- <label class="form-control__label" for="name">Name *</label>
-          <input class="form-control" type="text" id="name" /> -->
-          <mat-form-field>
+          <mat-form-field class="input-full-width">
             <input
               matInput
               placeholder="Name"
               [formControl]="nameFormControl"
               [errorStateMatcher]="matcher"
             />
-            <!--             <mat-error
-              *ngIf="
-                nameFormControl.hasError('email') &&
-                !nameFormControl.hasError('required')
-              "
-            >
-              Name is too short
-            </mat-error> -->
             <mat-error *ngIf="nameFormControl.hasError('required')">
               Name is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
         <div class="col">
-          <!-- <label class="form-control__label" for="name">Telephone *</label>
-          <input class="form-control" type="text" id="telephone" /> -->
+          <mat-form-field class="input-full-width">
+            <input
+              matInput
+              placeholder="Telephone"
+              [formControl]="nameFormControl"
+              [errorStateMatcher]="matcher"
+            />
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+              Telephone is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
         </div>
       </div>
       <div class="form-row">
         <div class="col">
-          <!-- <label class="form-control__label" for="email">E-mail *</label>
-          <input class="form-control" type="text" id="email" /> -->
+          <mat-form-field class="input-full-width">
+            <input
+              matInput
+              placeholder="E-mail"
+              [formControl]="nameFormControl"
+              [errorStateMatcher]="matcher"
+            />
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+              E-mail is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
         </div>
         <div class="col"></div>
       </div>
@@ -42,28 +50,51 @@
   </div>
   <div class="card">
     <div class="card-body">
-      <div>Delivery</div>
+      <h2 class="card-title">Delivery</h2>
       <div class="form-row">
         <div class="col">
-          <!-- <label class="form-control__label" for="address">Address *</label>
-          <input class="form-control" type="text" id="address" /> -->
+          <mat-form-field class="input-full-width">
+            <input
+              matInput
+              placeholder="Address"
+              [formControl]="nameFormControl"
+              [errorStateMatcher]="matcher"
+            />
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+              Address is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
         </div>
       </div>
       <div class="form-row">
         <div class="col">
-          <!-- <label class="form-control__label" for="flat">Flat / Office *</label>
-          <input class="form-control" type="text" id="flat" /> -->
+          <mat-form-field class="input-full-width">
+            <input
+              matInput
+              placeholder="Flat / Office"
+              [formControl]="nameFormControl"
+              [errorStateMatcher]="matcher"
+            />
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+              Flat or office is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
         </div>
         <div class="col">
-          <!-- <label class="form-control__label" for="floor">Floor</label>
-          <input type="text" class="form-control" id="floor" /> -->
+          <mat-form-field class="input-full-width">
+            <input
+              matInput
+              placeholder="Floor"
+              [formControl]="nameFormControl"
+            />
+          </mat-form-field>
         </div>
       </div>
     </div>
   </div>
   <div class="card">
     <div class="card-body">
-      <div>Payment</div>
+      <h2 class="card-title">Payment</h2>
       <div class="form-group">
         <mat-radio-group aria-label="Select an option">
           <mat-radio-button class="radio-item" value="cash"
@@ -75,10 +106,9 @@
         </mat-radio-group>
       </div>
       <div class="form-group">
-        <label class="form-control__label" for="comment"
-          >Add order comments</label
-        >
-        <textarea id="comment" rows="5" class="form-control"></textarea>
+        <mat-form-field class="input-full-width">
+          <textarea matInput placeholder="Add order comments"></textarea>
+        </mat-form-field>
       </div>
       <div class="form-group w-100 d-inline-flex justify-content-between">
         <div>
@@ -93,7 +123,7 @@
         <main-button
           [text]="'ORDER'"
           [isForm]="true"
-          (formSubmitEvent)="submitOrder()"
+          (formSubmitEvent)="submitOrder(checkoutForm)"
         ></main-button>
       </div>
     </div>

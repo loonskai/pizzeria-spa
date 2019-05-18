@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   FormControl,
   FormGroupDirective,
@@ -27,6 +27,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./checkout-form.component.sass']
 })
 export class CheckoutFormComponent implements OnInit {
+  @ViewChild('checkoutForm') checkoutForm: NgForm;
+
   nameFormControl = new FormControl('', [
     Validators.required,
     Validators.email
@@ -37,6 +39,7 @@ export class CheckoutFormComponent implements OnInit {
   ngOnInit() {}
 
   submitOrder() {
+    console.dir(this.checkoutForm);
     console.log('submit order!');
   }
 }
