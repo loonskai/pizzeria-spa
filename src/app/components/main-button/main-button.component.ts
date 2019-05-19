@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-button.component.sass']
 })
 export class MainButtonComponent implements OnInit {
-  isDisabled: boolean = false;
+  @Input() isDisabled: boolean = false;
   @Input() text: string;
   @Input() link?: string;
   @Input() isForm?: boolean;

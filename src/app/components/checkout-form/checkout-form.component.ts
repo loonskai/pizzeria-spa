@@ -3,7 +3,8 @@ import {
   FormControl,
   FormGroupDirective,
   NgForm,
-  Validators
+  Validators,
+  FormGroup
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
@@ -27,16 +28,33 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./checkout-form.component.sass']
 })
 export class CheckoutFormComponent implements OnInit {
-  @ViewChild('checkoutForm') checkoutForm: NgForm;
+  // @ViewChild('checkoutForm') checkoutForm: NgForm;
+  checkoutForm: FormGroup;
 
-  nameFormControl = new FormControl('', [
+  /*   nameFormControl = new FormControl('', [
     Validators.required,
     Validators.email
-  ]);
+  ]); */
 
   matcher = new MyErrorStateMatcher();
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.checkoutForm = new FormGroup({
+      user: new FormGroup({
+        name: new FormControl('', [Validators.required]),
+        telephone: new FormControl('', [Validators.required]),
+        email: new FormControl('', [Validators.required, Validators.email])
+      }),
+      delivery: new FormGroup({
+        address: new FormControl('', [Validators.required]),
+        flat: new FormControl('', [Validators.required]),
+        floor: new FormControl('', [])
+      })
+      /*       payment: new FormControl('', []),
+      comment: new FormControl(''),
+      subscription: new FormControl('') */
+    });
+  }
 
   submitOrder() {
     console.dir(this.checkoutForm);

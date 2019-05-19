@@ -1,5 +1,5 @@
-<form #checkoutForm="ngForm">
-  <div class="card">
+<form [formGroup]="checkoutForm">
+  <div class="card" formGroupName="user">
     <div class="card-body">
       <h2 class="card-title">Contact information</h2>
       <div class="form-row">
@@ -8,12 +8,12 @@
             <input
               matInput
               placeholder="Name"
-              [formControl]="nameFormControl"
+              formControlName="user.name"
               [errorStateMatcher]="matcher"
             />
-            <mat-error *ngIf="nameFormControl.hasError('required')">
+            <!--            <mat-error *ngIf="name.hasError('required')">
               Name is <strong>required</strong>
-            </mat-error>
+            </mat-error> -->
           </mat-form-field>
         </div>
         <div class="col">
@@ -21,12 +21,12 @@
             <input
               matInput
               placeholder="Telephone"
-              [formControl]="nameFormControl"
+              formControlName="user.telephone"
               [errorStateMatcher]="matcher"
             />
-            <mat-error *ngIf="nameFormControl.hasError('required')">
+            <!--             <mat-error *ngIf="telephone.hasError('required')">
               Telephone is <strong>required</strong>
-            </mat-error>
+            </mat-error> -->
           </mat-form-field>
         </div>
       </div>
@@ -36,19 +36,19 @@
             <input
               matInput
               placeholder="E-mail"
-              [formControl]="nameFormControl"
+              formControlName="user.email"
               [errorStateMatcher]="matcher"
             />
-            <mat-error *ngIf="nameFormControl.hasError('required')">
+            <!--             <mat-error *ngIf="email.hasError('required')">
               E-mail is <strong>required</strong>
-            </mat-error>
+            </mat-error> -->
           </mat-form-field>
         </div>
         <div class="col"></div>
       </div>
     </div>
   </div>
-  <div class="card">
+  <div class="card" formGroupName="delivery">
     <div class="card-body">
       <h2 class="card-title">Delivery</h2>
       <div class="form-row">
@@ -57,12 +57,12 @@
             <input
               matInput
               placeholder="Address"
-              [formControl]="nameFormControl"
+              formControlName="delivery.address"
               [errorStateMatcher]="matcher"
             />
-            <mat-error *ngIf="nameFormControl.hasError('required')">
+            <!--             <mat-error *ngIf="address.hasError('required')">
               Address is <strong>required</strong>
-            </mat-error>
+            </mat-error> -->
           </mat-form-field>
         </div>
       </div>
@@ -72,12 +72,12 @@
             <input
               matInput
               placeholder="Flat / Office"
-              [formControl]="nameFormControl"
+              formControlName="delivery.flat"
               [errorStateMatcher]="matcher"
             />
-            <mat-error *ngIf="nameFormControl.hasError('required')">
+            <!--             <mat-error *ngIf="flat.hasError('required')">
               Flat or office is <strong>required</strong>
-            </mat-error>
+            </mat-error> -->
           </mat-form-field>
         </div>
         <div class="col">
@@ -85,7 +85,7 @@
             <input
               matInput
               placeholder="Floor"
-              [formControl]="nameFormControl"
+              formControlName="delivery.floor"
             />
           </mat-form-field>
         </div>
@@ -121,6 +121,7 @@
           </div>
         </div>
         <main-button
+          [isDisabled]="false"
           [text]="'ORDER'"
           [isForm]="true"
           (formSubmitEvent)="submitOrder(checkoutForm)"
