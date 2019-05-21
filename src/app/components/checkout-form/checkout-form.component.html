@@ -10,6 +10,7 @@
               placeholder="Name"
               formControlName="user.name"
               [errorStateMatcher]="matcher"
+              required
             />
             <!--            <mat-error *ngIf="name.hasError('required')">
               Name is <strong>required</strong>
@@ -23,6 +24,7 @@
               placeholder="Telephone"
               formControlName="user.telephone"
               [errorStateMatcher]="matcher"
+              required
             />
             <!--             <mat-error *ngIf="telephone.hasError('required')">
               Telephone is <strong>required</strong>
@@ -38,6 +40,7 @@
               placeholder="E-mail"
               formControlName="user.email"
               [errorStateMatcher]="matcher"
+              required
             />
             <!--             <mat-error *ngIf="email.hasError('required')">
               E-mail is <strong>required</strong>
@@ -59,6 +62,7 @@
               placeholder="Address"
               formControlName="delivery.address"
               [errorStateMatcher]="matcher"
+              required
             />
             <!--             <mat-error *ngIf="address.hasError('required')">
               Address is <strong>required</strong>
@@ -74,6 +78,7 @@
               placeholder="Flat / Office"
               formControlName="delivery.flat"
               [errorStateMatcher]="matcher"
+              required
             />
             <!--             <mat-error *ngIf="flat.hasError('required')">
               Flat or office is <strong>required</strong>

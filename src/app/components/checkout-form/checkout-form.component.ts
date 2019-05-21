@@ -4,7 +4,8 @@ import {
   FormGroupDirective,
   NgForm,
   Validators,
-  FormGroup
+  FormGroup,
+  FormBuilder
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
@@ -29,7 +30,21 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class CheckoutFormComponent implements OnInit {
   // @ViewChild('checkoutForm') checkoutForm: NgForm;
-  checkoutForm: FormGroup;
+  checkoutForm = this.fb.group({
+    user: this.fb.group({
+      name: ['', Validators.required],
+      telephone: ['', Validators.required],
+      email: ['', Validators.required, Validators.email]
+    }),
+    delivery: this.fb.group({
+      address: ['', Validators.required],
+      flat: ['', Validators.required],
+      floor: ['']
+    }),
+    payment: [''],
+    comment: [''],
+    subscription: ['']
+  });
 
   /*   nameFormControl = new FormControl('', [
     Validators.required,
@@ -38,23 +53,9 @@ export class CheckoutFormComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  ngOnInit() {
-    this.checkoutForm = new FormGroup({
-      user: new FormGroup({
-        name: new FormControl('', [Validators.required]),
-        telephone: new FormControl('', [Validators.required]),
-        email: new FormControl('', [Validators.required, Validators.email])
-      }),
-      delivery: new FormGroup({
-        address: new FormControl('', [Validators.required]),
-        flat: new FormControl('', [Validators.required]),
-        floor: new FormControl('', [])
-      })
-      /*       payment: new FormControl('', []),
-      comment: new FormControl(''),
-      subscription: new FormControl('') */
-    });
-  }
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {}
 
   submitOrder() {
     console.dir(this.checkoutForm);
