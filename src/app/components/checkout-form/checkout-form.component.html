@@ -8,7 +8,7 @@
             <input
               matInput
               placeholder="Name"
-              formControlName="user.name"
+              formControlName="name"
               [errorStateMatcher]="matcher"
               required
             />
@@ -22,7 +22,7 @@
             <input
               matInput
               placeholder="Telephone"
-              formControlName="user.telephone"
+              formControlName="telephone"
               [errorStateMatcher]="matcher"
               required
             />
@@ -38,7 +38,7 @@
             <input
               matInput
               placeholder="E-mail"
-              formControlName="user.email"
+              formControlName="email"
               [errorStateMatcher]="matcher"
               required
             />
@@ -60,7 +60,7 @@
             <input
               matInput
               placeholder="Address"
-              formControlName="delivery.address"
+              formControlName="address"
               [errorStateMatcher]="matcher"
               required
             />
@@ -76,7 +76,7 @@
             <input
               matInput
               placeholder="Flat / Office"
-              formControlName="delivery.flat"
+              formControlName="flat"
               [errorStateMatcher]="matcher"
               required
             />
@@ -87,11 +87,7 @@
         </div>
         <div class="col">
           <mat-form-field class="input-full-width">
-            <input
-              matInput
-              placeholder="Floor"
-              formControlName="delivery.floor"
-            />
+            <input matInput placeholder="Floor" formControlName="floor" />
           </mat-form-field>
         </div>
       </div>

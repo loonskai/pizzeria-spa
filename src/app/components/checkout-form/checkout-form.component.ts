@@ -9,6 +9,8 @@ import {
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
+import { RegExpValues } from '../../enums';
+
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
     control: FormControl | null,
@@ -32,14 +34,18 @@ export class CheckoutFormComponent implements OnInit {
   // @ViewChild('checkoutForm') checkoutForm: NgForm;
   checkoutForm = this.fb.group({
     user: this.fb.group({
-      name: ['', Validators.required],
-      telephone: ['', Validators.required],
+      name: ['', Validators.required, Validators.minLength(2)],
+      telephone: [
+        '',
+        Validators.required,
+        Validators.pattern(RegExpValues.phone)
+      ],
       email: ['', Validators.required, Validators.email]
     }),
     delivery: this.fb.group({
-      address: ['', Validators.required],
-      flat: ['', Validators.required],
-      floor: ['']
+      address: ['', Validators.required, Validators.minLength(4)],
+      flat: ['', Validators.required, Validators.pattern(RegExpValues.number)],
+      floor: ['', Validators.required, Validators.pattern(RegExpValues.number)]
     }),
     payment: [''],
     comment: [''],
