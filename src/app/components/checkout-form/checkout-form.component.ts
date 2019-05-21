@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroupDirective,
   NgForm,
   Validators,
-  FormGroup,
   FormBuilder
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -17,11 +16,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     form: FormGroupDirective | NgForm | null
   ): boolean {
     const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
+    return !!(control && control.invalid && (control.dirty || isSubmitted));
   }
 }
 
@@ -31,31 +26,35 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./checkout-form.component.sass']
 })
 export class CheckoutFormComponent implements OnInit {
-  // @ViewChild('checkoutForm') checkoutForm: NgForm;
   checkoutForm = this.fb.group({
     user: this.fb.group({
-      name: ['', Validators.required, Validators.minLength(2)],
+      name: ['', [Validators.required, Validators.minLength(2)]],
       telephone: [
         '',
-        Validators.required,
-        Validators.pattern(RegExpValues.phone)
+        [
+          Validators.required,
+          Validators.pattern(RegExpValues.phone),
+          Validators.minLength(7)
+        ]
       ],
-      email: ['', Validators.required, Validators.email]
+      email: ['', [Validators.required, Validators.email]]
     }),
     delivery: this.fb.group({
-      address: ['', Validators.required, Validators.minLength(4)],
-      flat: ['', Validators.required, Validators.pattern(RegExpValues.number)],
-      floor: ['', Validators.required, Validators.pattern(RegExpValues.number)]
+      address: ['', [Validators.required, Validators.minLength(4)]],
+      flat: [
+        '',
+        [Validators.required, Validators.pattern(RegExpValues.number)]
+      ],
+      floor: [
+        '',
+        [Validators.required, Validators.pattern(RegExpValues.number)]
+      ]
     }),
-    payment: [''],
+    payment: ['cash'],
     comment: [''],
-    subscription: ['']
+    subscriptionSms: ['true'],
+    subscriptionEmail: ['true']
   });
-
-  /*   nameFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email
-  ]); */
 
   matcher = new MyErrorStateMatcher();
 
