@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   FormControl,
   FormGroupDirective,
@@ -28,25 +29,25 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class CheckoutFormComponent implements OnInit {
   checkoutForm = this.fb.group({
     user: this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
+      name: ['Vasya', [Validators.required, Validators.minLength(2)]],
       telephone: [
-        '',
+        '9369992',
         [
           Validators.required,
           Validators.pattern(RegExpValues.phone),
           Validators.minLength(7)
         ]
       ],
-      email: ['', [Validators.required, Validators.email]]
+      email: ['user@mail.com', [Validators.required, Validators.email]]
     }),
     delivery: this.fb.group({
-      address: ['', [Validators.required, Validators.minLength(4)]],
+      address: ['Pushkina', [Validators.required, Validators.minLength(4)]],
       flat: [
-        '',
+        '5',
         [Validators.required, Validators.pattern(RegExpValues.number)]
       ],
       floor: [
-        '',
+        '1',
         [Validators.required, Validators.pattern(RegExpValues.number)]
       ]
     }),
@@ -58,12 +59,13 @@ export class CheckoutFormComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {}
 
   submitOrder() {
-    console.dir(this.checkoutForm);
-    console.log('submit order!');
+    console.dir(this.checkoutForm.value);
+    this.checkoutForm.reset();
+    this.router.navigateByUrl('/');
   }
 }
