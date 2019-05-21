@@ -48,17 +48,30 @@ export class PizzaPageComponent implements OnInit {
     if (!this.displayCheeseBoard) {
       this.withCheeseBoard = false;
     }
-    /* this.recalculatePrice(); */
   }
 
   changeThickness(value: string) {
     if (this.thicknessSelected === value) return;
     this.thicknessSelected = value;
-    // this.recalculatePrice();
   }
 
   toggleCheeseBoard() {
     this.withCheeseBoard = !this.withCheeseBoard;
-    // this.recalculatePrice();
+  }
+
+  get pizzaPrice() {
+    let recalculatedPrice = this.pizzaItem.price;
+    if (this.withCheeseBoard) {
+      recalculatedPrice *= 1.15;
+    }
+    const { diameter, thickness } = this.pizzaItem.size;
+    const { priceRate: thicknessPriceRate } = thickness.find(
+      item => this.thicknessSelected === item.type
+    );
+    const { priceRate: diameterPriceRate } = diameter.find(
+      item => this.diameterSelected === item.value
+    );
+    recalculatedPrice *= thicknessPriceRate * diameterPriceRate;
+    return recalculatedPrice.toFixed(1);
   }
 }

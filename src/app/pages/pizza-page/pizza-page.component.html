@@ -23,7 +23,7 @@
               {{ pizzaItem.energyValue[energyItemKey] }}</span
             >
           </div>
-          <div>
+          <div class="narrow-row__container">
             <radio-group-button
               class="radio-group__thickness"
               [options]="thicknessOptions"
@@ -31,9 +31,8 @@
               (changeEvent)="changeThickness($event)"
             ></radio-group-button>
           </div>
-          <div class="radio-group__container">
+          <div class="narrow-row__container radio-group__diameter">
             <radio-group-button
-              class="radio-group__diameter"
               [options]="diameterOptions"
               [value]="diameterSelected.toString()"
               (changeEvent)="changeDiameter($event)"
@@ -43,6 +42,17 @@
               (click)="toggleCheeseBoard()"
               [isSelected]="withCheeseBoard"
             ></radio-button>
+          </div>
+          <div class="narrow-row__container">
+            <div class="d-flex justify-content-between">
+              <main-button
+                class="main-button__customized"
+                [text]="'ADD TO CART'"
+              ></main-button>
+              <span class="total-price">{{
+                pizzaPrice | currency: 'USD':true
+              }}</span>
+            </div>
           </div>
         </div>
       </div>
