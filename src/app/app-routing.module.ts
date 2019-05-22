@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MainPageComponent } from './pages/main-page/main-page.component';
-import { PizzaPageComponent } from './pages/pizza-page/pizza-page.component';
 
 const routes: Routes = [
   {
@@ -10,8 +9,8 @@ const routes: Routes = [
     component: MainPageComponent
   },
   {
-    path: 'pizza/:id',
-    component: PizzaPageComponent
+    path: 'pizza',
+    loadChildren: './pages/pizza-page/pizza.module#PizzaModule'
   },
   {
     path: 'checkout',
