@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'pizza/:id',
     component: PizzaPageComponent
+  },
+  {
+    path: 'checkout',
+    loadChildren: './pages/checkout-page/checkout.module#CheckoutModule'
   }
 ];
 

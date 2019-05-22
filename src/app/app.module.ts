@@ -8,7 +8,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared.module';
-import { CheckoutModule } from './pages/checkout-page/checkout.module';
 
 import { AppComponent } from './app.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
@@ -48,7 +47,6 @@ import { cartReducer } from './reducers/cart.reducer';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    CheckoutModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
     StoreModule.forRoot({ cart: cartReducer }),
