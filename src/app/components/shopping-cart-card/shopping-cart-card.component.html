@@ -6,7 +6,13 @@
         <span>Cart </span><span>({{ orderedPizzaItems.length }})</span>
         <span class="oi oi-caret-bottom"></span>
       </div>
-      <button (click)="clearCart()" class="clear-order-button">Clear</button>
+      <button
+        (click)="clearCart()"
+        [disabled]="orderedPizzaItems.length === 0"
+        class="clear-order-button"
+      >
+        Clear
+      </button>
     </div>
     <div class="row items-container">
       <div *ngIf="orderedPizzaItems.length === 0; else itemsList">

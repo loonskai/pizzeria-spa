@@ -1,4 +1,6 @@
 <main class="main-container">
-  <item-list></item-list>
-  <shopping-cart-card></shopping-cart-card>
+  <item-list (snackbarEvent)="openSnackBar()"></item-list>
+  <shopping-cart-card
+    (snackbarEvent)="openSnackBar($event)"
+  ></shopping-cart-card>
 </main>

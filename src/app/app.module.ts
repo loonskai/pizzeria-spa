@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -19,6 +20,7 @@ import { RadioGroupButtonComponent } from './components/radio-group-button/radio
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 import { ShoppingCartCardComponent } from './components/shopping-cart-card/shopping-cart-card.component';
 import { CheckoutFormComponent } from './components/checkout-form/checkout-form.component';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
@@ -46,7 +48,8 @@ import { cartReducer } from './reducers/cart.reducer';
     CheckoutPageComponent,
     PizzaPageComponent,
     KeysPipe,
-    CheckoutFormComponent
+    CheckoutFormComponent,
+    SnackbarComponent
   ],
   imports: [
     BrowserModule,
@@ -57,11 +60,13 @@ import { cartReducer } from './reducers/cart.reducer';
     MatInputModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatSnackBarModule,
     StoreModule.forRoot({ cart: cartReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 10
     })
   ],
+  entryComponents: [SnackbarComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

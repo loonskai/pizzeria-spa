@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
 import { OrderItem } from '../../interfaces';
@@ -15,6 +15,7 @@ import {
   styleUrls: ['./shopping-cart-card.component.sass']
 })
 export class ShoppingCartCardComponent {
+  @Output() snackbarEvent = new EventEmitter<string>();
   orderedPizzaItems: OrderItem[];
 
   constructor(private store: Store<{ cart: OrderItem[] }>) {
@@ -39,6 +40,10 @@ export class ShoppingCartCardComponent {
 
   clearCart() {
     this.store.dispatch(new ClearCart());
+    this.snackbarEvent.emit({
+      message: 'Cart cleared',
+      action: 'Undo'
+    });
   }
 
   get totalPrice() {
