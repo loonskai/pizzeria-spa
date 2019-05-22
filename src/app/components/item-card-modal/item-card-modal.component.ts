@@ -31,6 +31,7 @@ export class ItemCardModalComponent implements OnInit {
 
   addToCart() {
     this.addToCartEvent.emit();
+    this.toggleModalEvent.emit();
   }
 
   changeDefaultIngredientStatus(event) {
