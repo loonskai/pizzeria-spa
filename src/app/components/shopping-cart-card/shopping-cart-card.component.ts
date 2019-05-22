@@ -1,24 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { OrderItem } from '../../interfaces';
-import { order } from '../../../mocks';
-import { PizzaService } from 'src/app/services/pizza.service';
 
 @Component({
   selector: 'shopping-cart-card',
   templateUrl: './shopping-cart-card.component.html',
   styleUrls: ['./shopping-cart-card.component.sass']
 })
-export class ShoppingCartCardComponent implements OnInit {
+export class ShoppingCartCardComponent {
   itemsAmount: number = 2;
-  orderedPizzaItems: OrderItem[] = order;
+  orderedPizzaItems$: Observable<OrderItem[]>;
 
-  constructor(private pizzaService: PizzaService) {}
-
-  ngOnInit() {
-    this.orderedPizzaItems = this.orderedPizzaItems.map(orderItem => ({
-      ...orderItem,
-      pizzaDetails: this.pizzaService.getOneById(orderItem.pizzaID)
-    }));
+  constructor(private store: Store<OrderItem[]>) {
+    this.orderedPizzaItems$ = this.store.pipe(select('cart'));
   }
 }

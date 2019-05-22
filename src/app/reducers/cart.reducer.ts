@@ -1,14 +1,16 @@
 import { Action } from '@ngrx/store';
 
 import { ActionTypes } from '../enums';
-import { AddToCart } from '../actions/cart.actions';
+import { ActionsUnion } from '../actions/cart.actions';
 
 export const initialState = [];
 
-export function cartReducer(state = initialState, action: AddToCart) {
+export function cartReducer(state = initialState, action: ActionsUnion) {
   switch (action.type) {
     case ActionTypes.AddToCart:
       return [...state, action.payload];
+    case ActionTypes.ClearCart:
+      return [];
     default:
       return state;
   }

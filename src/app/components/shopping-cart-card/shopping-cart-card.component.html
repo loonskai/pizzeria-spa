@@ -10,7 +10,14 @@
       <button class="clear-order-button">Clear</button>
     </div>
     <div class="row items-container">
-      <div *ngFor="let orderItem of orderedPizzaItems" class="order-item">
+      <div *ngIf="!orderedPizzaItems$.length | async; else itemsList">
+        No items in the cart
+      </div>
+      <div
+        #itemsList
+        *ngFor="let orderItem of orderedPizzaItems$ | async"
+        class="order-item"
+      >
         <div class="order-item-section">
           <span class="oi oi-x order-item-remove-icon"></span>
           <img

@@ -93,17 +93,18 @@ export class ItemCardComponent implements OnInit {
   }
 
   addToCart() {
-    const pizzaToAdd = {
-      pizza: this.pizza,
+    const pizzaItem = {
+      pizzaID: this.pizza.id,
+      amount: 1,
+      excludedIngredients: [...this.removedIngredients],
+      customIngredients: [...this.customIngredients],
+      cheeseBoard: this.withCheeseBoard,
       thickness: this.thicknessSelected,
       diameter: this.diameterSelected,
-      cheeseBoard: this.withCheeseBoard,
-      removedIngredients: this.removedIngredients,
-      customIngredients: this.customIngredients,
-      price: parseFloat(this.pizzaPrice)
+      price: parseFloat(this.pizzaPrice),
+      pizzaDetails: this.pizza
     };
-    console.log(pizzaToAdd);
-    // this.store.dispatch(new AddToCart())
+    this.store.dispatch(new AddToCart(pizzaItem));
   }
 
   get pizzaPrice() {
