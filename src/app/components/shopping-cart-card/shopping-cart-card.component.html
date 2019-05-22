@@ -6,7 +6,6 @@
         <span>Cart </span
         ><span>({{ (orderedPizzaItems$ | async)?.length }})</span>
         <span class="oi oi-caret-bottom"></span>
-        <!-- <span class="oi oi-caret-top"></span> -->
       </div>
       <button (click)="clearCart()" class="clear-order-button">Clear</button>
     </div>
@@ -68,7 +67,11 @@
       </div>
     </div>
     <div class="row justify-content-center">
-      <main-button [text]="'ORDER NOW'" [link]="'/checkout'"></main-button>
+      <main-button
+        [text]="'ORDER NOW'"
+        [link]="'/checkout'"
+        [isDisabled]="(orderedPizzaItems$ | async)?.length === 0"
+      ></main-button>
     </div>
   </div>
 </div>
