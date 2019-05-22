@@ -18,6 +18,7 @@ export class ItemCardModalComponent implements OnInit {
   @Output() toggleDefaultIngredient = new EventEmitter<string>();
   @Output() addCustomIngredientEvent = new EventEmitter<IngredientOption>();
   @Output() removeCustomIngredientEvent = new EventEmitter<IngredientOption>();
+  @Output() addToCartEvent: EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {
     this.customIngredientsOptions = ingredientsOptions;
@@ -26,6 +27,10 @@ export class ItemCardModalComponent implements OnInit {
 
   closeModal() {
     this.toggleModalEvent.emit();
+  }
+
+  addToCart() {
+    this.addToCartEvent.emit();
   }
 
   changeDefaultIngredientStatus(event) {
