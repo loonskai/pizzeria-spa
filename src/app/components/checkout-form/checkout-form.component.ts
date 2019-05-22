@@ -8,7 +8,10 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Store, select } from '@ngrx/store';
 
+import { OrderItem } from '../../interfaces';
+import { ClearCart } from 'src/app/actions/cart.actions';
 import { RegExpValues } from '../../enums';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -26,7 +29,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './checkout-form.component.html',
   styleUrls: ['./checkout-form.component.sass']
 })
-export class CheckoutFormComponent implements OnInit {
+export class CheckoutFormComponent {
   checkoutForm = this.fb.group({
     user: this.fb.group({
       name: ['Vasya', [Validators.required, Validators.minLength(2)]],
@@ -56,16 +59,27 @@ export class CheckoutFormComponent implements OnInit {
     subscriptionSms: ['true'],
     subscriptionEmail: ['true']
   });
+  orderData: OrderItem[];
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private fb: FormBuilder, private router: Router) {}
-
-  ngOnInit() {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private store: Store<{ cart: OrderItem[] }>
+  ) {
+    this.store
+      .pipe(select((state: { cart: OrderItem[] }) => state.cart))
+      .subscribe(cart => {
+        this.orderData = cart;
+      });
+  }
 
   submitOrder() {
-    console.dir(this.checkoutForm.value);
+    console.log('order data: ', this.orderData);
+    console.log('user data: ', this.checkoutForm.value);
     this.checkoutForm.reset();
+    this.store.dispatch(new ClearCart());
     this.router.navigateByUrl('/');
   }
 }
