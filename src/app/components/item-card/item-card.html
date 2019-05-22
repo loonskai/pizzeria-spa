@@ -53,13 +53,13 @@
         (toggleDefaultIngredient)="toggleDefaultIngredient($event)"
         (addCustomIngredientEvent)="addCustomIngredient($event)"
         (removeCustomIngredientEvent)="removeCustomIngredient($event)"
-        [initialDefaultIngredients]="pizza.ingredients"
         [defaultIngredients]="defaultIngredients"
+        [removedIngredients]="removedIngredients"
         [customIngredients]="customIngredients"
       ></item-card-modal>
     </div>
     <div class="row justify-content-between align-items-center">
-      <main-button [text]="'ADD TO CART'"></main-button>
+      <main-button [text]="'ADD TO CART'" (click)="addToCart()"></main-button>
       <div class="total-price">
         <span>{{ pizzaPrice | currency: 'USD':true }}</span>
       </div>

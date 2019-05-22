@@ -4,26 +4,26 @@
   </div>
   <div (click)="changeDefaultIngredientStatus($event)">
     <div
-      *ngFor="let initialIngredient of initialDefaultIngredients"
+      *ngFor="let defaultIngredient of defaultIngredients"
       class="content-row"
     >
       <div
         class="ingredient-item"
-        *ngIf="isIngredientIncluded(initialIngredient); else ingredientDisabled"
+        *ngIf="!isIngredientRemoved(defaultIngredient); else ingredientRemoved"
       >
         <span class="ingredient-item__title">
-          {{ initialIngredient }}
+          {{ defaultIngredient }}
         </span>
-        <span class="oi oi-x" attr.data-value="{{ initialIngredient }}"></span>
+        <span class="oi oi-x" attr.data-value="{{ defaultIngredient }}"></span>
       </div>
-      <ng-template #ingredientDisabled>
+      <ng-template #ingredientRemoved>
         <div class="ingredient-item ingredient-item__disabled">
           <span class="ingredient-item__title">
-            {{ initialIngredient }}
+            {{ defaultIngredient }}
           </span>
           <span
             class="oi oi-action-undo"
-            attr.data-value="{{ initialIngredient }}"
+            attr.data-value="{{ defaultIngredient }}"
           ></span>
         </div>
       </ng-template>
@@ -66,9 +66,7 @@
       <option
         *ngFor="
           let option of customIngredientsOptions
-            | filterIngredientOptions
-              : initialDefaultIngredients
-              : customIngredients
+            | filterIngredientOptions: defaultIngredients:customIngredients
         "
         attr.data-price="{{ option.price }}"
         value="{{ option.title }}"

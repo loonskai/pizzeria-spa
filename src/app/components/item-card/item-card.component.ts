@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AddToCart } from '../../actions/cart.actions';
 
 import {
   PizzaItem,
@@ -21,9 +23,12 @@ export class ItemCardComponent implements OnInit {
   diameterSelected: number;
   thicknessSelected: string;
   defaultIngredients: string[];
+  removedIngredients: string[] = [];
   customIngredients: string[] = [];
 
   private _customIngredientsPrice: number = 0;
+
+  constructor(private store: Store<{ cart: any }>) {}
 
   ngOnInit() {
     const { diameter, thickness } = this.pizza.size;
@@ -64,13 +69,13 @@ export class ItemCardComponent implements OnInit {
   }
 
   toggleDefaultIngredient(ingredient: string) {
-    const updatedIngredients = this.defaultIngredients.filter(
-      existingIngredient => existingIngredient !== ingredient
-    );
-    if (updatedIngredients.length === this.defaultIngredients.length) {
-      updatedIngredients.push(ingredient);
+    if (this.removedIngredients.includes(ingredient)) {
+      this.removedIngredients = this.removedIngredients.filter(
+        removedIngredient => removedIngredient !== ingredient
+      );
+    } else {
+      this.removedIngredients.push(ingredient);
     }
-    this.defaultIngredients = updatedIngredients;
   }
 
   addCustomIngredient(ingredientOption: IngredientOption) {
@@ -85,6 +90,20 @@ export class ItemCardComponent implements OnInit {
       customIngredientTitle => customIngredientTitle !== title
     );
     this._customIngredientsPrice -= price;
+  }
+
+  addToCart() {
+    const pizzaToAdd = {
+      pizza: this.pizza,
+      thickness: this.thicknessSelected,
+      diameter: this.diameterSelected,
+      cheeseBoard: this.withCheeseBoard,
+      removedIngredients: this.removedIngredients,
+      customIngredients: this.customIngredients,
+      price: parseFloat(this.pizzaPrice)
+    };
+    console.log(pizzaToAdd);
+    // this.store.dispatch(new AddToCart())
   }
 
   get pizzaPrice() {

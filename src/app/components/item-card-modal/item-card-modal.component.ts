@@ -11,8 +11,8 @@ import { IngredientOption } from '../../interfaces';
 export class ItemCardModalComponent implements OnInit {
   showCustomIngredientsList: boolean;
   customIngredientsOptions: IngredientOption[];
-  @Input() initialDefaultIngredients;
   @Input() defaultIngredients;
+  @Input() removedIngredients;
   @Input() customIngredients;
   @Output() toggleModalEvent = new EventEmitter<string>();
   @Output() toggleDefaultIngredient = new EventEmitter<string>();
@@ -36,8 +36,8 @@ export class ItemCardModalComponent implements OnInit {
     this.toggleDefaultIngredient.emit(value);
   }
 
-  isIngredientIncluded(ingredient: string) {
-    return this.defaultIngredients.includes(ingredient);
+  isIngredientRemoved(ingredient: string) {
+    return this.removedIngredients.includes(ingredient);
   }
 
   toggleCustomIngredientsList() {
