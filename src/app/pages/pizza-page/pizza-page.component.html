@@ -48,6 +48,7 @@
               <main-button
                 class="main-button__customized"
                 [text]="'ADD TO CART'"
+                (click)="addToCart()"
               ></main-button>
               <span class="total-price">{{
                 pizzaPrice | currency: 'USD':true

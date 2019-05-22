@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+
 import { PizzaService } from 'src/app/services/pizza.service';
 import { PizzaItem, RadioGroupButtonOption } from 'src/app/interfaces';
+import { AddToCart } from '../../actions/cart.actions';
 
 @Component({
   selector: 'app-pizza-page',
@@ -19,7 +22,8 @@ export class PizzaPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private pizzaService: PizzaService
+    private pizzaService: PizzaService,
+    private store: Store<{ cart: any }>
   ) {
     this.displayCheeseBoard = false;
   }
@@ -57,6 +61,21 @@ export class PizzaPageComponent implements OnInit {
 
   toggleCheeseBoard() {
     this.withCheeseBoard = !this.withCheeseBoard;
+  }
+
+  addToCart() {
+    const pizzaItem = {
+      pizzaID: this.pizzaItem.id,
+      amount: 1,
+      excludedIngredients: [],
+      customIngredients: [],
+      cheeseBoard: this.withCheeseBoard,
+      thickness: this.thicknessSelected,
+      diameter: this.diameterSelected,
+      price: parseFloat(this.pizzaPrice),
+      pizzaDetails: this.pizzaItem
+    };
+    this.store.dispatch(new AddToCart(pizzaItem));
   }
 
   get pizzaPrice() {
