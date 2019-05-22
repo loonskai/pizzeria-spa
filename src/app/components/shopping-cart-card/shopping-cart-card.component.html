@@ -3,19 +3,18 @@
   <div class="card-body">
     <div class="row justify-content-between cart-heading">
       <div>
-        <span>Cart </span
-        ><span>({{ (orderedPizzaItems$ | async)?.length }})</span>
+        <span>Cart </span><span>({{ orderedPizzaItems.length }})</span>
         <span class="oi oi-caret-bottom"></span>
       </div>
       <button (click)="clearCart()" class="clear-order-button">Clear</button>
     </div>
     <div class="row items-container">
-      <div *ngIf="(orderedPizzaItems$ | async)?.length === 0; else itemsList">
+      <div *ngIf="orderedPizzaItems.length === 0; else itemsList">
         No items in the cart
       </div>
       <div
         #itemsList
-        *ngFor="let orderItem of orderedPizzaItems$ | async"
+        *ngFor="let orderItem of orderedPizzaItems"
         class="order-item"
       >
         <div class="order-item-section">
@@ -66,11 +65,14 @@
         </div>
       </div>
     </div>
+    <div class="row order-total-price">
+      Total price: {{ totalPrice | currency: 'USD':true }}
+    </div>
     <div class="row justify-content-center">
       <main-button
         [text]="'ORDER NOW'"
         [link]="'/checkout'"
-        [isDisabled]="(orderedPizzaItems$ | async)?.length === 0"
+        [isDisabled]="orderedPizzaItems.length === 0"
       ></main-button>
     </div>
   </div>

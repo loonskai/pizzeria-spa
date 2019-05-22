@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { toArray } from 'rxjs/operators';
 
 import { OrderItem } from '../../interfaces';
 import { ClearCart } from 'src/app/actions/cart.actions';
@@ -11,13 +12,23 @@ import { ClearCart } from 'src/app/actions/cart.actions';
   styleUrls: ['./shopping-cart-card.component.sass']
 })
 export class ShoppingCartCardComponent {
-  orderedPizzaItems$: Observable<OrderItem[]>;
+  orderedPizzaItems: OrderItem[];
 
-  constructor(private store: Store<OrderItem[]>) {
-    this.orderedPizzaItems$ = this.store.pipe(select('cart'));
+  constructor(private store: Store<{ cart: OrderItem[] }>) {
+    this.store
+      .pipe(select((state: { cart: OrderItem[] }) => state.cart))
+      .subscribe(cart => {
+        this.orderedPizzaItems = cart;
+      });
   }
 
   clearCart() {
     this.store.dispatch(new ClearCart());
+  }
+
+  get totalPrice() {
+    return this.orderedPizzaItems.length === 0
+      ? 0
+      : this.orderedPizzaItems.reduce((acc, item) => acc + item.price, 0);
   }
 }
