@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { toArray } from 'rxjs/operators';
 
 import { OrderItem } from '../../interfaces';
 import { ClearCart } from 'src/app/actions/cart.actions';
