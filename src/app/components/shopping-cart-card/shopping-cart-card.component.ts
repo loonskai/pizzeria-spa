@@ -15,7 +15,6 @@ import {
   styleUrls: ['./shopping-cart-card.component.sass']
 })
 export class ShoppingCartCardComponent {
-  @Output() snackbarEvent = new EventEmitter<string>();
   orderedPizzaItems: OrderItem[];
 
   constructor(private store: Store<{ cart: OrderItem[] }>) {

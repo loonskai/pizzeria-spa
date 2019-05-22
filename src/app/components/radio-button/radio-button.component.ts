@@ -1,14 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'radio-button',
   templateUrl: './radio-button.component.html',
-  styleUrls: ['./radio-button.component.sass']
+  styleUrls: ['./radio-button.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RadioButtonComponent implements OnInit {
+export class RadioButtonComponent {
   @Input() isSelected;
-
-  constructor() {}
-
-  ngOnInit() {}
 }

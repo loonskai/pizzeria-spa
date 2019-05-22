@@ -1,11 +1,18 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  Input,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 import { RadioGroupButtonOption } from '../../interfaces';
 
 @Component({
   selector: 'radio-group-button',
   templateUrl: './radio-group-button.component.html',
-  styleUrls: ['./radio-group-button.component.sass']
+  styleUrls: ['./radio-group-button.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioGroupButtonComponent {
   @Input() options: RadioGroupButtonOption;

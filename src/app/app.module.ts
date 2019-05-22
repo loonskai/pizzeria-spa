@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -13,7 +12,6 @@ import { AppComponent } from './app.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
 import { ItemCardModalComponent } from './components/item-card-modal/item-card-modal.component';
-import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 import { MainPageComponent } from './pages/main-page/main-page.component';
 
@@ -30,21 +28,18 @@ import { cartReducer } from './reducers/cart.reducer';
     ItemCardModalComponent,
     JoinPipe,
     FilterIngredientOptionsPipe,
-    MainPageComponent,
-    SnackbarComponent
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
-    MatSnackBarModule,
     StoreModule.forRoot({ cart: cartReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 10
     })
   ],
-  entryComponents: [SnackbarComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
