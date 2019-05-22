@@ -3,14 +3,15 @@
   <div class="card-body">
     <div class="row justify-content-between cart-heading">
       <div>
-        <span>Cart </span><span>({{ itemsAmount }})</span>
+        <span>Cart </span
+        ><span>({{ (orderedPizzaItems$ | async)?.length }})</span>
         <span class="oi oi-caret-bottom"></span>
         <!-- <span class="oi oi-caret-top"></span> -->
       </div>
       <button class="clear-order-button">Clear</button>
     </div>
     <div class="row items-container">
-      <div *ngIf="!orderedPizzaItems$.length | async; else itemsList">
+      <div *ngIf="(orderedPizzaItems$ | async)?.length === 0; else itemsList">
         No items in the cart
       </div>
       <div

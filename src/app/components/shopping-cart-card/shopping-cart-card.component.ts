@@ -10,7 +10,7 @@ import { OrderItem } from '../../interfaces';
   styleUrls: ['./shopping-cart-card.component.sass']
 })
 export class ShoppingCartCardComponent {
-  itemsAmount: number = 2;
+  itemsAmount: number = 0;
   orderedPizzaItems$: Observable<OrderItem[]>;
 
   constructor(private store: Store<OrderItem[]>) {
