@@ -5,7 +5,7 @@ export enum RegExpValues {
 
 export enum ActionTypes {
   AddToCart = '[Cart] Add To Cart',
-  RemoverFromCart = '[Cart] Remove From Cart',
+  RemoveFromCart = '[Cart] Remove From Cart',
   ClearCart = '[Cart] Clear Cart',
   IncrementCartItemAmount = '[Cart] Increment Item Cart Amount',
   DecrementCartItemAmount = '[Cart] Decrement Item Cart Amount'

@@ -2,7 +2,12 @@ import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
 import { OrderItem } from '../../interfaces';
-import { ClearCart } from 'src/app/actions/cart.actions';
+import {
+  RemoveFromCart,
+  IncrementCartItemAmount,
+  DecrementCartItemAmount,
+  ClearCart
+} from 'src/app/actions/cart.actions';
 
 @Component({
   selector: 'shopping-cart-card',
@@ -18,6 +23,18 @@ export class ShoppingCartCardComponent {
       .subscribe(cart => {
         this.orderedPizzaItems = cart;
       });
+  }
+
+  removeFromCart(index: number) {
+    this.store.dispatch(new RemoveFromCart(index));
+  }
+
+  incrementAmount(index: number) {
+    this.store.dispatch(new IncrementCartItemAmount(index));
+  }
+
+  decrementAmount(index: number) {
+    this.store.dispatch(new DecrementCartItemAmount(index));
   }
 
   clearCart() {

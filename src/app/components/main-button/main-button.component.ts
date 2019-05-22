@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './main-button.component.html',
   styleUrls: ['./main-button.component.sass']
 })
-export class MainButtonComponent implements OnInit {
+export class MainButtonComponent {
   @Input() isDisabled: boolean = false;
   @Input() text: string;
   @Input() link?: string;
@@ -17,13 +17,10 @@ export class MainButtonComponent implements OnInit {
 
   onClick() {
     if (this.link) {
-      console.log(this.link);
       this.router.navigate([this.link]);
     }
     if (this.isForm) {
       this.formSubmitEvent.emit();
     }
   }
-
-  ngOnInit() {}
 }

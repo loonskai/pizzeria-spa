@@ -13,9 +13,15 @@
         No items in the cart
       </div>
       <ng-template #itemsList>
-        <div *ngFor="let orderItem of orderedPizzaItems" class="order-item">
+        <div
+          *ngFor="let orderItem of orderedPizzaItems; let index = index"
+          class="order-item"
+        >
           <div class="order-item-section">
-            <span class="oi oi-x order-item-remove-icon"></span>
+            <span
+              class="oi oi-x order-item-remove-icon"
+              (click)="removeFromCart(index)"
+            ></span>
             <img
               class="order-item-picture"
               src="{{ orderItem.pizzaDetails.pictureUrl }}"
@@ -48,11 +54,18 @@
             class="justify-content-between align-items-center order-item-section"
           >
             <div class="order-item-controller">
-              <button disabled class="controller-decrease">
+              <button
+                class="controller-decrease"
+                [disabled]="orderItem.amount < 2"
+                (click)="decrementAmount(index)"
+              >
                 <span class="oi oi-minus"></span>
               </button>
               <span>{{ orderItem.amount }}</span>
-              <button class="controller-increase">
+              <button
+                class="controller-increase"
+                (click)="incrementAmount(index)"
+              >
                 <span class="oi oi-plus"></span>
               </button>
             </div>
