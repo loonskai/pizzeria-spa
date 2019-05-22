@@ -40,10 +40,6 @@ export class ShoppingCartCardComponent {
 
   clearCart() {
     this.store.dispatch(new ClearCart());
-    this.snackbarEvent.emit({
-      message: 'Cart cleared',
-      action: 'Undo'
-    });
   }
 
   get totalPrice() {
