@@ -8,7 +8,7 @@
         <span class="oi oi-caret-bottom"></span>
         <!-- <span class="oi oi-caret-top"></span> -->
       </div>
-      <button class="clear-order-button">Clear</button>
+      <button (click)="clearCart()" class="clear-order-button">Clear</button>
     </div>
     <div class="row items-container">
       <div *ngIf="(orderedPizzaItems$ | async)?.length === 0; else itemsList">
