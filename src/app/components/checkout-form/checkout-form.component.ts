@@ -14,13 +14,17 @@ import { OrderItem } from '../../interfaces';
 import { ClearCart } from 'src/app/actions/cart.actions';
 import { RegExpValues } from '../../enums';
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
+export class CheckoutErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
     control: FormControl | null,
     form: FormGroupDirective | NgForm | null
   ): boolean {
     const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || isSubmitted));
+    return !!(
+      control &&
+      control.invalid &&
+      (control.dirty || control.touched || isSubmitted)
+    );
   }
 }
 
@@ -32,25 +36,25 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class CheckoutFormComponent {
   checkoutForm = this.fb.group({
     user: this.fb.group({
-      name: ['Vasya', [Validators.required, Validators.minLength(2)]],
+      name: ['', [Validators.required, Validators.minLength(2)]],
       telephone: [
-        '9369992',
+        '',
         [
           Validators.required,
           Validators.pattern(RegExpValues.phone),
           Validators.minLength(7)
         ]
       ],
-      email: ['user@mail.com', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]]
     }),
     delivery: this.fb.group({
-      address: ['Pushkina', [Validators.required, Validators.minLength(4)]],
+      address: ['', [Validators.required, Validators.minLength(4)]],
       flat: [
-        '5',
+        '',
         [Validators.required, Validators.pattern(RegExpValues.number)]
       ],
       floor: [
-        '1',
+        '',
         [Validators.required, Validators.pattern(RegExpValues.number)]
       ]
     }),
@@ -61,7 +65,7 @@ export class CheckoutFormComponent {
   });
   orderData: OrderItem[];
 
-  matcher = new MyErrorStateMatcher();
+  matcher = new CheckoutErrorStateMatcher();
 
   constructor(
     private fb: FormBuilder,
