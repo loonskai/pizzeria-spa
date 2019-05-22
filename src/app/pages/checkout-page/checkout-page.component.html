@@ -3,7 +3,10 @@
     <div class="card">
       <h2 class="card-title">Cart</h2>
       <div *ngIf="orderedPizzaItems.length > 0; else noItemsMessage">
-        <div *ngFor="let orderItem of orderedPizzaItems" class="order-item">
+        <div
+          *ngFor="let orderItem of orderedPizzaItems; let index = index"
+          class="order-item"
+        >
           <img
             class="order-item__picture"
             src="{{ orderItem.pizzaDetails.pictureUrl }}"
@@ -36,18 +39,28 @@
             </div>
           </div>
           <div class="order-item__controller">
-            <button disabled class="controller__decrease">
+            <button
+              class="controller__decrease"
+              [disabled]="orderItem.amount < 2"
+              (click)="decrementAmount(index)"
+            >
               <span class="oi oi-minus"></span>
             </button>
             <span>{{ orderItem.amount }}</span>
-            <button class="controller__increase">
+            <button
+              class="controller__increase"
+              (click)="incrementAmount(index)"
+            >
               <span class="oi oi-plus"></span>
             </button>
           </div>
           <span class="order-item__price">{{
             orderItem.price | currency: 'USD':true
           }}</span>
-          <span class="oi oi-x order-item__remove-icon"></span>
+          <span
+            class="oi oi-x order-item__remove-icon"
+            (click)="removeFromCart(index)"
+          ></span>
         </div>
         <div class="total-order-price">
           Total Price:
