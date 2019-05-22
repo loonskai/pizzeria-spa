@@ -1,5 +1,7 @@
 $text-color: #5C3D45
 $grey-color: #A9A9A9
+$included-ingredient-color: #26ADE4;
+$excluded-ingredient-color: #CF4647;
 
 h2
   color: red
@@ -80,9 +82,19 @@ h2
   font-weight: bold
   color: $text-color
 
-.custom-ingredients-list
+.custom-ingredients-list,
+.removed-ingredients-list
   display: flex
   flex-wrap: wrap
   font-size: 0.8rem
   & p
     flex-basis: 100%
+
+.custom-ingredients-list
+  & p
+    color: $included-ingredient-color
+
+.removed-ingredients-list
+  & p
+    color: $excluded-ingredient-color
+    text-decoration: line-through

@@ -22,6 +22,10 @@
     <div class="row">
       <p class="description">{{ pizza.description }}</p>
     </div>
+    <div class="row removed-ingredients-list" *ngIf="removedIngredients.length">
+      <span>Without:</span>
+      <p class="description">{{ removedIngredients | join }}</p>
+    </div>
     <div class="row custom-ingredients-list" *ngIf="customIngredients.length">
       <span>Your ingredients:</span>
       <p class="description">{{ customIngredients | join }}</p>
