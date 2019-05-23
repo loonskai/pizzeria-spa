@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   FormControl,
@@ -8,11 +8,13 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { OrderItem } from '../../interfaces';
-import { ClearCart } from 'src/app/actions/cart.actions';
 import { RegExpValues } from '../../enums';
+import { OrderItem } from '../../interfaces';
+import { LogService } from 'src/app/services/log.service';
+import { ClearCart } from 'src/app/actions/cart.actions';
 
 export class CheckoutErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -33,28 +35,30 @@ export class CheckoutErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './checkout-form.component.html',
   styleUrls: ['./checkout-form.component.sass']
 })
-export class CheckoutFormComponent {
+export class CheckoutFormComponent implements OnInit {
+  private subscription: Subscription = new Subscription();
+
   checkoutForm = this.fb.group({
     user: this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
+      name: ['Vasya', [Validators.required, Validators.minLength(2)]],
       telephone: [
-        '',
+        '215215215',
         [
           Validators.required,
           Validators.pattern(RegExpValues.phone),
           Validators.minLength(7)
         ]
       ],
-      email: ['', [Validators.required, Validators.email]]
+      email: ['mail@mail.com', [Validators.required, Validators.email]]
     }),
     delivery: this.fb.group({
-      address: ['', [Validators.required, Validators.minLength(4)]],
+      address: ['sdagdsag', [Validators.required, Validators.minLength(4)]],
       flat: [
-        '',
+        '2',
         [Validators.required, Validators.pattern(RegExpValues.number)]
       ],
       floor: [
-        '',
+        '2',
         [Validators.required, Validators.pattern(RegExpValues.number)]
       ]
     }),
@@ -64,24 +68,32 @@ export class CheckoutFormComponent {
     subscriptionEmail: ['true']
   });
   orderData: OrderItem[];
-
   matcher = new CheckoutErrorStateMatcher();
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private store: Store<{ cart: OrderItem[] }>
-  ) {
-    this.store
-      .pipe(select((state: { cart: OrderItem[] }) => state.cart))
-      .subscribe(cart => {
-        this.orderData = cart;
-      });
+    private store: Store<{ cart: OrderItem[] }>,
+    private logService: LogService
+  ) {}
+
+  ngOnInit() {
+    this.subscription.add(
+      this.store
+        .pipe(select((state: { cart: OrderItem[] }) => state.cart))
+        .subscribe(cart => {
+          this.orderData = cart;
+        })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   submitOrder() {
-    console.log('order data: ', this.orderData);
-    console.log('user data: ', this.checkoutForm.value);
+    this.logService.log(this.orderData);
+    this.logService.log(this.checkoutForm.value);
     this.checkoutForm.reset();
     this.store.dispatch(new ClearCart());
     this.router.navigateByUrl('/');
