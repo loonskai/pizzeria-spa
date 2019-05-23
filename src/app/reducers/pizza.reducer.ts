@@ -3,7 +3,7 @@ import { PizzaActionsUnion } from '../actions/pizza.actions';
 
 export const initialState = {
   loading: false,
-  data: []
+  data: null
 };
 
 export function pizzaReducer(state = initialState, action: PizzaActionsUnion) {

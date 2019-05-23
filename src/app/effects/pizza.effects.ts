@@ -1,27 +1,48 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import {
+  map,
+  switchMap,
+  catchError,
+  take,
+  withLatestFrom,
+  filter
+} from 'rxjs/operators';
 
 import { PizzaService } from '../services/pizza.service';
 import { ActionTypes } from '../enums';
+import { AppState } from '../interfaces';
+import { pizzaListSelector } from '../selectors/pizzaListSelector';
 
 @Injectable()
 export class PizzaEffects {
   @Effect({ dispatch: true })
   loadPizzaList$: Observable<Action> = this.actions$.pipe(
     ofType(ActionTypes.LoadPizzaListRequested),
-    switchMap(() =>
-      this.pizzaService.getAll().pipe(
-        map(pizzaItems => ({
+    withLatestFrom(this.store.select(pizzaListSelector)),
+    switchMap(([action, pizzaList]) => {
+      if (pizzaList) {
+        return of({
           type: ActionTypes.LoadedPizzaListSuccess,
-          payload: pizzaItems
-        })),
-        catchError(() => of({ type: ActionTypes.LoadedPizzaListError }))
-      )
-    )
+          payload: pizzaList
+        });
+      } else {
+        return this.pizzaService.getAll().pipe(
+          map(pizzaItems => ({
+            type: ActionTypes.LoadedPizzaListSuccess,
+            payload: pizzaItems
+          })),
+          catchError(() => of({ type: ActionTypes.LoadedPizzaListError }))
+        );
+      }
+    })
   );
 
-  constructor(private actions$: Actions, private pizzaService: PizzaService) {}
+  constructor(
+    private actions$: Actions,
+    private pizzaService: PizzaService,
+    private store: Store<AppState>
+  ) {}
 }
