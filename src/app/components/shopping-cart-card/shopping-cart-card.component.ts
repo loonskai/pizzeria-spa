@@ -1,5 +1,6 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store, select, createSelector } from '@ngrx/store';
 
 import { OrderItem } from '../../interfaces';
 import {
@@ -9,20 +10,21 @@ import {
   ClearCart
 } from 'src/app/actions/cart.actions';
 
+export const selectTotalPrice = createSelector(
+  (state: { cart: OrderItem[] }) => state.cart,
+  cart => cart.reduce((acc, item) => acc + item.price, 0)
+);
+
 @Component({
   selector: 'shopping-cart-card',
   templateUrl: './shopping-cart-card.component.html',
   styleUrls: ['./shopping-cart-card.component.sass']
 })
 export class ShoppingCartCardComponent {
-  orderedPizzaItems: OrderItem[];
+  cartItems$: Observable<OrderItem[]>;
 
   constructor(private store: Store<{ cart: OrderItem[] }>) {
-    this.store
-      .pipe(select((state: { cart: OrderItem[] }) => state.cart))
-      .subscribe(cart => {
-        this.orderedPizzaItems = cart;
-      });
+    this.cartItems$ = store.pipe(select('cart'));
   }
 
   removeFromCart(index: number) {
@@ -42,8 +44,6 @@ export class ShoppingCartCardComponent {
   }
 
   get totalPrice() {
-    return this.orderedPizzaItems.length === 0
-      ? 0
-      : this.orderedPizzaItems.reduce((acc, item) => acc + item.price, 0);
+    return this.store.pipe(select(selectTotalPrice));
   }
 }
