@@ -1,9 +1,9 @@
 import { ActionTypes } from '../enums';
-import { ActionsUnion } from '../actions/cart.actions';
+import { CartActionsUnion } from '../actions/cart.actions';
 
 export const initialState = [];
 
-export function cartReducer(state = initialState, action: ActionsUnion) {
+export function cartReducer(state = initialState, action: CartActionsUnion) {
   switch (action.type) {
     case ActionTypes.AddToCart:
       return [...state, action.payload];

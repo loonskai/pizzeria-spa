@@ -235,26 +235,3 @@ export const ingredientsOptions = [
   { title: 'Ананас', price: 0.8 },
   { title: 'Курица', price: 1.2 }
 ];
-
-export const order = [
-  {
-    pizzaID: 1,
-    amount: 1,
-    excludedIngredients: [],
-    customIngredients: [],
-    cheeseBoard: false,
-    thickness: 'Traditional',
-    diameter: 30,
-    price: 20.5
-  },
-  {
-    pizzaID: 3,
-    amount: 2,
-    excludedIngredients: ['Лук', 'Оливки'],
-    customIngredients: ['Ананас'],
-    cheeseBoard: true,
-    thickness: 'Traditional',
-    diameter: 35,
-    price: 25.3
-  }
-];

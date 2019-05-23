@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -19,6 +20,7 @@ import { JoinPipe } from './pipes/join.pipe';
 import { FilterIngredientOptionsPipe } from './pipes/filter-ingredient-options.pipe';
 
 import { cartReducer } from './reducers/cart.reducer';
+import { pizzaReducer } from './reducers/pizza.reducer';
 
 @NgModule({
   declarations: [
@@ -32,10 +34,11 @@ import { cartReducer } from './reducers/cart.reducer';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({ cart: cartReducer }),
+    StoreModule.forRoot({ cart: cartReducer, pizzaList: pizzaReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 10
     })

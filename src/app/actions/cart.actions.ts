@@ -31,7 +31,7 @@ export class ClearCart implements Action {
   readonly type = ActionTypes.ClearCart;
 }
 
-export type ActionsUnion =
+export type CartActionsUnion =
   | AddToCart
   | RemoveFromCart
   | IncrementCartItemAmount

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
-import { ingredientsOptions } from '../../../mocks';
 import { IngredientOption } from '../../interfaces';
+import { PizzaService } from 'src/app/services/pizza.service';
 
 @Component({
   selector: 'item-card-modal',
@@ -20,8 +20,10 @@ export class ItemCardModalComponent implements OnInit {
   @Output() removeCustomIngredientEvent = new EventEmitter<IngredientOption>();
   @Output() addToCartEvent: EventEmitter<any> = new EventEmitter();
 
+  constructor(private pizzaService: PizzaService) {}
+
   ngOnInit() {
-    this.customIngredientsOptions = ingredientsOptions;
+    this.customIngredientsOptions = this.pizzaService.getAllIngredients();
     this.showCustomIngredientsList = false;
   }
 
