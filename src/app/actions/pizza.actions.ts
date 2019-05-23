@@ -3,8 +3,8 @@ import { Action } from '@ngrx/store';
 import { ActionTypes } from '../enums';
 import { OrderItem } from '../interfaces';
 
-export class LoadPizzaList implements Action {
-  readonly type = ActionTypes.LoadPizzaList;
+export class LoadPizzaListRequested implements Action {
+  readonly type = ActionTypes.LoadPizzaListRequested;
 }
 
 export class LoadedPizzaListSuccess implements Action {
@@ -17,6 +17,6 @@ export class LoadedPizzaListError implements Action {
 }
 
 export type PizzaActionsUnion =
-  | LoadPizzaList
+  | LoadPizzaListRequested
   | LoadedPizzaListSuccess
   | LoadedPizzaListError;

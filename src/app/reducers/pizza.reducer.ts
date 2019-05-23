@@ -1,16 +1,19 @@
 import { ActionTypes } from '../enums';
 import { PizzaActionsUnion } from '../actions/pizza.actions';
 
-export const initialState = [];
+export const initialState = {
+  loading: false,
+  data: []
+};
 
 export function pizzaReducer(state = initialState, action: PizzaActionsUnion) {
   switch (action.type) {
-    case ActionTypes.LoadPizzaList:
-      return state;
+    case ActionTypes.LoadPizzaListRequested:
+      return { ...state, loading: true };
     case ActionTypes.LoadedPizzaListSuccess:
-      return action.payload;
+      return { data: action.payload, loading: false };
     case ActionTypes.LoadedPizzaListError:
-      return state;
+      return { ...state, loading: false };
     default:
       return state;
   }

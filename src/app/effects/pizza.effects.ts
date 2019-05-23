@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { EMPTY, of } from 'rxjs';
+import { Action } from '@ngrx/store';
+import { Observable, EMPTY, of } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 
 import { PizzaService } from '../services/pizza.service';
@@ -8,9 +9,9 @@ import { ActionTypes } from '../enums';
 
 @Injectable()
 export class PizzaEffects {
-  @Effect()
-  loadPizzaList$ = this.actions$.pipe(
-    ofType(ActionTypes.LoadPizzaList),
+  @Effect({ dispatch: true })
+  loadPizzaList$: Observable<Action> = this.actions$.pipe(
+    ofType(ActionTypes.LoadPizzaListRequested),
     switchMap(() =>
       this.pizzaService.getAll().pipe(
         map(pizzaItems => ({
