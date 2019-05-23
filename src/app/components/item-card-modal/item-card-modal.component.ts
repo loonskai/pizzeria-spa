@@ -23,7 +23,7 @@ export class ItemCardModalComponent implements OnInit {
   constructor(private pizzaService: PizzaService) {}
 
   ngOnInit() {
-    this.customIngredientsOptions = this.pizzaService.getAllIngredients();
+    // this.customIngredientsOptions = this.pizzaService.getAllIngredients();
     this.showCustomIngredientsList = false;
   }
 
