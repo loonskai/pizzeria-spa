@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "json-server": "json-server --watch db.json --port 4203",
+    "watch": "concurrently \"npm run json-server\" \"ng serve\""
   },
   "private": true,
   "dependencies": {
@@ -25,6 +27,7 @@
     "@ngrx/store": "^7.4.0",
     "@ngrx/store-devtools": "^7.4.0",
     "bootstrap": "^4.3.1",
+    "concurrently": "^4.1.0",
     "core-js": "^2.5.4",
     "open-iconic": "^1.1.1",
     "rxjs": "~6.3.3",

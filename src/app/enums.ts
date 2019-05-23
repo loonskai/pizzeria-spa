@@ -15,6 +15,6 @@ export enum ActionTypes {
 }
 
 export enum ApiPaths {
-  pizzaList = 'https://demo4660452.mockable.io/pizza',
-  ingredientsList = 'https://demo4660452.mockable.io/ingredients'
+  pizzaList = 'http://localhost:4203/pizza',
+  ingredientsList = 'http://localhost:4203/ingredients'
 }

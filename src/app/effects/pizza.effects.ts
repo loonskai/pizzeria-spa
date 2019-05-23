@@ -23,20 +23,18 @@ export class PizzaEffects {
     ofType(ActionTypes.LoadPizzaListRequested),
     withLatestFrom(this.store.select(pizzaListSelector)),
     switchMap(([action, pizzaList]) => {
-      if (pizzaList) {
+      if (pizzaList)
         return of({
           type: ActionTypes.LoadedPizzaListSuccess,
           payload: pizzaList
         });
-      } else {
-        return this.pizzaService.getAll().pipe(
-          map(pizzaItems => ({
-            type: ActionTypes.LoadedPizzaListSuccess,
-            payload: pizzaItems
-          })),
-          catchError(() => of({ type: ActionTypes.LoadedPizzaListError }))
-        );
-      }
+      return this.pizzaService.getAll().pipe(
+        map(pizzaItems => ({
+          type: ActionTypes.LoadedPizzaListSuccess,
+          payload: pizzaItems
+        })),
+        catchError(() => of({ type: ActionTypes.LoadedPizzaListError }))
+      );
     })
   );
 
