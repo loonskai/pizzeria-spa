@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Store, select, createSelector } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import { OrderItem } from '../../interfaces';
 import {
@@ -9,11 +9,7 @@ import {
   DecrementCartItemAmount,
   ClearCart
 } from 'src/app/actions/cart.actions';
-
-export const selectTotalPrice = createSelector(
-  (state: { cart: OrderItem[] }) => state.cart,
-  cart => cart.reduce((acc, item) => acc + item.price, 0)
-);
+import { selectTotalPrice } from '../../selectors/totalPriceSelector';
 
 @Component({
   selector: 'shopping-cart-card',

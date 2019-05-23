@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { OrderItem } from '../../interfaces';
 import {
@@ -8,6 +9,7 @@ import {
   DecrementCartItemAmount,
   ClearCart
 } from 'src/app/actions/cart.actions';
+import { selectTotalPrice } from '../../selectors/totalPriceSelector';
 
 @Component({
   selector: 'app-checkout-page',
@@ -15,14 +17,10 @@ import {
   styleUrls: ['./checkout-page.component.sass']
 })
 export class CheckoutPageComponent {
-  orderedPizzaItems: OrderItem[];
+  cartItems$: Observable<OrderItem[]>;
 
   constructor(private store: Store<{ cart: OrderItem[] }>) {
-    this.store
-      .pipe(select((state: { cart: OrderItem[] }) => state.cart))
-      .subscribe(cart => {
-        this.orderedPizzaItems = cart;
-      });
+    this.cartItems$ = store.pipe(select('cart'));
   }
 
   removeFromCart(index: number) {
@@ -42,6 +40,6 @@ export class CheckoutPageComponent {
   }
 
   get totalPrice() {
-    return this.orderedPizzaItems.reduce((acc, item) => acc + item.price, 0);
+    return this.store.pipe(select(selectTotalPrice));
   }
 }

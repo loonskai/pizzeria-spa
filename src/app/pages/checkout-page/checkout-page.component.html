@@ -2,38 +2,37 @@
   <div class="container">
     <div class="card">
       <h2 class="card-title">Cart</h2>
-      <div *ngIf="orderedPizzaItems.length > 0; else noItemsMessage">
+      <div *ngIf="(cartItems$ | async)?.length > 0; else noItemsMessage">
         <div
-          *ngFor="let orderItem of orderedPizzaItems; let index = index"
+          *ngFor="let cartItem of cartItems$ | async; let index = index"
           class="order-item"
         >
           <img
             class="order-item__picture"
-            src="{{ orderItem.pizzaDetails.pictureUrl }}"
-            alt="{{ orderItem.pizzaDetails.title }}"
+            src="{{ cartItem.pizzaDetails.pictureUrl }}"
+            alt="{{ cartItem.pizzaDetails.title }}"
           />
           <div class="order-item__description">
             <span class="description__title">{{
-              orderItem.pizzaDetails.title
+              cartItem.pizzaDetails.title
             }}</span>
             <span class="description__ingredients"
-              >{{ orderItem.thickness }} crust,
-              {{ orderItem.diameter }} cm</span
+              >{{ cartItem.thickness }} crust, {{ cartItem.diameter }} cm</span
             >
             <div class="description__custom-ingredients">
               <div
                 class="element__excluded"
-                *ngFor="let excluded of orderItem.excludedIngredients"
+                *ngFor="let excluded of cartItem.excludedIngredients"
               >
                 <span class="oi oi-minus"></span> {{ excluded }}
               </div>
               <div
                 class="element__included"
-                *ngFor="let included of orderItem.customIngredients"
+                *ngFor="let included of cartItem.customIngredients"
               >
                 <span class="oi oi-plus"></span> {{ included }}
               </div>
-              <div *ngIf="orderItem.cheeseBoard" class="cheese-board-icon">
+              <div *ngIf="cartItem.cheeseBoard" class="cheese-board-icon">
                 Cheese board
               </div>
             </div>
@@ -41,12 +40,12 @@
           <div class="order-item__controller">
             <button
               class="controller__decrease"
-              [disabled]="orderItem.amount < 2"
+              [disabled]="cartItem.amount < 2"
               (click)="decrementAmount(index)"
             >
               <span class="oi oi-minus"></span>
             </button>
-            <span>{{ orderItem.amount }}</span>
+            <span>{{ cartItem.amount }}</span>
             <button
               class="controller__increase"
               (click)="incrementAmount(index)"
@@ -55,7 +54,7 @@
             </button>
           </div>
           <span class="order-item__price">{{
-            orderItem.price | currency: 'USD':true
+            cartItem.price | currency: 'USD':true
           }}</span>
           <span
             class="oi oi-x order-item__remove-icon"
@@ -65,7 +64,7 @@
         <div class="total-order-price">
           Total Price:
           <span>
-            {{ totalPrice | currency: 'USD':true }}
+            {{ totalPrice | async | currency: 'USD':true }}
           </span>
         </div>
       </div>
@@ -73,6 +72,6 @@
         You have no pizza selected
       </ng-template>
     </div>
-    <checkout-form *ngIf="orderedPizzaItems.length > 0"></checkout-form>
+    <checkout-form *ngIf="(cartItems$ | async)?.length > 0"></checkout-form>
   </div>
 </main>
