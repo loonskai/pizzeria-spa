@@ -4,7 +4,8 @@ import { Store, select } from '@ngrx/store';
 
 import { AppState, PizzaItem } from '../../interfaces';
 import { LoadPizzaListRequested } from '../../actions/pizza.actions';
-import { selectLoadingStatus } from '../../selectors/selectLoadingStatus';
+import { loadingStatusSelector } from '../../selectors/loadingStatusSelector';
+import { pizzaListSelector } from '../../selectors/pizzaListSelector';
 
 @Component({
   selector: 'item-list',
@@ -16,16 +17,12 @@ export class ItemListComponent implements OnInit {
   itemList$: Observable<PizzaItem[]>;
   loading$: Observable<boolean>;
 
-  constructor(private store: Store<AppState>) {
-    // this.itemList$ = this.store.select('pizzaItems');
-  }
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
     this.store.dispatch(new LoadPizzaListRequested());
-    this.loading$ = this.store.pipe(select(selectLoadingStatus));
-  }
-
-  ngrxOnInitEffects() {
-    return { type: new LoadPizzaListRequested() };
+    this.loading$ = this.store.pipe(select(loadingStatusSelector));
+    this.itemList$ = this.store.pipe(select(pizzaListSelector));
+    console.log(this.itemList$);
   }
 }

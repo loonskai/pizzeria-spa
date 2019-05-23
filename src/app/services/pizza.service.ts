@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 
 import { PizzaItem, IngredientOption } from '../interfaces';
 import { ApiPaths } from '../enums';
-// import { pizzaData, ingredientsOptions } from '../../mocks';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,6 @@ export class PizzaService {
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<any> {
-    // return pizzaData;
     return this.http.get(ApiPaths.pizzaList);
   }
 
@@ -22,8 +20,7 @@ export class PizzaService {
     return;
   }
 
-  getAllIngredients(): IngredientOption[] {
-    // return ingredientsOptions;
-    return [];
+  getAllIngredients(): Observable<any> {
+    return this.http.get(ApiPaths.ingredientsList);
   }
 }
