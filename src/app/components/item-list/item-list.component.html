@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row">
-    <div *ngFor="let pizza of itemList$ | async" class="col">
-      <item-card [pizzaItem]="pizza"></item-card>
-    </div>
+    <div *ngIf="loading$ | async; else cardsContainer">Loading...</div>
+    <ng-template #cardsContainer>
+      <div *ngFor="let pizza of itemList$ | async" class="col">
+        <item-card [pizzaItem]="pizza"></item-card>
+      </div>
+    </ng-template>
   </div>
 </div>

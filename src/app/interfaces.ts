@@ -50,6 +50,9 @@ export interface OrderItem {
 }
 
 export interface AppState {
-  pizzaItems: PizzaItem[];
+  pizzaList: {
+    loading: boolean;
+    data: PizzaItem[];
+  };
   cart: OrderItem[];
 }
