@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { AddToCart } from '../../actions/cart.actions';
-import { OrderItem } from '../../interfaces';
+import { OrderItem, AppState } from '../../interfaces';
 
 import {
   PizzaItem,
@@ -30,7 +30,7 @@ export class ItemCardComponent implements OnInit {
 
   private _customIngredientsPrice: number = 0;
 
-  constructor(private store: Store<{ cart: OrderItem[] }>) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
     const { diameter, thickness } = this.pizza.size;

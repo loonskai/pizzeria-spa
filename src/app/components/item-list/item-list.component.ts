@@ -1,8 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 
-import { PizzaItem } from '../../interfaces';
-// import { PizzaService } from 'src/app/services/pizza.service';
+import { AppState, PizzaItem } from '../../interfaces';
+import { LoadPizzaList } from '../../actions/pizza.actions';
 
 @Component({
   selector: 'item-list',
@@ -13,9 +14,10 @@ import { PizzaItem } from '../../interfaces';
 export class ItemListComponent implements OnInit {
   itemList$: Observable<PizzaItem[]>;
 
-  // constructor(private pizzaService: PizzaService) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    // this.itemList$ = this.pizzaService.getAll();
+    this.store.dispatch(new LoadPizzaList());
+    this.itemList$ = this.store.pipe(select('pizzaItems'));
   }
 }

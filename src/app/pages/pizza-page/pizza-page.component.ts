@@ -3,7 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { PizzaService } from 'src/app/services/pizza.service';
-import { PizzaItem, RadioGroupButtonOption } from 'src/app/interfaces';
+import {
+  PizzaItem,
+  RadioGroupButtonOption,
+  AppState
+} from 'src/app/interfaces';
 import { AddToCart } from '../../actions/cart.actions';
 
 @Component({
@@ -23,7 +27,7 @@ export class PizzaPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private pizzaService: PizzaService,
-    private store: Store<{ cart: any }>
+    private store: Store<AppState>
   ) {
     this.displayCheeseBoard = false;
   }

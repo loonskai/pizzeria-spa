@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -22,6 +23,8 @@ import { FilterIngredientOptionsPipe } from './pipes/filter-ingredient-options.p
 import { cartReducer } from './reducers/cart.reducer';
 import { pizzaReducer } from './reducers/pizza.reducer';
 
+import { PizzaEffects } from './effects/pizza.effects';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +44,8 @@ import { pizzaReducer } from './reducers/pizza.reducer';
     StoreModule.forRoot({ cart: cartReducer, pizzaList: pizzaReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 10
-    })
+    }),
+    EffectsModule.forRoot([PizzaEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

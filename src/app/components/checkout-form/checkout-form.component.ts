@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
 import { RegExpValues } from '../../enums';
-import { OrderItem } from '../../interfaces';
+import { OrderItem, AppState } from '../../interfaces';
 import { LogService } from 'src/app/services/log.service';
 import { ClearCart } from 'src/app/actions/cart.actions';
 
@@ -73,7 +73,7 @@ export class CheckoutFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private store: Store<{ cart: OrderItem[] }>,
+    private store: Store<AppState>,
     private logService: LogService
   ) {}
 

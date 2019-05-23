@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { OrderItem } from '../../interfaces';
+import { OrderItem, AppState } from '../../interfaces';
 import {
   RemoveFromCart,
   IncrementCartItemAmount,
@@ -19,7 +19,7 @@ import { selectTotalPrice } from '../../selectors/totalPriceSelector';
 export class ShoppingCartCardComponent {
   cartItems$: Observable<OrderItem[]>;
 
-  constructor(private store: Store<{ cart: OrderItem[] }>) {
+  constructor(private store: Store<AppState>) {
     this.cartItems$ = store.pipe(select('cart'));
   }
 

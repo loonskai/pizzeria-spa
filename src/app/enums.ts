@@ -4,7 +4,9 @@ export enum RegExpValues {
 }
 
 export enum ActionTypes {
-  LoadPizzaList = '[Pizza] Load Pizza List',
+  LoadPizzaList = '[PizzaAPI] Load Pizza List',
+  LoadedPizzaListSuccess = '[PizzaAPI] Loaded Pizza List Success',
+  LoadedPizzaListError = '[PizzaAPI] Loaded Pizza List Error',
   AddToCart = '[Cart] Add To Cart',
   RemoveFromCart = '[Cart] Remove From Cart',
   ClearCart = '[Cart] Clear Cart',

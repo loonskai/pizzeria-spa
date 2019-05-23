@@ -1,0 +1,26 @@
+import { Injectable } from '@angular/core';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { EMPTY, of } from 'rxjs';
+import { map, switchMap, catchError } from 'rxjs/operators';
+
+import { PizzaService } from '../services/pizza.service';
+import { ActionTypes } from '../enums';
+
+@Injectable()
+export class PizzaEffects {
+  @Effect()
+  loadPizzaList$ = this.actions$.pipe(
+    ofType(ActionTypes.LoadPizzaList),
+    switchMap(() =>
+      this.pizzaService.getAll().pipe(
+        map(pizzaItems => ({
+          type: ActionTypes.LoadedPizzaListSuccess,
+          payload: pizzaItems
+        })),
+        catchError(() => of({ type: ActionTypes.LoadedPizzaListError }))
+      )
+    )
+  );
+
+  constructor(private actions$: Actions, private pizzaService: PizzaService) {}
+}

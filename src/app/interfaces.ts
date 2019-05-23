@@ -48,3 +48,8 @@ export interface OrderItem {
   price: number;
   pizzaDetails?: PizzaItem;
 }
+
+export interface AppState {
+  pizzaItems: PizzaItem[];
+  cart: OrderItem[];
+}
