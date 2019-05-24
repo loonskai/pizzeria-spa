@@ -22,6 +22,7 @@ import { FilterIngredientOptionsPipe } from './pipes/filter-ingredient-options.p
 
 import { cartReducer } from './reducers/cart.reducer';
 import { pizzaReducer } from './reducers/pizza.reducer';
+import { ingredientsReducer } from './reducers/ingredients.reducer';
 
 import { PizzaEffects } from './effects/pizza.effects';
 
@@ -41,7 +42,11 @@ import { PizzaEffects } from './effects/pizza.effects';
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({ cart: cartReducer, pizzaList: pizzaReducer }),
+    StoreModule.forRoot({
+      cart: cartReducer,
+      pizzaList: pizzaReducer,
+      ingredients: ingredientsReducer
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 10
     }),

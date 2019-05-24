@@ -23,6 +23,5 @@ export class ItemListComponent implements OnInit {
     this.store.dispatch(new LoadPizzaListRequested());
     this.loading$ = this.store.pipe(select(loadingStatusSelector));
     this.itemList$ = this.store.pipe(select(pizzaListSelector));
-    console.log(this.itemList$);
   }
 }

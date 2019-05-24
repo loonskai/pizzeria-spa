@@ -55,4 +55,5 @@ export interface AppState {
     data: PizzaItem[] | null;
   };
   cart: OrderItem[];
+  ingredients: IngredientOption[] | null;
 }
