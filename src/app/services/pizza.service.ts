@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { PizzaItem, IngredientOption } from '../interfaces';
 import { ApiPaths } from '../enums';
 
 @Injectable({
@@ -15,9 +14,8 @@ export class PizzaService {
     return this.http.get(ApiPaths.pizzaList);
   }
 
-  getOneById(id: number): PizzaItem {
-    // return pizzaData.find(item => item.id === id);
-    return;
+  getOneById(id: string): Observable<any> {
+    return this.http.get(`${ApiPaths.pizzaList}/${id}`);
   }
 
   getAllIngredients(): Observable<any> {

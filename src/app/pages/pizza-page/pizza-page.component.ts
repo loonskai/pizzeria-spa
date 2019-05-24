@@ -2,12 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { PizzaService } from 'src/app/services/pizza.service';
-import {
-  PizzaItem,
-  RadioGroupButtonOption,
-  AppState
-} from 'src/app/interfaces';
+import { RadioGroupButtonOption, AppState } from 'src/app/interfaces';
 import { AddToCart } from '../../actions/cart.actions';
 
 @Component({
@@ -16,7 +11,7 @@ import { AddToCart } from '../../actions/cart.actions';
   styleUrls: ['./pizza-page.component.sass']
 })
 export class PizzaPageComponent implements OnInit {
-  pizzaItem: PizzaItem;
+  pizzaItem: any;
   diameterOptions: RadioGroupButtonOption[];
   thicknessOptions: RadioGroupButtonOption[];
   diameterSelected: number;
@@ -24,17 +19,12 @@ export class PizzaPageComponent implements OnInit {
   displayCheeseBoard: boolean;
   withCheeseBoard: boolean;
 
-  constructor(
-    private route: ActivatedRoute,
-    private pizzaService: PizzaService,
-    private store: Store<AppState>
-  ) {
+  constructor(private route: ActivatedRoute, private store: Store<AppState>) {
     this.displayCheeseBoard = false;
   }
 
   ngOnInit() {
-    const id = +this.route.snapshot.params['id'];
-    this.pizzaItem = this.pizzaService.getOneById(id);
+    this.pizzaItem = this.route.snapshot.data.pizzaItem;
     const { diameter, thickness } = this.pizzaItem.size;
     this.diameterOptions = diameter.map(diameterItem => ({
       title: diameterItem.value.toString(),
