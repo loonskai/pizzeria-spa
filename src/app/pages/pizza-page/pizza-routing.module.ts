@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PizzaPageComponent } from './pizza-page.component';
-import { PizzaResolver } from 'src/app/pizza.resolver';
+import { PizzaResolver } from './pizza.resolver';
 
 const pizzaRoutes: Routes = [
   {

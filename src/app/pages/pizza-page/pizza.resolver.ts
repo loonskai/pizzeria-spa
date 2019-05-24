@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import { PizzaService } from './services/pizza.service';
+import { PizzaService } from '../../services/pizza.service';
 
 @Injectable()
 export class PizzaResolver implements Resolve<Observable<string>> {

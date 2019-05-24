@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared.module';
 import { PizzaRoutingModule } from './pizza-routing.module';
 
-import { PizzaResolver } from 'src/app/pizza.resolver';
+import { PizzaResolver } from './pizza.resolver';
 
 import { PizzaPageComponent } from '../pizza-page/pizza-page.component';
 
