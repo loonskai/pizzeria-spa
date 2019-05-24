@@ -1,7 +1,9 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 
-import { IngredientOption } from '../../interfaces';
-import { PizzaService } from 'src/app/services/pizza.service';
+import { IngredientOption, AppState } from '../../interfaces';
+import { ingredientsListSelector } from 'src/app/selectors/ingredientsListSelector';
 
 @Component({
   selector: 'item-card-modal',
@@ -9,8 +11,11 @@ import { PizzaService } from 'src/app/services/pizza.service';
   styleUrls: ['./item-card-modal.component.sass']
 })
 export class ItemCardModalComponent implements OnInit {
+  private subscription: Subscription = new Subscription();
+
   showCustomIngredientsList: boolean;
   customIngredientsOptions: IngredientOption[];
+
   @Input() defaultIngredients;
   @Input() removedIngredients;
   @Input() customIngredients;
@@ -20,11 +25,21 @@ export class ItemCardModalComponent implements OnInit {
   @Output() removeCustomIngredientEvent = new EventEmitter<IngredientOption>();
   @Output() addToCartEvent: EventEmitter<any> = new EventEmitter();
 
-  constructor(private pizzaService: PizzaService) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    // this.customIngredientsOptions = this.pizzaService.getAllIngredients();
+    this.subscription.add(
+      this.store
+        .pipe(select(ingredientsListSelector))
+        .subscribe(ingredients => {
+          this.customIngredientsOptions = ingredients;
+        })
+    );
     this.showCustomIngredientsList = false;
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   closeModal() {

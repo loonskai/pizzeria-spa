@@ -80,7 +80,7 @@ export class CheckoutFormComponent implements OnInit {
   ngOnInit() {
     this.subscription.add(
       this.store
-        .pipe(select((state: { cart: OrderItem[] }) => state.cart))
+        .pipe(select((state: AppState) => state.cart))
         .subscribe(cart => {
           this.orderData = cart;
         })
