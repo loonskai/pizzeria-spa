@@ -14,7 +14,8 @@ export enum ActionTypes {
   RemoveFromCart = '[Cart] Remove From Cart',
   ClearCart = '[Cart] Clear Cart',
   IncrementCartItemAmount = '[Cart] Increment Item Cart Amount',
-  DecrementCartItemAmount = '[Cart] Decrement Item Cart Amount'
+  DecrementCartItemAmount = '[Cart] Decrement Item Cart Amount',
+  LoadIngredientListRequested = 'LoadIngredientListRequested'
 }
 
 export enum ApiPaths {
