@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   FormControl,
@@ -31,11 +31,11 @@ export class CheckoutErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'checkout-form',
+  selector: 'app-checkout-form',
   templateUrl: './checkout-form.component.html',
   styleUrls: ['./checkout-form.component.sass']
 })
-export class CheckoutFormComponent implements OnInit {
+export class CheckoutFormComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
 
   checkoutForm = this.fb.group({

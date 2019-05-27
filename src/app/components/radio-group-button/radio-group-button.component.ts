@@ -9,25 +9,28 @@ import {
 import { RadioGroupButtonOption } from '../../interfaces';
 
 @Component({
-  selector: 'radio-group-button',
+  selector: 'app-radio-group-button',
   templateUrl: './radio-group-button.component.html',
   styleUrls: ['./radio-group-button.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioGroupButtonComponent {
   @Input() options: RadioGroupButtonOption;
-  @Input('value') itemSelected: string;
+  @Input() value: string;
   @Output() changeEvent = new EventEmitter<string>();
 
   selectItem(event: Event) {
-    const { type: inputType, value: inputValue } = <HTMLInputElement>(
-      event.target
-    );
-    if (inputType !== 'radio' || inputValue === this.itemSelected) return;
+    const {
+      type: inputType,
+      value: inputValue
+    } = event.target as HTMLInputElement;
+    if (inputType !== 'radio' || inputValue === this.value) {
+      return;
+    }
     this.changeEvent.emit(inputValue);
   }
 
   checkItemSelected(value: string) {
-    return value === this.itemSelected;
+    return value === this.value;
   }
 }

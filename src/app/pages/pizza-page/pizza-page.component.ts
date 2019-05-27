@@ -40,7 +40,9 @@ export class PizzaPageComponent implements OnInit {
   }
 
   changeDiameter(value: string) {
-    if (this.diameterSelected === +value) return;
+    if (this.diameterSelected === +value) {
+      return;
+    }
     this.diameterSelected = +value;
     this.displayCheeseBoard = this.diameterSelected >= 30;
     if (!this.displayCheeseBoard) {
@@ -49,7 +51,9 @@ export class PizzaPageComponent implements OnInit {
   }
 
   changeThickness(value: string) {
-    if (this.thicknessSelected === value) return;
+    if (this.thicknessSelected === value) {
+      return;
+    }
     this.thicknessSelected = value;
   }
 

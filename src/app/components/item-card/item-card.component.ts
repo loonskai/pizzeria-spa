@@ -11,15 +11,15 @@ import {
 } from '../../interfaces';
 
 @Component({
-  selector: 'item-card',
+  selector: 'app-item-card',
   templateUrl: './item-card.html',
   styleUrls: ['./item-card.component.sass']
 })
 export class ItemCardComponent implements OnInit {
-  @Input('pizzaItem') pizza: PizzaItem;
-  isModalOpen: boolean = false;
-  displayCheeseBoard: boolean = false;
-  withCheeseBoard: boolean = false;
+  @Input() pizzaItem: PizzaItem;
+  isModalOpen = false;
+  displayCheeseBoard = false;
+  withCheeseBoard = false;
   diameterOptions: RadioGroupButtonOption[];
   thicknessOptions: RadioGroupButtonOption[];
   diameterSelected: number;
@@ -28,12 +28,12 @@ export class ItemCardComponent implements OnInit {
   removedIngredients: string[] = [];
   customIngredients: string[] = [];
 
-  private customIngredientsPrice: number = 0;
+  private customIngredientsPrice = 0;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    const { diameter, thickness } = this.pizza.size;
+    const { diameter, thickness } = this.pizzaItem.size;
     this.diameterOptions = diameter.map(diameterItem => ({
       title: diameterItem.value.toString(),
       value: diameterItem.value.toString()
@@ -45,7 +45,7 @@ export class ItemCardComponent implements OnInit {
     this.thicknessSelected = this.thicknessOptions[0].value.toString();
     this.diameterSelected = +this.diameterOptions[0].value.toString();
     this.displayCheeseBoard = this.diameterSelected >= 30;
-    this.defaultIngredients = [...this.pizza.ingredients];
+    this.defaultIngredients = [...this.pizzaItem.ingredients];
   }
 
   toggleCardModal() {
@@ -53,7 +53,9 @@ export class ItemCardComponent implements OnInit {
   }
 
   changeDiameter(value: string) {
-    if (this.diameterSelected === +value) return;
+    if (this.diameterSelected === +value) {
+      return;
+    }
     this.diameterSelected = +value;
     this.displayCheeseBoard = this.diameterSelected >= 30;
     if (!this.displayCheeseBoard) {
@@ -62,7 +64,9 @@ export class ItemCardComponent implements OnInit {
   }
 
   changeThickness(value: string) {
-    if (this.thicknessSelected === value) return;
+    if (this.thicknessSelected === value) {
+      return;
+    }
     this.thicknessSelected = value;
   }
 
@@ -96,7 +100,7 @@ export class ItemCardComponent implements OnInit {
 
   addToCart() {
     const pizzaItem = {
-      pizzaID: this.pizza.id,
+      pizzaID: this.pizzaItem.id,
       amount: 1,
       excludedIngredients: [...this.removedIngredients],
       customIngredients: [...this.customIngredients],
@@ -104,17 +108,17 @@ export class ItemCardComponent implements OnInit {
       thickness: this.thicknessSelected,
       diameter: this.diameterSelected,
       price: parseFloat(this.pizzaPrice),
-      pizzaDetails: this.pizza
+      pizzaDetails: this.pizzaItem
     };
     this.store.dispatch(new AddToCart(pizzaItem));
   }
 
   get pizzaPrice() {
-    let recalculatedPrice = this.pizza.price;
+    let recalculatedPrice = this.pizzaItem.price;
     if (this.withCheeseBoard) {
       recalculatedPrice *= 1.15;
     }
-    const { diameter, thickness } = this.pizza.size;
+    const { diameter, thickness } = this.pizzaItem.size;
     const { priceRate: thicknessPriceRate } = thickness.find(
       item => this.thicknessSelected === item.type
     );
@@ -127,7 +131,7 @@ export class ItemCardComponent implements OnInit {
   }
 
   get personsAmount() {
-    const { diameter } = this.pizza.size;
+    const { diameter } = this.pizzaItem.size;
     const { persons } = diameter.find(
       size => this.diameterSelected === size.value
     );

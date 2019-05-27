@@ -86,11 +86,11 @@
       Total price: {{ totalPrice | async | currency: 'USD':true }}
     </div>
     <div class="row justify-content-center">
-      <main-button
+      <app-main-button
         [text]="'ORDER NOW'"
         [link]="'/checkout'"
         [isDisabled]="(cartItems$ | async)?.length === 0"
-      ></main-button>
+      ></app-main-button>
     </div>
   </div>
 </div>

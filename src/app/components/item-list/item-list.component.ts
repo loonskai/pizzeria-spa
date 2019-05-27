@@ -9,7 +9,7 @@ import { loadingStatusSelector } from '../../selectors/pizzaListSelector';
 import { pizzaListSelector } from '../../selectors/pizzaListSelector';
 
 @Component({
-  selector: 'item-list',
+  selector: 'app-item-list',
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -72,6 +72,8 @@
         You have no pizza selected
       </ng-template>
     </div>
-    <checkout-form *ngIf="(cartItems$ | async)?.length > 0"></checkout-form>
+    <app-checkout-form
+      *ngIf="(cartItems$ | async)?.length > 0"
+    ></app-checkout-form>
   </div>
 </main>

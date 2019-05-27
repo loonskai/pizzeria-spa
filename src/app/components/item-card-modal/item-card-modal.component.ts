@@ -1,4 +1,11 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Output,
+  Input,
+  EventEmitter
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
@@ -6,11 +13,11 @@ import { IngredientOption, AppState } from '../../interfaces';
 import { ingredientsListSelector } from 'src/app/selectors/ingredientsListSelector';
 
 @Component({
-  selector: 'item-card-modal',
+  selector: 'app-item-card-modal',
   templateUrl: './item-card-modal.component.html',
   styleUrls: ['./item-card-modal.component.sass']
 })
-export class ItemCardModalComponent implements OnInit {
+export class ItemCardModalComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
 
   showCustomIngredientsList: boolean;
@@ -55,7 +62,9 @@ export class ItemCardModalComponent implements OnInit {
     const {
       dataset: { value }
     } = event.target;
-    if (!value) return;
+    if (!value) {
+      return;
+    }
     this.toggleDefaultIngredient.emit(value);
   }
 
@@ -69,7 +78,9 @@ export class ItemCardModalComponent implements OnInit {
 
   onCustomIngredientSelect(element: HTMLInputElement) {
     const { value } = element;
-    if (value === 'Choose...') return;
+    if (value === 'Choose...') {
+      return;
+    }
     const optionSelected: IngredientOption = this.customIngredientsOptions.find(
       option => option.title === value
     );
@@ -83,7 +94,9 @@ export class ItemCardModalComponent implements OnInit {
     const {
       dataset: { value }
     } = event.target;
-    if (!value) return;
+    if (!value) {
+      return;
+    }
     const optionToGetBack: IngredientOption = this.customIngredientsOptions.find(
       option => option.title === value
     );

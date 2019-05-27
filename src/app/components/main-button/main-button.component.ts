@@ -2,12 +2,12 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'main-button',
+  selector: 'app-main-button',
   templateUrl: './main-button.component.html',
   styleUrls: ['./main-button.component.sass']
 })
 export class MainButtonComponent {
-  @Input() isDisabled: boolean = false;
+  @Input() isDisabled = false;
   @Input() text: string;
   @Input() link?: string;
   @Input() isForm?: boolean;

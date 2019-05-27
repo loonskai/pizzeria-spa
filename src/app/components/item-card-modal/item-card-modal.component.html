@@ -68,8 +68,8 @@
           let option of customIngredientsOptions
             | filterIngredientOptions: defaultIngredients:customIngredients
         "
-        attr.data-price="{{ option.price }}"
-        value="{{ option.title }}"
+        [attr.data-price]="option.price"
+        [value]="option.title"
         >{{ option.title + ' ($' + option.price + ')' }}</option
       >
     </select>
@@ -78,7 +78,10 @@
     <button class="cancel-button" (click)="closeModal()">
       Cancel
     </button>
-    <main-button [text]="'ADD TO CART'" (click)="addToCart()"></main-button>
+    <app-main-button
+      [text]="'ADD TO CART'"
+      (click)="addToCart()"
+    ></app-main-button>
   </div>
 </div>
 <div class="container"></div>
