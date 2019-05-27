@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { ActionTypes } from '../enums';
+import { ActionTypes } from '../enums/actionTypes';
 import { IngredientOption } from '../interfaces';
 
 export class LoadIngredientsListRequested implements Action {

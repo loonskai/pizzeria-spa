@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { ActionTypes } from '../enums';
+import { ActionTypes } from '../enums/actionTypes';
 import { OrderItem } from '../interfaces';
 
 export class LoadPizzaListRequested implements Action {

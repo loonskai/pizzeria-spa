@@ -1,4 +1,4 @@
-import { ActionTypes } from '../enums';
+import { ActionTypes } from '../enums/actionTypes';
 import { CartActionsUnion } from '../actions/cart.actions';
 
 export const initialState = [];

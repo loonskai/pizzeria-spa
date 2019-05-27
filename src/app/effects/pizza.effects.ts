@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { map, switchMap, catchError, withLatestFrom } from 'rxjs/operators';
 
 import { PizzaService } from '../services/pizza.service';
-import { ActionTypes } from '../enums';
+import { ActionTypes } from '../enums/actionTypes';
 import { AppState } from '../interfaces';
 import { pizzaListSelector } from '../selectors/pizzaListSelector';
 import { ingredientsListSelector } from '../selectors/ingredientsListSelector';

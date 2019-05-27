@@ -1,4 +1,4 @@
-import { ActionTypes } from '../enums';
+import { ActionTypes } from '../enums/actionTypes';
 import { PizzaActionsUnion } from '../actions/pizza.actions';
 
 export const initialState = {

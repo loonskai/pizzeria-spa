@@ -11,7 +11,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { RegExpValues } from '../../enums';
+import { RegExpValues } from '../../enums/custom';
 import { OrderItem, AppState } from '../../interfaces';
 import { LogService } from 'src/app/services/log.service';
 import { ClearCart } from 'src/app/actions/cart.actions';

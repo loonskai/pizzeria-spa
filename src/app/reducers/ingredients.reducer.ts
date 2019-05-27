@@ -1,4 +1,4 @@
-import { ActionTypes } from '../enums';
+import { ActionTypes } from '../enums/actionTypes';
 import { IngredientsActionsUnion } from '../actions/ingredients.actions';
 
 export const initialState = {
