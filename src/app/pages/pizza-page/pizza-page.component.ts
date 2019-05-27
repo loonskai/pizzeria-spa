@@ -16,12 +16,9 @@ export class PizzaPageComponent implements OnInit {
   thicknessOptions: RadioGroupButtonOption[];
   diameterSelected: number;
   thicknessSelected: string;
-  displayCheeseBoard: boolean;
   withCheeseBoard: boolean;
 
-  constructor(private route: ActivatedRoute, private store: Store<AppState>) {
-    this.displayCheeseBoard = false;
-  }
+  constructor(private route: ActivatedRoute, private store: Store<AppState>) {}
 
   ngOnInit() {
     this.pizzaItem = this.route.snapshot.data.pizzaItem;
@@ -36,7 +33,6 @@ export class PizzaPageComponent implements OnInit {
     }));
     this.thicknessSelected = this.thicknessOptions[0].value.toString();
     this.diameterSelected = +this.diameterOptions[0].value.toString();
-    this.displayCheeseBoard = this.diameterSelected >= 30;
   }
 
   changeDiameter(value: string) {
@@ -44,7 +40,6 @@ export class PizzaPageComponent implements OnInit {
       return;
     }
     this.diameterSelected = +value;
-    this.displayCheeseBoard = this.diameterSelected >= 30;
     if (!this.displayCheeseBoard) {
       this.withCheeseBoard = false;
     }
@@ -74,6 +69,10 @@ export class PizzaPageComponent implements OnInit {
       pizzaDetails: this.pizzaItem
     };
     this.store.dispatch(new AddToCart(pizzaItem));
+  }
+
+  get displayCheeseBoard() {
+    return this.diameterSelected && this.diameterSelected >= 30;
   }
 
   get pizzaPrice() {
