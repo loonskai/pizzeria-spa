@@ -35,13 +35,13 @@ export class PizzaPageComponent implements OnInit {
       value: thicknessItem.type
     }));
     this.thicknessSelected = this.thicknessOptions[0].value.toString();
-    this.diameterSelected = parseInt(this.diameterOptions[0].value.toString());
+    this.diameterSelected = +this.diameterOptions[0].value.toString();
     this.displayCheeseBoard = this.diameterSelected >= 30;
   }
 
   changeDiameter(value: string) {
     if (this.diameterSelected === +value) return;
-    this.diameterSelected = parseInt(value);
+    this.diameterSelected = +value;
     this.displayCheeseBoard = this.diameterSelected >= 30;
     if (!this.displayCheeseBoard) {
       this.withCheeseBoard = false;
