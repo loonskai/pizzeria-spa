@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { AppState, PizzaItem } from '../../interfaces';
 import { LoadPizzaListRequested } from '../../actions/pizza.actions';
 import { LoadIngredientsListRequested } from '../../actions/ingredients.actions';
-import { loadingStatusSelector } from '../../selectors/loadingStatusSelector';
+import { loadingStatusSelector } from '../../selectors/pizzaListSelector';
 import { pizzaListSelector } from '../../selectors/pizzaListSelector';
 
 @Component({

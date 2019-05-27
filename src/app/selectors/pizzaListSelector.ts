@@ -1,6 +1,6 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
-import { PizzaItem } from '../interfaces';
+import { AppState, PizzaItem } from '../interfaces';
 
 const getPizzaFeatureState = createFeatureSelector<{
   loading: boolean;
@@ -10,4 +10,9 @@ const getPizzaFeatureState = createFeatureSelector<{
 export const pizzaListSelector = createSelector(
   getPizzaFeatureState,
   pizzaList => pizzaList.data
+);
+
+export const loadingStatusSelector = createSelector(
+  (state: AppState) => state.pizzaList,
+  pizzaList => pizzaList.loading
 );
