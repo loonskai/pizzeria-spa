@@ -28,7 +28,7 @@ export class ItemCardComponent implements OnInit {
   removedIngredients: string[] = [];
   customIngredients: string[] = [];
 
-  private _customIngredientsPrice: number = 0;
+  private customIngredientsPrice: number = 0;
 
   constructor(private store: Store<AppState>) {}
 
@@ -83,7 +83,7 @@ export class ItemCardComponent implements OnInit {
   addCustomIngredient(ingredientOption: IngredientOption) {
     const { title, price } = ingredientOption;
     this.customIngredients.push(title);
-    this._customIngredientsPrice += price;
+    this.customIngredientsPrice += price;
   }
 
   removeCustomIngredient(ingredientOption: IngredientOption) {
@@ -91,7 +91,7 @@ export class ItemCardComponent implements OnInit {
     this.customIngredients = this.customIngredients.filter(
       customIngredientTitle => customIngredientTitle !== title
     );
-    this._customIngredientsPrice -= price;
+    this.customIngredientsPrice -= price;
   }
 
   addToCart() {
@@ -122,7 +122,7 @@ export class ItemCardComponent implements OnInit {
       item => this.diameterSelected === item.value
     );
     recalculatedPrice *= thicknessPriceRate * diameterPriceRate;
-    recalculatedPrice += this._customIngredientsPrice;
+    recalculatedPrice += this.customIngredientsPrice;
     return recalculatedPrice.toFixed(1);
   }
 
