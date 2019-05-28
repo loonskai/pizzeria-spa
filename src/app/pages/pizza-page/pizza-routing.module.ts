@@ -8,7 +8,7 @@ const pizzaRoutes: Routes = [
   {
     path: ':id',
     component: PizzaPageComponent,
-    resolve: { pizzaItem: PizzaResolver }
+    resolve: { pizzaItem$: PizzaResolver }
   }
 ];
 

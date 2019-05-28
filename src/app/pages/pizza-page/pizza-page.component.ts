@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 
 import { RadioGroupButtonOption, AppState } from 'src/app/interfaces';
 import { AddToCart } from '../../actions/cart.actions';
+import { loadingStatusSelector } from 'src/app/selectors/pizzaListSelector';
 
 @Component({
   selector: 'app-pizza-page',
@@ -17,11 +19,14 @@ export class PizzaPageComponent implements OnInit {
   diameterSelected: number;
   thicknessSelected: string;
   withCheeseBoard: boolean;
+  loading$: Observable<boolean>;
 
   constructor(private route: ActivatedRoute, private store: Store<AppState>) {}
 
   ngOnInit() {
-    this.pizzaItem = this.route.snapshot.data.pizzaItem;
+    console.log('cant see this log at all');
+    this.loading$ = this.store.pipe(select(loadingStatusSelector));
+    // this.pizzaItem = this.route.snapshot.data.pizzaItem;
     const { diameter, thickness } = this.pizzaItem.size;
     this.diameterOptions = diameter.map(diameterItem => ({
       title: diameterItem.value.toString(),

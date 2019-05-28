@@ -12,6 +12,14 @@ export const pizzaListSelector = createSelector(
   pizzaList => pizzaList.data
 );
 
+export const pizzaItemSelector = createSelector(
+  getPizzaFeatureState,
+  (pizzaList, props) => {
+    const result = pizzaList.data.find(item => item.id === props.id);
+    return result;
+  }
+);
+
 export const loadingStatusSelector = createSelector(
   (state: AppState) => state.pizzaList,
   pizzaList => pizzaList.loading
