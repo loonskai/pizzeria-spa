@@ -24,9 +24,8 @@ export class PizzaPageComponent implements OnInit {
   constructor(private route: ActivatedRoute, private store: Store<AppState>) {}
 
   ngOnInit() {
-    console.log('cant see this log at all');
     this.loading$ = this.store.pipe(select(loadingStatusSelector));
-    // this.pizzaItem = this.route.snapshot.data.pizzaItem;
+    this.pizzaItem = this.route.snapshot.data.pizzaItem;
     const { diameter, thickness } = this.pizzaItem.size;
     this.diameterOptions = diameter.map(diameterItem => ({
       title: diameterItem.value.toString(),
