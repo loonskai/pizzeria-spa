@@ -1,0 +1,215 @@
+<form [formGroup]="checkoutForm">
+  <div class="card" formGroupName="user">
+    <div class="card-body">
+      <h2 class="card-title">Contact information</h2>
+      <div class="form-row">
+        <div class="col">
+          <mat-form-field class="input-full-width">
+            <input
+              matInput
+              placeholder="Name"
+              formControlName="name"
+              [errorStateMatcher]="matcher"
+              required
+            />
+            <mat-error
+              *ngIf="
+                checkoutForm.get('user.name').hasError('required') &&
+                checkoutForm.get('user.name').touched
+              "
+            >
+              Name is <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="checkoutForm.get('user.name').hasError('minlength')"
+            >
+              Name should have mininum <strong>2 characters</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="input-full-width">
+            <input
+              matInput
+              placeholder="Telephone"
+              formControlName="telephone"
+              [errorStateMatcher]="matcher"
+              required
+            />
+            <mat-error
+              *ngIf="
+                checkoutForm.get('user.telephone').hasError('required') &&
+                checkoutForm.get('user.telephone').touched
+              "
+            >
+              Phone number is <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkoutForm.get('user.telephone').hasError('pattern') ||
+                checkoutForm.get('user.telephone').hasError('minlength')
+              "
+            >
+              Invalid phone number
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <mat-form-field class="input-full-width">
+            <input
+              matInput
+              type="email"
+              placeholder="E-mail"
+              formControlName="email"
+              [errorStateMatcher]="matcher"
+              required
+            />
+            <mat-error
+              *ngIf="
+                checkoutForm.get('user.email').hasError('required') &&
+                checkoutForm.get('user.email').touched
+              "
+            >
+              E-mail is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="checkoutForm.get('user.email').hasError('email')">
+              Invalid e-mail
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" formGroupName="delivery">
+    <div class="card-body">
+      <h2 class="card-title">Delivery</h2>
+      <div class="form-row">
+        <div class="col">
+          <mat-form-field class="input-full-width">
+            <input
+              matInput
+              placeholder="Address"
+              formControlName="address"
+              [errorStateMatcher]="matcher"
+              required
+            />
+            <mat-error
+              *ngIf="
+                checkoutForm.get('delivery.address').hasError('required') &&
+                checkoutForm.get('delivery.address').touched
+              "
+            >
+              Address is <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="checkoutForm.get('delivery.address').hasError('minlength')"
+            >
+              Address should have mininum <strong>4 characters</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <mat-form-field class="input-full-width">
+            <input
+              type="number"
+              matInput
+              placeholder="Flat / Office"
+              formControlName="flat"
+              [errorStateMatcher]="matcher"
+              required
+            />
+            <mat-error
+              *ngIf="
+                checkoutForm.get('delivery.flat').hasError('required') &&
+                checkoutForm.get('delivery.flat').touched
+              "
+            >
+              Flat or office number is <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="checkoutForm.get('delivery.flat').hasError('pattern')"
+            >
+              Invalid number format
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="input-full-width">
+            <input
+              type="number"
+              matInput
+              placeholder="Floor"
+              formControlName="floor"
+              [errorStateMatcher]="matcher"
+              required
+            />
+            <mat-error
+              *ngIf="
+                checkoutForm.get('delivery.floor').hasError('required') &&
+                checkoutForm.get('delivery.floor').touched
+              "
+            >
+              Floor number is <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="checkoutForm.get('delivery.floor').hasError('pattern')"
+            >
+              Invalid number format
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Payment</h2>
+      <div class="form-group">
+        <mat-radio-group
+          aria-label="Select an option"
+          formControlName="payment"
+        >
+          <mat-radio-button class="radio-item" value="cash"
+            >Cash</mat-radio-button
+          >
+          <mat-radio-button class="radio-item" value="card"
+            >Card</mat-radio-button
+          >
+        </mat-radio-group>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="input-full-width">
+          <textarea
+            matInput
+            placeholder="Add order comments"
+            formControlName="comment"
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <div class="form-group w-100 d-inline-flex justify-content-between">
+        <div>
+          <span class="form-control__label">I agree to receive </span>
+          <div class="form-check-inline">
+            <mat-checkbox formControlName="subscriptionSms">SMS</mat-checkbox>
+          </div>
+          <div class="form-check form-check-inline">
+            <mat-checkbox formControlName="subscriptionEmail"
+              >Email</mat-checkbox
+            >
+          </div>
+        </div>
+        <app-main-button
+          [isDisabled]="checkoutForm.invalid"
+          [text]="'ORDER'"
+          [isForm]="true"
+          (formSubmitEvent)="submitOrder(checkoutForm)"
+        ></app-main-button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,96 @@
+<div class="card container">
+  <span class="oi oi-cart cart-icon"></span>
+  <div class="card-body">
+    <div class="row justify-content-between cart-heading">
+      <div>
+        <span>Cart </span><span>({{ (cartItems$ | async)?.length }})</span>
+        <span class="oi oi-caret-bottom"></span>
+      </div>
+      <button
+        (click)="clearCart()"
+        [disabled]="(cartItems$ | async)?.length === 0"
+        class="clear-order-button"
+      >
+        Clear
+      </button>
+    </div>
+    <div class="row items-container">
+      <div *ngIf="(cartItems$ | async)?.length === 0; else itemsList">
+        No items in the cart
+      </div>
+      <ng-template #itemsList>
+        <div
+          *ngFor="let cartItem of cartItems$ | async; let index = index"
+          class="order-item"
+        >
+          <div class="order-item-section">
+            <span
+              class="oi oi-x order-item-remove-icon"
+              (click)="removeFromCart(index)"
+            ></span>
+            <img
+              class="order-item-picture"
+              src="{{ cartItem.pizzaDetails.pictureUrl }}"
+              alt="{{ cartItem.pizzaDetails.title }}"
+            />
+            <div class="order-item-description">
+              <span>{{ cartItem.pizzaDetails.title }}</span>
+              <span
+                >{{ cartItem.thickness }} crust,
+                {{ cartItem.diameter }} cm</span
+              >
+              <div
+                class="element__excluded"
+                *ngFor="let excluded of cartItem.excludedIngredients"
+              >
+                <span class="oi oi-minus"></span> {{ excluded }}
+              </div>
+              <div
+                class="element__included"
+                *ngFor="let included of cartItem.customIngredients"
+              >
+                <span class="oi oi-plus"></span> {{ included }}
+              </div>
+              <div *ngIf="cartItem.cheeseBoard" class="cheese-board-icon">
+                Cheese board
+              </div>
+            </div>
+          </div>
+          <div
+            class="justify-content-between align-items-center order-item-section"
+          >
+            <div class="order-item-controller">
+              <button
+                class="controller-decrease"
+                [disabled]="cartItem.amount < 2"
+                (click)="decrementAmount(index)"
+              >
+                <span class="oi oi-minus"></span>
+              </button>
+              <span>{{ cartItem.amount }}</span>
+              <button
+                class="controller-increase"
+                (click)="incrementAmount(index)"
+              >
+                <span class="oi oi-plus"></span>
+              </button>
+            </div>
+            <span class="order-item-price">{{
+              cartItem.price | currency: 'USD':true
+            }}</span>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+    <div class="row order-total-price">
+      Total price: {{ totalPrice | async | currency: 'USD':true }}
+    </div>
+    <div class="row justify-content-center">
+      <app-main-button
+        [text]="'ORDER NOW'"
+        [link]="'/checkout'"
+        [isDisabled]="(cartItems$ | async)?.length === 0"
+      ></app-main-button>
+    </div>
+  </div>
+</div>

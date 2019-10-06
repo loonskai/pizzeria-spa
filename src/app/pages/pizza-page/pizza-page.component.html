@@ -1,0 +1,69 @@
+<main class="main-container">
+  <div class="card-container">
+    <app-loader
+      *ngIf="loading$ | async; else pizzaCard"
+      class="loader-container"
+    ></app-loader>
+    <ng-template #pizzaCard>
+      <div class="card">
+        <div class="card-body pizza-card">
+          <div>
+            <img
+              class="pizza-picture"
+              src="{{ pizzaItem.pictureUrl }}"
+              alt="{{ pizzaItem.title }}"
+            />
+          </div>
+          <div class="pizza-description__container">
+            <h1>{{ pizzaItem.title }}</h1>
+            <div class="pizza-description__ingredients">
+              {{ pizzaItem.description }}
+            </div>
+            <div class="nutrition-heading">Nutrition information per 100g</div>
+            <div class="nutrition-list">
+              <span
+                class="nutrition-item"
+                *ngFor="let energyItemKey of pizzaItem.energyValue | keys"
+                >{{ energyItemKey }} -
+                {{ pizzaItem.energyValue[energyItemKey] }}</span
+              >
+            </div>
+            <div class="narrow-row__container">
+              <app-radio-group-button
+                class="radio-group__thickness"
+                [options]="thicknessOptions"
+                [value]="thicknessSelected"
+                (changeEvent)="changeThickness($event)"
+              ></app-radio-group-button>
+            </div>
+            <div class="narrow-row__container radio-group__diameter">
+              <app-radio-group-button
+                [options]="diameterOptions"
+                [value]="diameterSelected.toString()"
+                (changeEvent)="changeDiameter($event)"
+              ></app-radio-group-button>
+              <app-radio-button
+                *ngIf="displayCheeseBoard"
+                (click)="toggleCheeseBoard()"
+                [isSelected]="withCheeseBoard"
+              ></app-radio-button>
+            </div>
+            <div class="narrow-row__container">
+              <div class="d-flex justify-content-between">
+                <app-main-button
+                  class="main-button__customized"
+                  [text]="'ADD TO CART'"
+                  (click)="addToCart()"
+                ></app-main-button>
+                <span class="total-price">{{
+                  pizzaPrice | currency: 'USD':true
+                }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <app-shopping-cart-card></app-shopping-cart-card>
+</main>

@@ -1,0 +1,20 @@
+<div
+  (click)="selectItem($event)"
+  class="radio-group-button__container"
+  [ngClass]="{
+    'radio-group-button__options_two': options.length === 2,
+    'radio-group-button__options_three': options.length === 3,
+    'radio-group-button__options_four': options.length === 4
+  }"
+>
+  <div
+    *ngFor="let option of options"
+    [ngClass]="{
+      'radio-group-button__item': true,
+      selected: checkItemSelected(option.value)
+    }"
+  >
+    <input type="radio" value="{{ option.value }}" />
+    <span>{{ option.value }}</span>
+  </div>
+</div>

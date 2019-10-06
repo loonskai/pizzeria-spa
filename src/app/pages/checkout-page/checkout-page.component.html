@@ -1,0 +1,79 @@
+<main class="main-container">
+  <div class="container">
+    <div class="card">
+      <h2 class="card-title">Cart</h2>
+      <div *ngIf="(cartItems$ | async)?.length > 0; else noItemsMessage">
+        <div
+          *ngFor="let cartItem of cartItems$ | async; let index = index"
+          class="order-item"
+        >
+          <img
+            class="order-item__picture"
+            src="{{ cartItem.pizzaDetails.pictureUrl }}"
+            alt="{{ cartItem.pizzaDetails.title }}"
+          />
+          <div class="order-item__description">
+            <span class="description__title">{{
+              cartItem.pizzaDetails.title
+            }}</span>
+            <span class="description__ingredients"
+              >{{ cartItem.thickness }} crust, {{ cartItem.diameter }} cm</span
+            >
+            <div class="description__custom-ingredients">
+              <div
+                class="element__excluded"
+                *ngFor="let excluded of cartItem.excludedIngredients"
+              >
+                <span class="oi oi-minus"></span> {{ excluded }}
+              </div>
+              <div
+                class="element__included"
+                *ngFor="let included of cartItem.customIngredients"
+              >
+                <span class="oi oi-plus"></span> {{ included }}
+              </div>
+              <div *ngIf="cartItem.cheeseBoard" class="cheese-board-icon">
+                Cheese board
+              </div>
+            </div>
+          </div>
+          <div class="order-item__controller">
+            <button
+              class="controller__decrease"
+              [disabled]="cartItem.amount < 2"
+              (click)="decrementAmount(index)"
+            >
+              <span class="oi oi-minus"></span>
+            </button>
+            <span>{{ cartItem.amount }}</span>
+            <button
+              class="controller__increase"
+              (click)="incrementAmount(index)"
+            >
+              <span class="oi oi-plus"></span>
+            </button>
+          </div>
+          <span class="order-item__price">{{
+            cartItem.price | currency: 'USD':true
+          }}</span>
+          <span
+            class="oi oi-x order-item__remove-icon"
+            (click)="removeFromCart(index)"
+          ></span>
+        </div>
+        <div class="total-order-price">
+          Total Price:
+          <span>
+            {{ totalPrice | async | currency: 'USD':true }}
+          </span>
+        </div>
+      </div>
+      <ng-template #noItemsMessage>
+        You have no pizza selected
+      </ng-template>
+    </div>
+    <app-checkout-form
+      *ngIf="(cartItems$ | async)?.length > 0"
+    ></app-checkout-form>
+  </div>
+</main>

@@ -1,0 +1,104 @@
+$text-color: #5C3D45
+$border-bottom-grey: #E0E0E0
+$included-ingredient-color: #26ADE4;
+$excluded-ingredient-color: #CF4647;
+$cheese-board-color: #FFA446;
+$grey-color: #A8A39D
+$controller-button-enabled-color: #3B8686
+$controller-button-enabled-bg-color: #E9FFE1
+$controller-button-disabled-color: #ffffff
+$controller-button-disabled-bg-color: #F2F2F2
+
+.card
+  margin-bottom: 1rem
+  padding: 2rem
+  &:first-child
+    margin-top: 2rem
+
+.card-title
+  font-size: 1rem
+  font-weight: bold
+  color: $text-color
+
+.order-item
+  width: 100%
+  display: grid
+  grid-template-columns: 1fr 3fr 1fr 1fr 20px
+  align-items: center
+  justify-content: space-between
+  padding: 1rem
+  margin-bottom: 0.5rem
+  border-bottom: 1px solid $border-bottom-grey
+
+.order-item__picture
+  width: 100px
+  height: 100px
+  margin-right: 1rem
+
+.order-item__description
+  display: flex
+  flex-wrap: wrap
+  color: $text-color
+  & .description__title
+    width: 100%
+    font-weight: bold
+  & .description__ingredients
+    font-size: 0.9rem
+  & .description__custom-ingredients
+    display: flex
+    width: 100%
+  & .element__excluded,
+  & .element__included
+    font-size: 0.8rem
+    margin-right: 0.5rem
+  & .element__excluded
+    color: $excluded-ingredient-color
+  & .element__included
+    color: $included-ingredient-color
+  & .cheese-board-icon
+    width: 100px
+    background: $cheese-board-color
+    color: #fff
+    font-size: 0.8rem
+    font-weight: bold
+    border-radius: 1rem
+    text-align: center
+
+.order-item__controller
+  display: flex
+  align-items: center
+  & span
+    margin: 0 0.4rem
+  & .controller__increase,
+  & .controller__decrease
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 20px
+    height: 20px
+    border: none
+    color: $controller-button-enabled-color
+    background-color: $controller-button-enabled-bg-color
+    border-radius: 50%
+    font-size: 0.7rem
+    outline: none
+    &:disabled
+      color: $controller-button-disabled-color
+      background-color: $controller-button-disabled-bg-color
+
+.order-item__price
+  color: $text-color
+  font-weight: bold
+
+.order-item__remove-icon
+  color: $grey-color
+  cursor: pointer
+  text-align: right
+
+.total-order-price
+  font-size: 0.9rem
+  text-align: right
+  & span
+    color: $text-color
+    font-size: 1rem
+    font-weight: bold

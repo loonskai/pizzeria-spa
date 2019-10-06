@@ -1,0 +1,87 @@
+<div class="content">
+  <div class="content-row">
+    <h3 class="content__title">Remove ingredients</h3>
+  </div>
+  <div (click)="changeDefaultIngredientStatus($event)">
+    <div
+      *ngFor="let defaultIngredient of defaultIngredients"
+      class="content-row"
+    >
+      <div
+        class="ingredient-item"
+        *ngIf="!isIngredientRemoved(defaultIngredient); else ingredientRemoved"
+      >
+        <span class="ingredient-item__title">
+          {{ defaultIngredient }}
+        </span>
+        <span class="oi oi-x" attr.data-value="{{ defaultIngredient }}"></span>
+      </div>
+      <ng-template #ingredientRemoved>
+        <div class="ingredient-item ingredient-item__disabled">
+          <span class="ingredient-item__title">
+            {{ defaultIngredient }}
+          </span>
+          <span
+            class="oi oi-action-undo"
+            attr.data-value="{{ defaultIngredient }}"
+          ></span>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <div
+    class="content-row custom-ingredients__container"
+    *ngIf="customIngredients.length"
+    (click)="onCustomIngredientRemove($event)"
+  >
+    <span>Your ingredients:</span>
+    <div *ngFor="let customIngredient of customIngredients">
+      {{ customIngredient }}
+      <span class="oi oi-x" attr.data-value="{{ customIngredient }}"></span>
+    </div>
+  </div>
+  <div class="content-row" (click)="toggleCustomIngredientsList()">
+    <div
+      class="ingredient-item__main-button"
+      [ngClass]="{
+        'main-button_clicked': showCustomIngredientsList
+      }"
+    >
+      <span
+        class="oi oi-plus"
+        [ngClass]="{
+          'oi-plus': !showCustomIngredientsList,
+          'oi-minus': showCustomIngredientsList
+        }"
+      ></span>
+      Add ingredients
+    </div>
+  </div>
+  <div class="content-row" *ngIf="showCustomIngredientsList">
+    <select
+      class="custom-select"
+      (change)="onCustomIngredientSelect($event.target)"
+    >
+      <option selected>Choose...</option>
+      <option
+        *ngFor="
+          let option of customIngredientsOptions
+            | filterIngredientOptions: defaultIngredients:customIngredients
+        "
+        [attr.data-price]="option.price"
+        [value]="option.title"
+        >{{ option.title + ' ($' + option.price + ')' }}</option
+      >
+    </select>
+  </div>
+  <div class="content-row buttons-row">
+    <button class="cancel-button" (click)="closeModal()">
+      Cancel
+    </button>
+    <app-main-button
+      [text]="'ADD TO CART'"
+      (click)="addToCart()"
+    ></app-main-button>
+  </div>
+</div>
+<div class="container"></div>

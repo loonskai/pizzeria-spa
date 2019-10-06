@@ -1,0 +1,76 @@
+<div class="card container">
+  <div class="card-body body">
+    <button class="modal-button" (click)="toggleCardModal()">
+      <span class="oi oi-grid-three-up"></span>
+    </button>
+    <a [routerLink]="['/pizza', pizzaItem.id]">
+      <img
+        class="picture"
+        src="{{ pizzaItem.pictureUrl }}"
+        alt="{{ pizzaItem.title }}"
+      />
+    </a>
+    <div class="row">
+      <div class="persons-icon">
+        <span class="oi oi-person"></span>
+        <span>{{ personsAmount.min }}-{{ personsAmount.max }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <h2 class="title">{{ pizzaItem.title }}</h2>
+    </div>
+    <div class="row">
+      <p class="description">{{ pizzaItem.description }}</p>
+    </div>
+    <div class="row removed-ingredients-list" *ngIf="removedIngredients.length">
+      <span>Without:</span>
+      <p class="description">{{ removedIngredients | join }}</p>
+    </div>
+    <div class="row custom-ingredients-list" *ngIf="customIngredients.length">
+      <span>Your ingredients:</span>
+      <p class="description">{{ customIngredients | join }}</p>
+    </div>
+    <div class="row">
+      <app-radio-group-button
+        class="radio-group__thickness"
+        [options]="thicknessOptions"
+        [value]="thicknessSelected"
+        (changeEvent)="changeThickness($event)"
+      ></app-radio-group-button>
+    </div>
+    <div class="row justify-content-between">
+      <app-radio-group-button
+        class="radio-group__diameter"
+        [options]="diameterOptions"
+        [value]="diameterSelected.toString()"
+        (changeEvent)="changeDiameter($event)"
+      ></app-radio-group-button>
+      <app-radio-button
+        *ngIf="displayCheeseBoard"
+        (click)="toggleCheeseBoard()"
+        [isSelected]="withCheeseBoard"
+      ></app-radio-button>
+    </div>
+    <div *ngIf="isModalOpen" class="row">
+      <app-item-card-modal
+        (toggleModalEvent)="toggleCardModal()"
+        (toggleDefaultIngredient)="toggleDefaultIngredient($event)"
+        (addCustomIngredientEvent)="addCustomIngredient($event)"
+        (removeCustomIngredientEvent)="removeCustomIngredient($event)"
+        (addToCartEvent)="addToCart()"
+        [defaultIngredients]="defaultIngredients"
+        [removedIngredients]="removedIngredients"
+        [customIngredients]="customIngredients"
+      ></app-item-card-modal>
+    </div>
+    <div class="row justify-content-between align-items-center">
+      <app-main-button
+        [text]="'ADD TO CART'"
+        (click)="addToCart()"
+      ></app-main-button>
+      <div class="total-price">
+        <span>{{ pizzaPrice | currency: 'USD':true }}</span>
+      </div>
+    </div>
+  </div>
+</div>

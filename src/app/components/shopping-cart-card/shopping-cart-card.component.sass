@@ -1,0 +1,170 @@
+$bg-color: #FAFAFA
+$red-border-color: #FF3D3E
+$green-color: #3B8686
+$text-color: #5C3D45
+$border-bottom-grey: #E0E0E0
+$included-ingredient-color: #26ADE4;
+$excluded-ingredient-color: #CF4647;
+$cheese-board-color: #FFA446;
+$grey-color: #A8A39D
+$controller-button-enabled-color: #3B8686
+$controller-button-enabled-bg-color: #E9FFE1
+$controller-button-disabled-color: #ffffff
+$controller-button-disabled-bg-color: #F2F2F2
+
+.container
+  position: relative
+  max-width: 360px
+  margin-top: 60px
+  padding: 1rem
+  border-top: 3px solid $red-border-color
+  background-color: $bg-color
+  
+  &:before
+    display: block
+    content: ""
+    width: 80px
+    height: 45px
+    background: #fff
+    position: absolute
+    border-radius: 50%
+    top: -43px
+    right: 0
+    left: 0
+    margin: auto
+    border: 3px solid transparent
+    border-top-left-radius: 160px
+    border-top-right-radius: 160px
+    border-left-color: $red-border-color
+    border-right-color: $red-border-color
+    border-top-color: $red-border-color
+    background-color: $bg-color
+
+.cart-icon
+  position: absolute
+  top: -22px
+  right: 0
+  left: 0
+  width: 35px
+  height: 40px
+  margin: auto
+  color: $red-border-color
+  font-size: 2rem
+
+.cart-heading
+  color: $text-color
+  margin-bottom: 0.8rem
+  & div:first-child
+    cursor: pointer
+    & span:first-child
+      font-weight: bold
+      font-size: 1.1rem
+  & span.oi
+    margin-left: 0.3rem
+    font-size: 0.8rem
+
+.clear-order-button
+  background: none
+  border: none
+  color: $green-color
+  font-size: 0.9rem
+  font-weight: bold
+  outline: none
+  &:disabled
+    color: $controller-button-disabled-color
+
+.items-container
+  max-height: 300px
+  overflow-y: scroll
+  margin-bottom: 1rem
+  padding: 0.5rem 1rem
+  background-color: #fff
+
+.order-item
+  position: relative
+  width: 100%
+  display: flex
+  flex-wrap: wrap
+  padding: 0.5rem 0
+  &:not(:last-child)
+    border-bottom: 1px solid $border-bottom-grey
+
+.order-item-section
+  display: flex
+  width: 100%
+  &:last-child
+    margin-top: 0.5rem
+
+.order-item-picture
+  width: 50px
+  height: 50px
+  margin-right: 0.5rem
+
+.order-item-description
+  display: flex
+  flex-wrap: wrap
+  font-size: 0.8rem
+  color: $text-color
+  & span:first-child
+    font-size: 1rem
+    width: 100%
+    font-weight: bold
+  & .element__excluded
+    color: $excluded-ingredient-color
+  & .element__included
+    color: $included-ingredient-color
+  & .cheese-board-icon
+    width: 60%
+    background: $cheese-board-color
+    color: #fff
+    font-weight: bold
+    border-radius: 1rem
+    text-align: center
+  & .element__excluded,
+  & .element__included,
+    width: 100%
+    display: flex 
+  & .oi
+    width: 10% !important
+    line-height: 3
+    font-size: 0.1rem !important
+
+.order-item-remove-icon
+  position: absolute
+  top: 0.5rem
+  right: 0
+  color: $grey-color
+  cursor: pointer
+
+.order-item-controller
+  display: flex
+  align-items: center
+  & span
+    margin: 0 0.4rem
+  & .controller-increase,
+  & .controller-decrease
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 20px
+    height: 20px
+    border: none
+    color: $controller-button-enabled-color
+    background-color: $controller-button-enabled-bg-color
+    border-radius: 50%
+    font-size: 0.7rem
+    outline: none
+    &:disabled
+      color: $controller-button-disabled-color
+      background-color: $controller-button-disabled-bg-color
+
+.order-item-price,
+.order-total-price
+  font-size: 1rem
+  font-weight: bold
+  color: $text-color
+
+.order-total-price
+  margin-bottom: 1rem
+  display: flex
+  justify-content: flex-end

@@ -1,0 +1,100 @@
+$text-color: #5C3D45
+$grey-color: #A9A9A9
+$included-ingredient-color: #26ADE4;
+$excluded-ingredient-color: #CF4647;
+
+h2
+  color: red
+
+.container
+  position: relative
+  width: 18rem
+  height: 100%
+  padding-top: 150px
+  overflow: hidden
+
+.body
+  display: flex
+  justify-content: center
+  flex-wrap: wrap
+
+.row
+  width: 100%
+
+.picture
+  position: absolute
+  top: -80px
+  left: -50px
+  width: 250px
+  height: 250px
+  margin-bottom: 1rem
+
+.title
+  font-size: 1.5rem
+  font-weight: bold
+  color: $text-color
+
+.description
+  font-size: 0.9rem
+  color: $text-color
+
+.modal-button
+  position: absolute
+  right: 10px
+  top: 10px
+  display: flex
+  justify-content: right
+  align-content: center
+  padding: 0.5rem 0.6rem
+  text-align: center
+  vertical-align: middle
+  border-radius: 50%
+  background: #fff
+  border: 2px solid #ECECEC
+  box-sizing: border-box
+
+  &:focus
+    outline: none
+
+  & span 
+    color: #3B8686
+    line-height: 1.2
+
+.radio-group__thickness
+  width: 100%
+
+.radio-group__diameter
+  flex: 1
+  div &
+    display: flex
+    justify-content: space-between
+
+.persons-icon
+  width: 100%
+  display: flex
+  justify-content: flex-end
+  color: $grey-color
+  & .oi
+    margin-right: 0.5rem
+
+.total-price
+  font-size: 1.2rem
+  font-weight: bold
+  color: $text-color
+
+.custom-ingredients-list,
+.removed-ingredients-list
+  display: flex
+  flex-wrap: wrap
+  font-size: 0.8rem
+  & p
+    flex-basis: 100%
+
+.custom-ingredients-list
+  & p
+    color: $included-ingredient-color
+
+.removed-ingredients-list
+  & p
+    color: $excluded-ingredient-color
+    text-decoration: line-through

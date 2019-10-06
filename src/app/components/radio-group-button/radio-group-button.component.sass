@@ -1,0 +1,49 @@
+$radio-group-bg-color: #F2F2F2
+$radio-group-text-color: #A9A9A9
+$radio-group-text-color-selected: #5C3D45
+
+.radio-group-button__container
+  max-height: 38px
+  flex-basis: 95%
+  position: relative
+  display: grid
+  border: 2px solid $radio-group-bg-color
+  border-radius: 2rem
+  overflow: hidden
+  margin-bottom: 0.8rem
+
+  & input
+    position: absolute
+    cursor: pointer
+    height: 100%
+    width: 100%
+    opacity: 0
+    z-index: 10
+    &.selected
+      opacity: 100
+
+  &.radio-group-button__options_two
+    grid-template-columns: 1fr 1fr
+
+  &.radio-group-button__options_three
+    grid-template-columns: 1fr 1fr 1fr
+
+  &.radio-group-button__options_four
+    grid-template-columns: 1fr 1fr 1fr 1fr
+
+.radio-group-button__item
+  position: relative
+  display: flex
+  justify-content: center
+  align-items: center
+  cursor: pointer
+  padding: 1rem
+  border-radius: inherit
+  color: $radio-group-text-color
+
+  &.selected
+    background: $radio-group-bg-color
+    color: $radio-group-text-color-selected
+
+  & span
+    position: absolute
